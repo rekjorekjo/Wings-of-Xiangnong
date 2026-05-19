@@ -26,9 +26,9 @@
     
 
 ```
-    yshop-drink.             Java工程
-    yshop-drink-vue          后台前端vue3工程
-    yshop-drink-uniapp-vue3  移动端uniapp(vue3版本)工程，支持微信小程序、h5
+    backend             Java 后端工程 (Spring Boot 3)
+    admin               管理平台前端 (Vue3)
+    miniapp             小程序端 (uni-app + Vue3)
 ```
 
 

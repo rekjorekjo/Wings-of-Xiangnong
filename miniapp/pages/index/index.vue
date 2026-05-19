@@ -25,7 +25,7 @@
 				<uv-swiper class="bg" height="300" imgMode="aspectFill" keyName="image" :list="listAds" indicatorMode="dot" indicatorStyle="bottom"></uv-swiper>
 				<view class="intro">
 					<view class="greet">您好，{{ isLogin ? member.nickname : '游客' }}</view>
-					<view class="note">java-springboot-意向点餐外卖系统</view>
+					<view class="note">DC 香农咖啡无人机配送</view>
 				</view>
 			</view>
 			<view class="content">

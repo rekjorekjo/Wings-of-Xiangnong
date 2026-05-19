@@ -2,9 +2,9 @@
 /.idea
 *.log
 *.DS_Store
-/yshop-drink-boot3/target/
-/yshop-drink-vue3/node_modules
-/yshop-drink-uniapp-vue3/node_moduls
+/backend/target/
+/admin/node_modules
+/miniapp/node_modules
 
 *.sql
 *.zip
