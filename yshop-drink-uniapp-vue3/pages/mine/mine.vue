@@ -33,24 +33,27 @@
 							</view>
 							<view class="font-size-sm text-color-assist">优惠券</view>
 						</view>
-						<view class="user-grid"  @tap="serv({type:'pages', pages: '/pages/components/pages/balance/bill?cate=1'})">
+						<!-- 香农之翼 MVP 阶段暂时隐藏：积分入口 -->
+						<!-- <view class="user-grid"  @tap="serv({type:'pages', pages: '/pages/components/pages/balance/bill?cate=1'})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.integral : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">积分</view>
-						</view>
-						<view class="user-grid">
+						</view> -->
+						<!-- 香农之翼 MVP 阶段暂时隐藏：余额入口 -->
+						<!-- <view class="user-grid">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.nowMoney : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">余额</view>
-						</view>
-						<view class="user-grid" @tap="serv({type:'pages', pages: '/pages/components/pages/balance/bill?cate=0'})">
+						</view> -->
+						<!-- 香农之翼 MVP 阶段暂时隐藏：历史消费/余额账单入口 -->
+						<!-- <view class="user-grid" @tap="serv({type:'pages', pages: '/pages/components/pages/balance/bill?cate=0'})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.sumMoney : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">历史消费</view>
-						</view>
+						</view> -->
 					</view>
 					<!-- user grid end -->
 				</view>
@@ -105,6 +108,30 @@ const { member,isLogin } = storeToRefs(main)
 const title = ref('个人中心')
 const services = ref([])
 
+const mvpHiddenServiceKeywords = [
+  '积分',
+  '积分商城',
+  '余额',
+  '充值',
+  '会员卡',
+  '店铺',
+  '门店',
+  '公众号',
+  '扫码',
+  '桌台',
+  '收银'
+]
+
+const shouldHideMvpService = (item) => {
+  const text = [
+    item?.name,
+    item?.pages,
+    item?.type,
+    item?.app_id
+  ].filter(Boolean).join(' ')
+  return mvpHiddenServiceKeywords.some(keyword => text.includes(keyword))
+}
+
 const growthValue = computed(() => { 
 	if (!isLogin.value) return 0
 	const {
@@ -133,7 +160,9 @@ const getUserInfo = async() => {
 const getServices = async() => {
 	let data = await mineService();
 	if (data) {
-		services.value = data;
+		services.value = Array.isArray(data)
+			? data.filter(item => !shouldHideMvpService(item))
+			: []
 	}
 }
 const makePhoneCall = (phoneNumber) => {

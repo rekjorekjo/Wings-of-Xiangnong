@@ -56,22 +56,22 @@
 				<!-- 		<view class="iconfont iconarrow-right"></view> -->
 				
 					</view>
-				</view> 
-				<view class="info">
+				</view>
+				<!-- 香农之翼 MVP 阶段暂时隐藏：积分商城 -->
+				<!-- <view class="info">
 					<view class="integral_section" @tap="goScore">
 						<view class="top">
 							<text class="title">积分商城</text>
 						</view>
 						<view class="bottom">
 							进入积分商城兑换奈雪券及周边好礼
-						<!-- 	<view class="iconfont iconarrow-right"></view> -->
 						</view>
 					</view>
 					<view class="qrcode_section" @tap="goScore">
 						<image src="/static/images/jifen.png"></image>
 						<text>逛一逛</text>
 					</view>
-				</view>
+				</view> -->
 				
 			</view>
 	</view>

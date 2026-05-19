@@ -1,4 +1,4 @@
-export const VUE_APP_API_URL = 'http://localhost:48081/app-api'
+export const VUE_APP_API_URL = 'http://localhost:18081/app-api'
 //export const VUE_APP_API_URL = 'https://apidc.yixiang.co/app-api'
 export const VUE_APP_RESOURCES_URL = 'https://h5.yixiang.co/static'
 export const VUE_APP_UPLOAD_URL = VUE_APP_API_URL + '/infra/file/upload'
