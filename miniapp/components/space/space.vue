@@ -28,7 +28,7 @@ const classObject = ref({})
 
 const handleClassObject = (props) => {
   console.log("--> % handleClassObject % props:\n", props.value)
-  let className = 'yshop-space'
+  let className = 'app-space'
   let direction = props.direction
   let align = props.align
   let wrap = props.wrap
@@ -36,19 +36,19 @@ const handleClassObject = (props) => {
   let flex = props.flex
   let border = props.border
   if (border) {
-    className += ' yshop-space-border'
+    className += ' app-space-border'
   }
   if (direction) {
-    className += ` yshop-space-${direction}`
+    className += ` app-space-${direction}`
   }
   if (wrap) {
-    className += ` yshop-space-${wrap}`
+    className += ` app-space-${wrap}`
   }
   if (align) {
-    className += ` yshop-space-align-${align}`
+    className += ` app-space-align-${align}`
   }
   if (justify) {
-    className += ` yshop-space-justify-${justify}`
+    className += ` app-space-justify-${justify}`
   }
   console.log("--> % handleClassObject % className:\n", className)
 
@@ -142,7 +142,7 @@ space {
   width: 100%;
 }
 
-.yshop-space {
+.app-space {
   display: flex;
   width: 100%;
   flex: 1;
@@ -193,7 +193,7 @@ space {
 }
 
 // #ifdef APP-PLUS
-.yshop-space {
+.app-space {
   &>view {
     margin-right: 8rpx;
   }

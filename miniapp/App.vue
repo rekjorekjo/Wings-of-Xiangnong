@@ -113,7 +113,7 @@ const auth = async(code) => {
 @import '~@/static/style/app.scss';
 //@import 'static/iconfont/iconfont.scss';
 //@import url('./static/style/style.less');
-@import 'static/style/yshop.css';
+@import 'static/style/app.css';
 
 // /*每个页面公共css */
 // page {
