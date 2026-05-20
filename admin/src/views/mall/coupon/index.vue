@@ -8,10 +8,10 @@
       :inline="true"
       label-width="100px"
     >
-      <el-form-item label="店铺名称" prop="shopName">
+      <el-form-item label="站点名称" prop="shopName">
         <el-input
           v-model="queryParams.shopName"
-          placeholder="请输入店铺名称"
+          placeholder="请输入站点名称"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -40,7 +40,7 @@
   <ContentWrap>
     <el-table v-loading="loading" :data="list">
       <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="可用店铺" align="center" prop="shopName"  width="150" />
+      <el-table-column label="可用站点" align="center" prop="shopName"  width="150" />
       <el-table-column label="优惠券名称" align="center" prop="title"  width="150" />
       <el-table-column label="是否上架" align="center" prop="isSwitch">
         <template #default="scope">
@@ -53,7 +53,7 @@
       <el-table-column label="可用类型" align="center" prop="type">
         <template #default="scope">
           <span v-if="scope.row.type == 1">自取</span>
-          <span v-else-if="scope.row.type == 2">外卖</span>
+          <span v-else-if="scope.row.type == 2">配送</span>
           <span v-else>通用</span>
          </template>
       </el-table-column>

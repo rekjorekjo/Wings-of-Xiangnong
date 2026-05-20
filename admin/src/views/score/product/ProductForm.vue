@@ -178,9 +178,9 @@ const submitForm = async () => {
 }
 
 const addCustomDialog  = () => {
-      window.UE.registerUI('yshop', function (editor, uiName) {
+      window.UE.registerUI('imagePicker', function (editor, uiName) {
         let dialog = new window.UE.ui.Dialog({
-          iframeUrl: '/yshop/materia/index',
+          iframeUrl: '/materials/editor',
           editor: editor,
           name: uiName,
           title: '上传图片',

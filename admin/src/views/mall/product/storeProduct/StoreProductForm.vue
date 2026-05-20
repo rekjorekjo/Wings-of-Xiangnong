@@ -9,10 +9,10 @@
     >
     <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
       <el-tab-pane label="基本信息" name="one">
-        <el-form-item label="展示店铺" prop="shopId">
+        <el-form-item label="展示站点" prop="shopId">
           <el-select
             v-model="formValidate.shopId"
-            placeholder="选择店铺"
+            placeholder="选择站点"
             @change="selectShop"
           >
             <el-option
@@ -353,7 +353,7 @@ const oneFormValidate = ref([
 ])
 
 const formRules = reactive({
-  shopId: [{ required: true, message: '请选择店铺', trigger: 'blur' }],
+  shopId: [{ required: true, message: '请选择站点', trigger: 'blur' }],
   image: [{ required: true, message: '商品图片不能为空', trigger: 'blur' }],
   slider_image: [{ required: true, message: '轮播图不能为空', trigger: 'blur' }],
   store_name: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }],
@@ -774,9 +774,9 @@ const getTree = async (val) => {
 }
 
 const addCustomDialog  = () => {
-      window.UE.registerUI('yshop', function (editor, uiName) {
+      window.UE.registerUI('imagePicker', function (editor, uiName) {
         let dialog = new window.UE.ui.Dialog({
-          iframeUrl: '/yshop/materia/index',
+          iframeUrl: '/materials/editor',
           editor: editor,
           name: uiName,
           title: '上传图片',

@@ -7,16 +7,16 @@
       label-width="150px"
       v-loading="formLoading"
     >
-      <el-form-item label="店铺名称" prop="name">
-        <el-input v-model="formData.name" placeholder="请输入店铺名称" />
+      <el-form-item label="站点名称" prop="name">
+        <el-input v-model="formData.name" placeholder="请输入站点名称" />
       </el-form-item>
-      <el-form-item label="店铺电话" prop="mobile">
-        <el-input v-model="formData.mobile" placeholder="请输入店铺电话" />
+      <el-form-item label="站点电话" prop="mobile">
+        <el-input v-model="formData.mobile" placeholder="请输入站点电话" />
       </el-form-item>
-      <el-form-item label="门店头像" prop="image">
+      <el-form-item label="站点头像" prop="image">
           <Materials v-model="formData.image" num="1" type="image" />
       </el-form-item>
-      <el-form-item label="门店组图" prop="images">
+      <el-form-item label="站点组图" prop="images">
         <Materials v-model="formData.images" num="5" type="image" />
       </el-form-item>
       <el-form-item label="营业开始时间" prop="startTime">
@@ -40,8 +40,8 @@
       <el-form-item label="详细地址" prop="address">
         <el-input v-model="formData.address" placeholder="请输入详细地址" />
       </el-form-item>
-      <el-form-item label="外卖配送距离/千米" prop="distance">
-        <el-input v-model="formData.distance" placeholder="请输入外卖配送距离,单位为千米。0表示不送外卖" />
+      <el-form-item label="配送距离/千米" prop="distance">
+        <el-input v-model="formData.distance" placeholder="请输入配送距离,单位为千米。0表示不支持配送" />
       </el-form-item>
       <el-form-item label="起送价钱" prop="minPrice">
         <el-input v-model="formData.minPrice" placeholder="请输入起送价钱" />
@@ -119,15 +119,15 @@ const formData = ref({
   endTime: undefined
 })
 const formRules = reactive({
-  name: [{ required: true, message: '店铺名称不能为空', trigger: 'blur' }],
-  mobile: [{ required: true, message: '店铺电话不能为空', trigger: 'blur' }],
+  name: [{ required: true, message: '站点名称不能为空', trigger: 'blur' }],
+  mobile: [{ required: true, message: '站点电话不能为空', trigger: 'blur' }],
   image: [{ required: true, message: '图片不能为空', trigger: 'blur' }],
   images: [{ required: true, message: '多张图片不能为空', trigger: 'blur' }],
   address: [{ required: true, message: '详细地址不能为空', trigger: 'blur' }],
   addressMap: [{ required: true, message: '地图定位地址不能为空', trigger: 'blur' }],
   lng: [{ required: true, message: '经度不能为空', trigger: 'blur' }],
   lat: [{ required: true, message: '纬度不能为空', trigger: 'blur' }],
-  distance: [{ required: true, message: '外卖配送距离,单位为千米。0表示不送外卖不能为空', trigger: 'blur' }],
+  distance: [{ required: true, message: '配送距离不能为空', trigger: 'blur' }],
   minPrice: [{ required: true, message: '起送价钱不能为空', trigger: 'blur' }],
   deliveryPrice: [{ required: true, message: '配送价格不能为空', trigger: 'blur' }],
   notice: [{ required: true, message: '公告不能为空', trigger: 'blur' }],

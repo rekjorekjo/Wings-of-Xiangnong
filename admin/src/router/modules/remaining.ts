@@ -235,7 +235,7 @@ const remainingRouter: AppRouteRecordRaw[] = [
     }
   },
   {
-    path: '/yshop/materia/index',
+    path: '/materials/editor',
     component: () => import('@/components/Materials/src/editorMaterials.vue'),
     name: 'EditorMaterials',
     meta: {

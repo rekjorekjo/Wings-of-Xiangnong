@@ -2,7 +2,7 @@
    <ContentWrap>
     <el-tabs v-model="activeName"  @tab-click="handleClick">
       <el-tab-pane label="全部订单" name=""/>
-      <el-tab-pane label="外卖订单" name="takeout"/>
+      <el-tab-pane label="配送订单" name="takeout"/>
       <el-tab-pane label="自取订单" name="takein"/>
     </el-tabs>
     <el-form-item label="订单状态：" >
@@ -87,14 +87,14 @@
   <ContentWrap>
     <el-table v-loading="loading" :data="list" style="width: 100%">
       <el-table-column label="ID" align="center" prop="id" />
-      <el-table-column label="门店" align="center" prop="shopName" width="100" />
+      <el-table-column label="站点" align="center" prop="shopName" width="100" />
       <el-table-column label="取餐号" align="center" prop="numberId" />
       <el-table-column label="桌号" align="center" prop="deskNumber" />
       <el-table-column label="订单号" align="center" prop="orderId" width="240">
         <template #default="scope">
           <span>
             <el-tag class="ml-2" type="danger" v-if="scope.row.orderType=='desk'">堂食</el-tag>
-            <el-tag class="ml-2" type="danger" v-if="scope.row.orderType=='takeout'">外卖</el-tag>
+            <el-tag class="ml-2" type="danger" v-if="scope.row.orderType=='takeout'">配送</el-tag>
             <el-tag class="ml-2" type="danger" v-if="scope.row.orderType=='takein'">自取</el-tag>
            {{ scope.row.orderId }}</span>
         </template>
@@ -139,7 +139,7 @@
       </el-table-column>
       <el-table-column label="购买类型" align="center">
         <template #default="scope">
-           <span v-if="scope.row.orderType=='takeout'">外卖</span>
+           <span v-if="scope.row.orderType=='takeout'">配送</span>
            <span v-if="scope.row.orderType=='takein'">自取</span>
         </template>
       </el-table-column>

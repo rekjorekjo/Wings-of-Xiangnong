@@ -7,10 +7,10 @@
       label-width="120px"
       v-loading="formLoading"
     >
-      <el-form-item label="展示店铺" prop="shopId">
+      <el-form-item label="展示站点" prop="shopId">
         <el-select
           v-model="formData.shopId"
-          placeholder="选择店铺"
+          placeholder="选择站点"
         >
           <el-option
             v-for="item in shopList"
@@ -24,7 +24,7 @@
         <el-radio-group v-model="formData.type">
           <el-radio :label="0">通用</el-radio>
           <el-radio :label="1">自取</el-radio>
-          <el-radio :label="2">外卖</el-radio>
+          <el-radio :label="2">配送</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="兑换码" prop="exchangeCode">
@@ -116,7 +116,7 @@ const formData = ref({
 })
 const shopList = ref([])
 const formRules = reactive({
-  shopId: [{ required: true, message: '店铺id,0表示通用不能为空', trigger: 'blur' }],
+  shopId: [{ required: true, message: '请选择站点', trigger: 'blur' }],
   title: [{ required: true, message: '优惠券名称不能为空', trigger: 'blur' }],
   least: [{ required: true, message: '消费多少可用不能为空', trigger: 'blur' }],
   value: [{ required: true, message: '优惠券金额不能为空', trigger: 'blur' }],

@@ -2,14 +2,14 @@
   <el-drawer v-model="drawer" :title="dialogTitle" size="50%">
     <el-table :data="tableData" style="width: 100%">
       <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="店铺名称" align="center" prop="shopName" width="150" />
+      <el-table-column label="站点名称" align="center" prop="shopName" width="150" />
       <el-table-column label="优惠券名称" align="center" prop="title" width="150" />
       <el-table-column label="消费多少可用" align="center" prop="least" width="150" />
       <el-table-column label="优惠券金额" align="center" prop="value" width="150" />
       <el-table-column label="可用类型" align="center" prop="type">
         <template #default="scope">
           <span v-if="scope.row.type == 1">自取</span>
-          <span v-if="scope.row.type == 0">外卖</span>
+          <span v-if="scope.row.type == 0">配送</span>
           <span v-else>通用</span>
          </template>
       </el-table-column>

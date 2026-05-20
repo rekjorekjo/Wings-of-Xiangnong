@@ -64,7 +64,7 @@
              <div>取餐号:{{ order.numberId }}</div>
              <div>下单时间:{{ formatDate(order.createTime) }}</div>
              <div>取餐时间:{{ formatDate(order.getTime) }}</div>
-             <div>类型:{{ order.orderType == 'takeout' ? '外卖' : '自取' }}</div>
+             <div>类型:{{ order.orderType == 'takeout' ? '配送' : '自取' }}</div>
              <div>  
                <el-button
                  type="primary"

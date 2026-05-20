@@ -42,10 +42,10 @@
         <template #title>
           订单信息
           <el-tag  type="danger" v-if="DetailData.orderType=='desk'">堂食</el-tag>
-          <el-tag  type="danger" v-if="DetailData.orderType=='takeout'">外卖</el-tag>
+          <el-tag  type="danger" v-if="DetailData.orderType=='takeout'">配送</el-tag>
           <el-tag  type="danger" v-if="DetailData.orderType=='takein'">自取</el-tag>
         </template>
-        <el-descriptions-item label="门店">{{ DetailData.shopName }}</el-descriptions-item>
+        <el-descriptions-item label="站点">{{ DetailData.shopName }}</el-descriptions-item>
         <el-descriptions-item label="取餐号">{{ DetailData.numberId }}</el-descriptions-item>
         <el-descriptions-item label="桌位号">{{ DetailData.deskNumber ? DetailData.deskNumber : '无' }}</el-descriptions-item>
         <el-descriptions-item label="就餐人数">{{ DetailData.deskPeople ? DetailData.deskPeople : '无' }}</el-descriptions-item>

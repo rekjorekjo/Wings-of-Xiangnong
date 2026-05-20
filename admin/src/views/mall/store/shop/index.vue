@@ -8,19 +8,19 @@
       :inline="true"
       label-width="68px"
     >
-      <el-form-item label="店铺名称" prop="name">
+      <el-form-item label="站点名称" prop="name">
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入店铺名称"
+          placeholder="请输入站点名称"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
         />
       </el-form-item>
-      <el-form-item label="店铺电话" prop="mobile">
+      <el-form-item label="站点电话" prop="mobile">
         <el-input
           v-model="queryParams.mobile"
-          placeholder="请输入店铺电话"
+          placeholder="请输入站点电话"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -40,16 +40,16 @@
   <ContentWrap>
     <el-table v-loading="loading" :data="list">
       <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="店铺名称" align="center" prop="name" width="150" />
-      <el-table-column label="店铺电话" align="center" prop="mobile" width="150" />
-      <el-table-column label="门店图片" align="center" prop="image" width="150">
+      <el-table-column label="站点名称" align="center" prop="name" width="150" />
+      <el-table-column label="站点电话" align="center" prop="mobile" width="150" />
+      <el-table-column label="站点图片" align="center" prop="image" width="150">
         <template #default="scope">
           <el-image style="width: 100px; height: 100px" :src="scope.row.image"  />
         </template>
       </el-table-column>
       <el-table-column label="经度" align="center" prop="lng" width="150" />
       <el-table-column label="纬度" align="center" prop="lat"  width="150" />
-      <el-table-column label="外卖配送距离" align="center" prop="distance" width="150">
+      <el-table-column label="配送距离" align="center" prop="distance" width="150">
         <template #default="scope">
           <span v-if="scope.row.distance == 0">
             到店消费
@@ -209,7 +209,7 @@ const handleExport = async () => {
     // 发起导出
     exportLoading.value = true
     const data = await ShopApi.exportShop(queryParams)
-    download.excel(data, '门店管理.xls')
+    download.excel(data, '站点管理.xls')
   } catch {
   } finally {
     exportLoading.value = false

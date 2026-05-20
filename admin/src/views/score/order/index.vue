@@ -220,7 +220,7 @@ const handleExport = async () => {
     // 发起导出
     exportLoading.value = true
     const data = await OrderApi.exportOrder(queryParams)
-    download.excel(data, '积分商城订单.xls')
+    download.excel(data, '积分订单.xls')
   } catch {
   } finally {
     exportLoading.value = false

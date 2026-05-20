@@ -25,10 +25,10 @@
             class="!w-240px"
           />
         </el-form-item>
-        <el-form-item label="店铺名称" prop="shopName">
+        <el-form-item label="站点名称" prop="shopName">
         <el-input
           v-model="queryParams.shopName"
-          placeholder="请输入分类名称"
+          placeholder="请输入站点名称"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -71,7 +71,7 @@
                 />
               </template>
             </el-table-column>
-            <el-table-column label="所属门店" align="center" prop="shopName" />
+            <el-table-column label="所属站点" align="center" prop="shopName" />
             <el-table-column label="商品名称" align="center" prop="storeName" />
             <el-table-column label="商品价格" align="center" prop="price" />
             <el-table-column label="销量" align="center"  width="80" prop="sales" />

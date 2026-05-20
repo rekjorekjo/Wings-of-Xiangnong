@@ -17,10 +17,10 @@
           class="!w-240px"
         />
       </el-form-item>
-      <el-form-item label="店铺名称" prop="shopName">
+      <el-form-item label="站点名称" prop="shopName">
         <el-input
           v-model="queryParams.shopName"
-          placeholder="请输入分类名称"
+          placeholder="请输入站点名称"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -45,7 +45,7 @@
   <ContentWrap>
     <el-table v-loading="loading" :data="list" row-key="id" default-expand-all>
       <el-table-column label="分类名称" prop="name" sortable />
-      <el-table-column label="所属门店" prop="shopName" sortable />
+      <el-table-column label="所属站点" prop="shopName" sortable />
       <el-table-column label="分类排序" align="center" prop="sort" />
       <el-table-column label="开启状态" align="center" prop="status">
         <template #default="scope">

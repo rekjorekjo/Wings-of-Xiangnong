@@ -8,10 +8,10 @@
       :inline="true"
       label-width="68px"
     >
-      <el-form-item label="店铺名称" prop="shopId">
+      <el-form-item label="站点名称" prop="shopId">
         <el-input
           v-model="queryParams.shopName"
-          placeholder="请输入店铺名称"
+          placeholder="请输入站点名称"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -43,7 +43,7 @@
         </template>
       </el-table-column>
       <el-table-column label="权重" align="center" prop="weigh" />
-      <el-table-column label="展示店铺" align="center" prop="shopName" />
+      <el-table-column label="展示站点" align="center" prop="shopName" />
       <el-table-column
         label="添加时间"
         align="center"

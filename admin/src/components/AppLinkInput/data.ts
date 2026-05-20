@@ -42,7 +42,7 @@ export const enum APP_LINK_TYPE_ENUM {
 // APP 链接列表（做一下持久化？）
 export const APP_LINK_GROUP_LIST = [
   {
-    name: '商城',
+    name: '业务页面',
     links: [
       {
         name: '首页',
@@ -151,7 +151,7 @@ export const APP_LINK_GROUP_LIST = [
     ]
   },
   {
-    name: '分销商城',
+    name: '分销页面',
     links: [
       {
         name: '分销中心',

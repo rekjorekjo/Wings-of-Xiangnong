@@ -8,10 +8,10 @@
       v-loading="formLoading"
     >
   
-      <el-form-item label="展示店铺" prop="shopId">
+      <el-form-item label="展示站点" prop="shopId">
         <el-select
           v-model="formData.shopId"
-          placeholder="选择店铺"
+          placeholder="选择站点"
         >
          <el-option
             :key="0"
@@ -66,7 +66,7 @@ const formData = ref({
 const formRules = reactive({
   image: [{ required: true, message: '图片不能为空', trigger: 'blur' }],
   weigh: [{ required: true, message: '权重不能为空', trigger: 'blur' }],
-  shopId: [{ required: true, message: '请选择店铺', trigger: 'blur' }]
+  shopId: [{ required: true, message: '请选择站点', trigger: 'blur' }]
 })
 const formRef = ref() // 表单 Ref
 const shopList = ref([])
