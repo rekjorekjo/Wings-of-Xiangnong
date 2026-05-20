@@ -244,7 +244,7 @@ const login = async () => {
 
 const serv = (id,name) => {
 	uni.navigateTo({
-			url: '/pages/components/pages/mine/content?id=' + id + '&name=' + name
+			url: '/pages/subpages/mine/content?id=' + id + '&name=' + name
 	})
 }
 

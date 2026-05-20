@@ -134,17 +134,17 @@ const coupons = () => {
 	console.log("--> % orderType:\n", main.orderType)
 	console.log("--> % isLogin:\n", main.isLogin)
 	if(!main.isLogin) {
-		uni.navigateTo({url: '/pages/components/pages/login/login'})
+		uni.navigateTo({url: '/pages/subpages/login/login'})
 		return
 	}
 	uni.navigateTo({
-		url: '/pages/components/pages/coupons/coupons'
+		url: '/pages/subpages/coupons/coupons'
 	})
 }
 
 const goScore = () => { 
 	uni.navigateTo({
-		url: '/pages/components/pages/scoreproduct/list'
+		url: '/pages/subpages/scoreproduct/list'
 	})
 }
 

@@ -110,7 +110,7 @@ const goodsNum = computed(() => { //计算单个饮品添加到购物车的数�
 })
 onLoad(() => {
 	if(!isLogin.value) {
-		uni.navigateTo({url: '/pages/components/pages/login/login'})
+		uni.navigateTo({url: '/pages/subpages/login/login'})
 	}
 	getOrders(false)
 })
@@ -146,7 +146,7 @@ const getOrders = async(isRefresh = false) => {
 }
 const detail = (id) => {
 	uni.navigateTo({
-		url: '/pages/components/pages/orders/detail?id=' + id
+		url: '/pages/subpages/orders/detail?id=' + id
 	})
 }
 // 确认收到货

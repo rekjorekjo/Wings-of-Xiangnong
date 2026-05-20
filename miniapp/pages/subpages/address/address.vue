@@ -79,12 +79,12 @@ const init = async() => {
 }
 const add = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/address/add'
+		url: '/pages/subpages/address/add'
 	})
 }
 const edit = (id) => {
 	uni.navigateTo({
-		url: '/pages/components/pages/address/add?id=' + id
+		url: '/pages/subpages/address/add?id=' + id
 	})
 }
 const handleSwipeClick = async(id) => {

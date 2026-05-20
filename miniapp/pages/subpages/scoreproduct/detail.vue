@@ -85,14 +85,14 @@ onLoad((options) => {
 // 选择地址
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/address/address?is_choose=true&scene=scoreShop'
+		url: '/pages/subpages/address/address?is_choose=true&scene=scoreShop'
 	})
 }
 
 const confirm = () => {
 	cookie.set('score_product',product.value)
 	uni.navigateTo({
-		url: '/pages/components/pages/scoreproduct/confirm'
+		url: '/pages/subpages/scoreproduct/confirm'
 	})
 }
 // 该表购买数量

@@ -100,7 +100,7 @@ const tabList = ref([{
 onLoad(() => {
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/components/pages/login/login'
+			url: '/pages/subpages/login/login'
 		})
 	}
 	getOrders(false)
@@ -141,7 +141,7 @@ const  getOrders = async(isRefresh = false) => {
 }
 const detail = (id) => {
 	uni.navigateTo({
-		url: '/pages/components/pages/scoreproduct/orderDetail?id=' + id
+		url: '/pages/subpages/scoreproduct/orderDetail?id=' + id
 	})
 }
 // 确认收到货

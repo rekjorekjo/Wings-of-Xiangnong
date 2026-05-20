@@ -65,7 +65,7 @@ const submit = () => {
 		return
 	}
 	uni.navigateTo({
-		url: "/pages/components/pages/pay/pay?remark=" + remark.value
+		url: "/pages/subpages/pay/pay?remark=" + remark.value
 	})
 }
 	

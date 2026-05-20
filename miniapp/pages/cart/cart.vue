@@ -121,7 +121,7 @@ const toPay = () => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/components/pages/login/login'
+			url: '/pages/subpages/login/login'
 		})
 		return
 	} else {
@@ -141,7 +141,7 @@ const toPay = () => {
 		uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
 
 		uni.navigateTo({
-			url: '/pages/components/pages/pay/pay'
+			url: '/pages/subpages/pay/pay'
 		})
 	}
 

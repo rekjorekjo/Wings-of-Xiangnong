@@ -446,12 +446,12 @@ const takout = (value) => {
 }
 const goToRemark = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/remark/remark?remark=' + form.value.remark
+		url: '/pages/subpages/remark/remark?remark=' + form.value.remark
 	});
 }
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/address/address?is_choose=true&scene=pay'
+		url: '/pages/subpages/address/address?is_choose=true&scene=pay'
 	});
 }
 const goToPackages = () => {
@@ -460,13 +460,13 @@ const goToPackages = () => {
 	let type = orderType.value == 'takein' ? 1 : 2;
 	let shop_id = store.value.id;
 	uni.navigateTo({
-		url: '/pages/components/pages/packages/index?amount=' + newamount + '&coupon_id=' + coupon_id +
+		url: '/pages/subpages/packages/index?amount=' + newamount + '&coupon_id=' + coupon_id +
 			'&shop_id=' + shop_id + '&type=' + type
 	});
 }
 const goToShop = () => {
 	uni.navigateTo({
-		url: `/pages/components/pages/shop/shop`
+		url: `/pages/subpages/shop/shop`
 	});
 }
 const submit = () => {

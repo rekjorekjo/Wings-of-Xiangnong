@@ -109,7 +109,7 @@ const changeList = (e) => {
 }
 const goDetail = (item) => {
 	uni.navigateTo({
-		url: '/pages/components/pages/scoreproduct/detail?id=' + item.id
+		url: '/pages/subpages/scoreproduct/detail?id=' + item.id
 	})
 }
 const  getProduct = async() => {

@@ -347,7 +347,7 @@ const in_array = (search, array) => {
 }
 const selectShop = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/shop/shop'
+		url: '/pages/subpages/shop/shop'
 	})
 }
 const uToast = ref()
@@ -475,7 +475,7 @@ const takout = (force = false) => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/components/pages/login/login'
+			url: '/pages/subpages/login/login'
 		})
 		return
 	} 
@@ -487,7 +487,7 @@ const takein = (force = false) => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/components/pages/login/login'
+			url: '/pages/subpages/login/login'
 		})
 		return
 	} 
@@ -673,7 +673,7 @@ const toPay = () => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/components/pages/login/login'
+			url: '/pages/subpages/login/login'
 		})
 		return
 	} else {
@@ -697,7 +697,7 @@ const toPay = () => {
 		uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
 
 		uni.navigateTo({
-			url: '/pages/components/pages/pay/pay'
+			url: '/pages/subpages/pay/pay'
 		})
 	}
 

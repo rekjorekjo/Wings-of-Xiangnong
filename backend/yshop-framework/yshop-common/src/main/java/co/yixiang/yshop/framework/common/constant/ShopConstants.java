@@ -185,6 +185,6 @@ public interface ShopConstants {
 	//快递查询接口Logistic
 	String KDNIAO_LOGISTIC_QUERY="https://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx";
 
-	//跳转到扫码页面
+	// TODO 香农之翼 MVP：旧扫码入口路径，当前小程序端未找到对应页面，暂不启用
 	String PAGE_GOOD_HOME = "pages/components/pages/scan/scan";
 }

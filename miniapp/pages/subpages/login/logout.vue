@@ -37,7 +37,7 @@ const logout = () => {
 	});
 	setTimeout(function() {
 		uni.redirectTo({
-			url: '/pages/components/pages/login/login',
+			url: '/pages/subpages/login/login',
 		})
 	}, 1000);
 }

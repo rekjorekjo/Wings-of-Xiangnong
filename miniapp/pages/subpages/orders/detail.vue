@@ -248,7 +248,7 @@ const receive  = async(order) => {
 //提交退款
 const refund = (order) => {
 	uni.navigateTo({
-		url: '/pages/components/pages/orders/refund?orderId=' + order.orderId + '&payPrice=' + order.payPrice + '&totalPrice=' + order.totalPrice
+		url: '/pages/subpages/orders/refund?orderId=' + order.orderId + '&payPrice=' + order.payPrice + '&totalPrice=' + order.totalPrice
 	})
 }
 

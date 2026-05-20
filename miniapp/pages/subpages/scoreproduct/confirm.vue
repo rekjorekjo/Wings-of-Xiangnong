@@ -79,7 +79,7 @@ const customStyle = computed(() =>{
 onLoad(() => {
 	console.log('address:',address.value)
 	if(!isLogin.value) {
-		uni.navigateTo({url: '/pages/components/pages/login/login'})
+		uni.navigateTo({url: '/pages/subpages/login/login'})
 	}
 	product.value = cookie.get('score_product')
 	
@@ -88,7 +88,7 @@ onLoad(() => {
 // 选择地址
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/components/pages/address/address?is_choose=true&scene=scoreShop'
+		url: '/pages/subpages/address/address?is_choose=true&scene=scoreShop'
 	})
 }
 
@@ -111,7 +111,7 @@ const submit = async() => {
 		cookie.remove('score_product')
 		setTimeout(function() {
 			uni.navigateTo({
-				url: '/pages/components/pages/scoreproduct/order'
+				url: '/pages/subpages/scoreproduct/order'
 			})
 		}, 1000)
 	}

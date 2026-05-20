@@ -45,30 +45,30 @@
         }
     ],
 	"subPackages": [{
-		"root": "pages/components",
+		"root": "pages/subpages",
 		"pages": [ {
-				"path": "pages/mine/content",
+				"path": "mine/content",
 				"style": {
 					"navigationBarTitleText": "内容",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/pay/pay",
+				"path": "pay/pay",
 				"style": {
 					"navigationBarTitleText": "支付",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/remark/remark",
+				"path": "remark/remark",
 				"style": {
 					"navigationBarTitleText": "备注",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/packages/index",
+				"path": "packages/index",
 				"style": {
 					"navigationBarTitleText": "可用优惠券",
 					"navigationBarTextStyle": "black",
@@ -77,7 +77,7 @@
 				}
 			 },
 			 {
-				"path": "pages/login/login",
+				"path": "login/login",
 				"style": {
 					"navigationBarTitleText": "登录",
 					"navigationBarTextStyle": "black",
@@ -85,27 +85,27 @@
 				}
 			},
 			{
-				"path": "pages/login/logout",
+				"path": "login/logout",
 				"style": {
 					"navigationBarTitleText": "退出登录"
 				}
 			},
 			{
-				"path": "pages/address/address",
+				"path": "address/address",
 				"style": {
 					"navigationBarTitleText": "我的地址",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/address/add",
+				"path": "address/add",
 				"style": {
 					"navigationBarTitleText": "添加地址",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/orders/orders",
+				"path": "orders/orders",
 				"style": {
 					"navigationBarTitleText": "历史订单",
 					"navigationBarTextStyle": "black",
@@ -114,14 +114,14 @@
 					"onReachBottomDistance": 50
 				}
 			}, {
-				"path": "pages/orders/detail",
+				"path": "orders/detail",
 				"style": {
 					"navigationBarTitleText": "订单详情",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/coupons/coupons",
+				"path": "coupons/coupons",
 				"style": {
 					"enablePullDownRefresh": true,
 					"navigationBarTitleText": "我的卡券",
@@ -129,7 +129,7 @@
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/mine/userinfo",
+				"path": "mine/userinfo",
 				"style": {
 					"navigationBarTitleText": "用户信息",
 					"navigationBarTextStyle": "black",
@@ -137,14 +137,14 @@
 				}
 			},
 			 {
-				"path": "pages/shop/shop",
+				"path": "shop/shop",
 				"style": {
 					"navigationBarTitleText": "店铺",
 					"navigationBarTextStyle": "black",
 					"navigationBarBackgroundColor": "#ffffff"
 				}
 			}, {
-				"path": "pages/balance/bill",
+				"path": "balance/bill",
 				"style": {
 					"navigationBarTitleText": "账单",
 					"navigationBarTextStyle": "black",
@@ -152,7 +152,7 @@
 				}
 			}
 		    ,{
-                    "path" : "pages/orders/refund",
+                    "path" : "orders/refund",
                     "style" :                                                                                    
 					{
 						"navigationBarTitleText": "退款",
@@ -161,34 +161,34 @@
                 
             },
 			{
-				"path": "pages/scoreproduct/list",
+				"path": "scoreproduct/list",
 				"style": {
 					"navigationBarTitleText": "积分商城",
 					"enablePullDownRefresh": true
 				}
 			
 			}, {
-				"path": "pages/scoreproduct/detail",
+				"path": "scoreproduct/detail",
 				"style": {
 					"navigationBarTitleText": "产品详情",
 					"enablePullDownRefresh": true
 				}
 			
 			}, {
-				"path": "pages/scoreproduct/order",
+				"path": "scoreproduct/order",
 				"style": {
 					"navigationBarTitleText": "订单列表",
 					"enablePullDownRefresh": true
 				}
 			}, {
-				"path": "pages/scoreproduct/orderDetail",
+				"path": "scoreproduct/orderDetail",
 				"style": {
 					"navigationBarTitleText": "订单详情",
 					"enablePullDownRefresh": true
 				}
 			}
 			,{
-			        "path" : "pages/scoreproduct/confirm",
+			        "path" : "scoreproduct/confirm",
 			        "style" :                                                                                    
 			    {
 			        "navigationBarTitleText": "确认",
