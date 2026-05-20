@@ -52,7 +52,7 @@ const deliveryTasks: DeliveryTask[] = [
     orderNo: 'ORD20250120003',
     pickupSite: '香农之翼-中心站',
     dropoffSite: '香农之翼-南区站',
-    droneNo: 'DR-003',
+    droneNo: '',
     status: 'pending',
     statusText: '待分配',
     progress: 0,
@@ -94,6 +94,18 @@ const deliveryTasks: DeliveryTask[] = [
     progress: 90,
     etaMinutes: 2,
     createdAt: '2025-01-20 10:20:00'
+  },
+  {
+    id: 7,
+    orderNo: 'ORD20250120007',
+    pickupSite: '香农之翼-北区站',
+    dropoffSite: '香农之翼-东区站',
+    droneNo: '',
+    status: 'pending',
+    statusText: '待分配',
+    progress: 0,
+    etaMinutes: 0,
+    createdAt: '2025-01-20 11:00:00'
   }
 ]
 
