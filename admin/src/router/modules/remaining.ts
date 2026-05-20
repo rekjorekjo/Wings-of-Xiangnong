@@ -249,19 +249,22 @@ const remainingRouter: AppRouteRecordRaw[] = [
   {
     path: '/delivery',
     component: Layout,
-    name: 'DeliveryDashboard',
+    name: 'Delivery',
+    redirect: '/delivery/tasks',
     meta: {
-      hidden: true
+      title: '配送管理',
+      icon: 'ep:promotion',
+      alwaysShow: true
     },
     children: [
       {
-        path: '',
+        path: 'tasks',
         component: () => import('@/views/delivery/index.vue'),
-        name: 'DeliveryDashboardPage',
+        name: 'DeliveryTasks',
         meta: {
           title: '配送任务',
-          icon: 'ep:promotion',
-          canTo: true
+          icon: 'ep:position',
+          noCache: false
         }
       }
     ]

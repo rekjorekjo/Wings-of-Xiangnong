@@ -1,6 +1,11 @@
 <template>
   <div class="p-4">
     <div class="mb-4">
+      <div class="text-xl font-bold mb-1">配送任务</div>
+      <div class="text-gray-500 text-sm">查看无人机状态和配送任务进度</div>
+    </div>
+
+    <div class="mb-4">
       <el-button type="primary" @click="handleRefresh" :loading="loading">
         <Icon icon="ep:refresh" class="mr-5px" /> 刷新
       </el-button>
@@ -75,6 +80,8 @@
 <script setup lang="ts">
 import { getMockDeliveryTasks, getMockDrones, type DeliveryTask, type Drone } from '@/api/delivery/mock'
 
+type TagType = '' | 'success' | 'warning' | 'info' | 'primary' | 'danger'
+
 const loading = ref(false)
 const dronesLoading = ref(false)
 const tasksLoading = ref(false)
@@ -105,22 +112,22 @@ const handleRefresh = () => {
   loadData()
 }
 
-const getDroneStatusType = (status: string): 'success' | 'warning' | 'info' | 'danger' => {
-  const statusMap: Record<string, 'success' | 'warning' | 'info' | 'danger'> = {
+const getDroneStatusType = (status: string): TagType => {
+  const statusMap: Record<string, TagType> = {
     idle: 'success',
     assigned: 'warning',
-    flying: 'primary' as unknown as 'success',
+    flying: 'primary',
     charging: 'info',
     maintenance: 'danger'
   }
   return statusMap[status] || 'info'
 }
 
-const getTaskStatusType = (status: string): 'success' | 'warning' | 'info' | 'danger' => {
-  const statusMap: Record<string, 'success' | 'warning' | 'info' | 'danger'> = {
+const getTaskStatusType = (status: string): TagType => {
+  const statusMap: Record<string, TagType> = {
     pending: 'info',
     assigned: 'warning',
-    flying: 'primary' as unknown as 'success',
+    flying: 'primary',
     arrived: 'warning',
     completed: 'success',
     exception: 'danger'
