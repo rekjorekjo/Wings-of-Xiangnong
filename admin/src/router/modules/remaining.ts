@@ -245,6 +245,26 @@ const remainingRouter: AppRouteRecordRaw[] = [
       title: '上传图片',
     },
 
+  },
+  {
+    path: '/delivery',
+    component: Layout,
+    name: 'DeliveryDashboard',
+    meta: {
+      hidden: true
+    },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/delivery/index.vue'),
+        name: 'DeliveryDashboardPage',
+        meta: {
+          title: '配送任务',
+          icon: 'ep:promotion',
+          canTo: true
+        }
+      }
+    ]
   }
 
 ]
