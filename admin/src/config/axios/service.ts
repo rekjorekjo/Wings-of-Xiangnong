@@ -165,7 +165,7 @@ service.interceptors.response.use(
           t('sys.api.errMsg901') +
           '</div>' +
           '<div> &nbsp; </div>' +
-          '<div> https://www.yixiang.co/</div>' +
+          '<div> https://github.com/rekjorekjo/Wings-of-Xiangnong/</div>' +
           '<div> &nbsp; </div>' +
           '<div></div>'
       })

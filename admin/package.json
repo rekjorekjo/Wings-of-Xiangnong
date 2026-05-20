@@ -2,7 +2,7 @@
   "name": "admin",
   "version": "3.0.0",
   "description": "基于vue3、vite4、element-plus、typesScript",
-  "author": "yshop",
+  "author": "香农之翼",
   "private": false,
   "scripts": {
     "i": "pnpm install",

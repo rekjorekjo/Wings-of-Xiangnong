@@ -133,7 +133,7 @@ const loginData = reactive({
   },
   loginForm: {
     uuid: '',
-    tenantName: 'yshop源码',
+    tenantName: '香农之翼',
     mobileNumber: '',
     code: ''
   }

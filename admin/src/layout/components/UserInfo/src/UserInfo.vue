@@ -50,7 +50,7 @@ const toProfile = async () => {
   push('/user/profile')
 }
 const toDocument = () => {
-  window.open('https://www.yixiang.co/')
+  window.open('https://github.com/Wings-of-Xiangnong/')
 }
 </script>
 

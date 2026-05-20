@@ -196,7 +196,7 @@ const loginData = reactive({
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE !== 'false',
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE !== 'false',
   loginForm: {
-    tenantName: 'yshop源码',
+    tenantName: '香农之翼',
     username: 'admin',
     password: 'admin123',
     captchaVerification: '',

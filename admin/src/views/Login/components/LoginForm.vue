@@ -121,7 +121,7 @@ const loginData = reactive({
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE,
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE,
   loginForm: {
-    tenantName: 'yshop',
+    tenantName: '香农之翼',
     //username: 'yshop002',
     //password: '123456789',
     username: 'admin',

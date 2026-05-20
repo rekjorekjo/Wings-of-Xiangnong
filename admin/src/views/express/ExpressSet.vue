@@ -24,7 +24,7 @@
         <el-button @click="dialogVisible = false">取 消</el-button>
       </el-form-item>
       <el-form-item label=" " prop="">
-        <span><span style="color: red;">yshop-pro系统使用的第三方快递鸟api实现了快递查询，注册地址请点击，</span>
+        <span><span style="color: red;">本系统使用第三方快递鸟 API 实现快递查询，注册地址请点击，</span>
           <a href="http://www.kdniao.com/reg?from=cbb-yx " style="color:blue">我注册！</a></span>
       </el-form-item>
     </el-form>

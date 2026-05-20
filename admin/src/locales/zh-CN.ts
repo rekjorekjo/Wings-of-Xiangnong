@@ -113,8 +113,8 @@ export default {
     small: '小'
   },
   login: {
-    welcome: '欢迎使用yshop意象点餐系统',
-    message: '欢迎使用yshop意象点餐系统',
+    welcome: '欢迎使用香农之翼管理端',
+    message: '欢迎使用香农之翼管理端',
     tenantname: '租户名称',
     username: '用户名',
     password: '密码',
