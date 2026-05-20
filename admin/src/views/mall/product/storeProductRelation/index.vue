@@ -62,7 +62,7 @@
 
 <script setup lang="ts" name="StoreProductRelation">
 import { dateFormatter } from '@/utils/formatTime'
-import * as StoreProductRelationApi from '@/api/mall/product/storeProductRelation'
+import * as StoreProductRelationApi from '@/api/business/products/storeProductRelation'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

@@ -87,7 +87,7 @@
 <script setup lang="ts" name="StoreProductRule">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreProductRuleApi from '@/api/mall/shop/storeProductRule'
+import * as StoreProductRuleApi from '@/api/business/productRules'
 import StoreProductRuleForm from './StoreProductRuleForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

@@ -84,8 +84,8 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as Api from '@/api/mall/coupon/'
-import * as ShopApi from '@/api/mall/store/shop'
+import * as Api from '@/api/business/coupons'
+import * as ShopApi from '@/api/business/sites'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗

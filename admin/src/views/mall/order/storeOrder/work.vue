@@ -100,7 +100,7 @@
 <script setup lang="ts" name="StoreOrder">
 // import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreOrderApi from '@/api/mall/order/storeOrder'
+import * as StoreOrderApi from '@/api/business/orders'
 import StoreOrderForm from './StoreOrderForm.vue'
 import OrderSend from './OrderSend.vue'
 import OrderSendInfo from './OrderSendInfo.vue'

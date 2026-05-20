@@ -130,7 +130,7 @@
 <script setup lang="ts" name="StoreProduct">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreProductApi from '@/api/mall/product/product'
+import * as StoreProductApi from '@/api/business/products/product'
 import StoreProductForm from './StoreProductForm.vue'
 import CateTree from './CateTree.vue'
 import type { TabsPaneContext } from 'element-plus'

@@ -89,7 +89,7 @@
 import { DICT_TYPE } from '@/utils/dict'
 import { handleTree } from '@/utils/tree'
 import { dateFormatter } from '@/utils/formatTime'
-import * as ProductCategoryApi from '@/api/mall/product/category'
+import * as ProductCategoryApi from '@/api/business/products/category'
 import CategoryForm from './CategoryForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

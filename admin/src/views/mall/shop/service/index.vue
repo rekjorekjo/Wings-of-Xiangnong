@@ -99,7 +99,7 @@
 <script setup lang="ts" name="Service">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as ServiceApi from '@/api/mall/shop/service'
+import * as ServiceApi from '@/api/business/services'
 import ServiceForm from './ServiceForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

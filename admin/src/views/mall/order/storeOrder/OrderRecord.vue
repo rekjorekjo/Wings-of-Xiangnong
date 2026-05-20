@@ -9,7 +9,7 @@
 
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/mall/order/storeOrder'
+import * as StoreOrderApi from '@/api/business/orders'
 import { dateFormatter } from '@/utils/formatTime'
 
 const { t } = useI18n() // 国际化

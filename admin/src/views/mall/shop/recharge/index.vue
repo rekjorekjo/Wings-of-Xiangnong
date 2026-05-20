@@ -90,7 +90,7 @@
 <script setup lang="ts" name="Recharge">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as RechargeApi from '@/api/mall/shop/recharge'
+import * as RechargeApi from '@/api/business/recharge'
 import RechargeForm from './RechargeForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

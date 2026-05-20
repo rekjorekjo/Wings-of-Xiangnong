@@ -235,10 +235,10 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as StoreProductApi from '@/api/mall/product/product'
-import * as ProductCategoryApi from '@/api/mall/product/category'
+import * as StoreProductApi from '@/api/business/products/product'
+import * as ProductCategoryApi from '@/api/business/products/category'
 import type { TabsPaneContext } from 'element-plus'
-import * as ShopApi from '@/api/mall/store/shop'
+import * as ShopApi from '@/api/business/sites'
 
 
 const { t } = useI18n() // 国际化

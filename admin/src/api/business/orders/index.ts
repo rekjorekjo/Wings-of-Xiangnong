@@ -117,4 +117,3 @@ export const getShopCount = async () => {
 export const orderNoticeUrl = async () => {
   return await request.get({ url: `/order/store-order/notice`})
 }
-

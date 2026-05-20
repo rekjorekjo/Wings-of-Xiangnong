@@ -34,7 +34,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as RechargeApi from '@/api/mall/shop/recharge'
+import * as RechargeApi from '@/api/business/recharge'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗

@@ -46,8 +46,8 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as AdsApi from '@/api/mall/shop/ads'
-import * as ShopApi from '@/api/mall/store/shop'
+import * as AdsApi from '@/api/business/ads'
+import * as ShopApi from '@/api/business/sites'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗

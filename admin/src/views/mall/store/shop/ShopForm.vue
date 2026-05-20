@@ -84,7 +84,7 @@
   <MyMap ref="formRef1" @mapConfirm="mapConfirm" />
 </template>
 <script setup lang="ts">
-import * as ShopApi from '@/api/mall/store/shop'
+import * as ShopApi from '@/api/business/sites'
 import * as UserApi from '@/api/system/user'
 import MyMap from './map.vue'
 import { CACHE_KEY, useCache } from '@/hooks/web/useCache'

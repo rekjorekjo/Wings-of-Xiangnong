@@ -87,7 +87,7 @@
 <script setup lang="ts" name="ShopAds">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as AdsApi from '@/api/mall/shop/ads'
+import * as AdsApi from '@/api/business/ads'
 import AdsForm from './AdsForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

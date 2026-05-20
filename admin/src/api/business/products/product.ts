@@ -83,4 +83,3 @@ export const isFormatAttr = async (id, data) => {
 export const saleStoreProduct = async (id,isShow) => {
   return await request.get({ url: `/product/store-product/sale?id=` + id + `&type=` + isShow })
 }
-

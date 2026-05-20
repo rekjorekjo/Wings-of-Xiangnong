@@ -80,7 +80,7 @@
 
 <script setup lang="ts" name="StoreProductReply">
 import { dateFormatter } from '@/utils/formatTime'
-import * as StoreProductReplyApi from '@/api/mall/product/storeProductReply'
+import * as StoreProductReplyApi from '@/api/business/products/storeProductReply'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

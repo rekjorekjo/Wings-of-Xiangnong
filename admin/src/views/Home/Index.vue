@@ -106,7 +106,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/mall/order/storeOrder'
+import * as StoreOrderApi from '@/api/business/orders'
 import * as NoticeApi from '@/api/system/notice'
 import PanelGroupT from './PanelGroupT.vue'
 import { formatTime } from '@/utils'

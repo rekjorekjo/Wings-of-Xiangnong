@@ -54,8 +54,8 @@
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
 import { CommonStatusEnum } from '@/utils/constants'
 // import { handleTree } from '@/utils/tree'
-import * as ProductCategoryApi from '@/api/mall/product/category'
-import * as ShopApi from '@/api/mall/store/shop'
+import * as ProductCategoryApi from '@/api/business/products/category'
+import * as ShopApi from '@/api/business/sites'
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
 

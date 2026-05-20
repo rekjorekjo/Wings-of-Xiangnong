@@ -51,7 +51,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as ServiceApi from '@/api/mall/shop/service'
+import * as ServiceApi from '@/api/business/services'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗

@@ -125,7 +125,7 @@
 <script setup lang="ts" name="StoreShop">
 import { dateFormatter, dateFormatter2 } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as ShopApi from '@/api/mall/store/shop'
+import * as ShopApi from '@/api/business/sites'
 import ShopForm from './ShopForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

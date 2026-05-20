@@ -44,7 +44,7 @@
 
 </template>
 <script setup lang="ts">
-import * as UserApi from '@/api/mall/coupon/user'
+import * as UserApi from '@/api/business/coupons/user'
 import { dateFormatter } from '@/utils/formatTime'
 
 const { t } = useI18n() // 国际化

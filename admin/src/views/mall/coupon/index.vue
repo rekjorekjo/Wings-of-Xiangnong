@@ -129,7 +129,7 @@
 <script setup lang="ts" name="Coupon">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as Api from '@/api/mall/coupon/'
+import * as Api from '@/api/business/coupons'
 import Form from './Form.vue'
 import OrderRecord from './user/OrderRecord.vue'
 const message = useMessage() // 消息弹窗

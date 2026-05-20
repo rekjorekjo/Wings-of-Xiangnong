@@ -23,7 +23,7 @@
 
 <script lang="ts" name="StoreProductCateTree" setup>
 import { ElTree } from 'element-plus'
-import * as ProductCategoryApi from '@/api/mall/product/category'
+import * as ProductCategoryApi from '@/api/business/products/category'
 import { defaultProps, handleTree } from '@/utils/tree'
 
 const deptName = ref('')
