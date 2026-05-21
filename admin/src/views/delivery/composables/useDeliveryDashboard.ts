@@ -1,8 +1,12 @@
 import { ElMessage } from 'element-plus'
+import { useRoute, useRouter } from 'vue-router'
 import { getDeliveryTasks, getDrones } from '@/api/delivery'
 import type { DeliveryTask, Drone } from '../types'
 
 export const useDeliveryDashboard = () => {
+  const route = useRoute()
+  const router = useRouter()
+
   const loading = ref(false)
   const dronesLoading = ref(false)
   const tasksLoading = ref(false)
@@ -16,6 +20,26 @@ export const useDeliveryDashboard = () => {
 
   const drawerVisible = ref(false)
   const currentTask = ref<DeliveryTask | null>(null)
+
+  // MVP 管理端支持通过 URL 带入筛选条件，方便后续从订单页跳转到配送任务页。
+  const syncFiltersToUrl = () => {
+    const query: Record<string, string> = {}
+    if (filterStatus.value) query.status = filterStatus.value
+    if (filterDroneNo.value) query.droneNo = filterDroneNo.value
+    if (filterOrderNo.value) query.orderNo = filterOrderNo.value
+    router.replace({ query })
+  }
+
+  const initFiltersFromUrl = () => {
+    const { orderNo, droneNo, status } = route.query
+    if (typeof orderNo === 'string') filterOrderNo.value = orderNo
+    if (typeof droneNo === 'string') filterDroneNo.value = droneNo
+    if (typeof status === 'string') filterStatus.value = status
+  }
+
+  watch([filterStatus, filterDroneNo, filterOrderNo], () => {
+    syncFiltersToUrl()
+  })
 
   // 前端本地筛选，后续接真实接口时可改为服务端筛选。
   const filteredTasks = computed(() => {
@@ -111,6 +135,7 @@ export const useDeliveryDashboard = () => {
   }
 
   onMounted(() => {
+    initFiltersFromUrl()
     loadData()
   })
 

@@ -1,29 +1,7 @@
 // 前端静态 mock 数据，仅用于管理端 MVP 演示。
 // 这里模拟"订单之外的配送任务"，不要把无人机状态塞进订单模型。
 
-export interface DeliveryTask {
-  id: number
-  orderNo: string
-  pickupSite: string
-  dropoffSite: string
-  droneNo: string
-  status: 'pending' | 'assigned' | 'flying' | 'arrived' | 'completed' | 'exception'
-  statusText: string
-  progress: number
-  etaMinutes: number
-  createdAt: string
-}
-
-export interface Drone {
-  id: number
-  droneNo: string
-  status: 'idle' | 'assigned' | 'flying' | 'charging' | 'maintenance'
-  statusText: string
-  battery: number
-  location: string
-  payload: string
-  lastUpdatedAt: string
-}
+import type { DeliveryTask, Drone } from '@/views/delivery/types'
 
 // 配送任务与订单分离：orderNo 只是关联订单号，任务状态独立维护。
 const deliveryTasks: DeliveryTask[] = [
