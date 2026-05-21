@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script lang="ts" name="StoreProductCateTree" setup>
+<script lang="ts" name="ProductCategoryTree" setup>
 import { ElTree } from 'element-plus'
 import * as ProductCategoryApi from '@/api/business/products/category'
 import { defaultProps, handleTree } from '@/utils/tree'

@@ -81,14 +81,14 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <StoreProductRuleForm ref="formRef" @success="getList" />
+  <ProductRuleForm ref="formRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreProductRule">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as StoreProductRuleApi from '@/api/business/productRules'
-import StoreProductRuleForm from './StoreProductRuleForm.vue'
+import ProductRuleForm from './ProductRuleForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

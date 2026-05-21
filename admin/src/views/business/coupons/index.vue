@@ -122,16 +122,16 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <Form ref="formRef" @success="getList" />
-  <OrderRecord ref="formRef5" />
+  <CouponForm ref="formRef" @success="getList" />
+  <CouponUseRecord ref="formRef5" />
 </template>
 
 <script setup lang="ts" name="Coupon">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as Api from '@/api/business/coupons'
-import Form from './Form.vue'
-import OrderRecord from './user/OrderRecord.vue'
+import CouponForm from './CouponForm.vue'
+import CouponUseRecord from './user/CouponUseRecord.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

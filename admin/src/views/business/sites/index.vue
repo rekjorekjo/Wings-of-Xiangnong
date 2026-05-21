@@ -119,14 +119,14 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <ShopForm ref="formRef" @success="getList" />
+  <SiteForm ref="formRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreShop">
 import { dateFormatter, dateFormatter2 } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as ShopApi from '@/api/business/sites'
-import ShopForm from './ShopForm.vue'
+import SiteForm from './SiteForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

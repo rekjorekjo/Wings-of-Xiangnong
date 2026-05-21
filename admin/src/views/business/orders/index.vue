@@ -222,26 +222,26 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <StoreOrderForm ref="formRef" @success="getList" />
-  <OrderSend ref="formRef1" @success="getList" />
-  <OrderSendInfo ref="formRef2" @success="getList" />
-  <StoreOrderRemark ref="formRef3" @success="getList" />
+  <OrderForm ref="formRef" @success="getList" />
+  <OrderDeliveryForm ref="formRef1" @success="getList" />
+  <OrderDeliveryInfo ref="formRef2" @success="getList" />
+  <OrderRemarkDialog ref="formRef3" @success="getList" />
   <OrderDetail ref="formRef4" />
   <OrderRecord ref="formRef5" />
-  <StoreOrderRefund ref="formRef6" @success="getList" />
+  <OrderRefundDialog ref="formRef6" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreOrder">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as StoreOrderApi from '@/api/business/orders'
-import StoreOrderForm from './StoreOrderForm.vue'
-import OrderSend from './OrderSend.vue'
-import OrderSendInfo from './OrderSendInfo.vue'
-import StoreOrderRemark from './StoreOrderRemark.vue'
-import StoreOrderRefund from './StoreOrderRefund.vue'
+import OrderForm from './OrderForm.vue'
+import OrderDeliveryForm from './OrderDeliveryForm.vue'
+import OrderDeliveryInfo from './OrderDeliveryInfo.vue'
+import OrderRemarkDialog from './OrderRemarkDialog.vue'
 import OrderDetail from './OrderDetail.vue'
 import OrderRecord from './OrderRecord.vue'
+import OrderRefundDialog from './OrderRefundDialog.vue'
 import type { TabsPaneContext } from 'element-plus'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

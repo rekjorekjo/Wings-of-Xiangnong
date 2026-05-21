@@ -3,7 +3,7 @@
   <!-- 左侧部门树 -->
   <el-col :span="4" :xs="24">
     <ContentWrap class="h-1/1">
-      <CateTree @node-click="handleDeptNodeClick" />
+      <CategoryTree @node-click="handleDeptNodeClick" />
     </ContentWrap>
   </el-col>
   <el-col :span="20" :xs="24">
@@ -124,15 +124,15 @@
    </el-col>
   </el-row>
   <!-- 表单弹窗：添加/修改 -->
-  <StoreProductForm ref="formRef" @success="getList" />
+  <ProductForm ref="formRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreProduct">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as StoreProductApi from '@/api/business/products/product'
-import StoreProductForm from './StoreProductForm.vue'
-import CateTree from './CateTree.vue'
+import ProductForm from './ProductForm.vue'
+import CategoryTree from './CategoryTree.vue'
 import type { TabsPaneContext } from 'element-plus'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化

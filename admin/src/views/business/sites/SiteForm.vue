@@ -86,7 +86,7 @@
 <script setup lang="ts">
 import * as ShopApi from '@/api/business/sites'
 import * as UserApi from '@/api/system/user'
-import MyMap from './map.vue'
+import MyMap from './SiteMap.vue'
 import { CACHE_KEY, useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()

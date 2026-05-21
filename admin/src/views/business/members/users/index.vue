@@ -115,7 +115,7 @@
   <!-- 表单弹窗：添加/修改 -->
   <UserForm ref="formRef" @success="getList" />
   <UserDetail ref="formRef1" />
-  <Yue ref="formRef2" @success="getList" />
+  <UserBalance ref="formRef2" @success="getList" />
 </template>
 
 <script setup lang="ts" name="User">
@@ -124,7 +124,7 @@ import download from '@/utils/download'
 import * as UserApi from '@/api/member/user'
 import UserForm from './UserForm.vue'
 import UserDetail from './UserDetail.vue'
-import Yue from './yue.vue'
+import UserBalance from './UserBalance.vue'
 const message = useMessage() // 消息弹窗
 // const { t } = useI18n() // 国际化
 
