@@ -153,9 +153,9 @@ const drones: Drone[] = [
 ]
 
 export const getMockDeliveryTasks = (): Promise<DeliveryTask[]> => {
-  return Promise.resolve([...deliveryTasks])
+  return Promise.resolve(deliveryTasks.map(item => ({ ...item })))
 }
 
 export const getMockDrones = (): Promise<Drone[]> => {
-  return Promise.resolve([...drones])
+  return Promise.resolve(drones.map(item => ({ ...item })))
 }

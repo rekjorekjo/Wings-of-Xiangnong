@@ -11,6 +11,41 @@
       </el-button>
     </div>
 
+    <el-row :gutter="16" class="mb-4">
+      <el-col :span="4">
+        <el-card shadow="hover">
+          <div class="text-gray-500 text-sm mb-2">今日配送任务数</div>
+          <div class="text-2xl font-bold">{{ stats.todayTasks }}</div>
+        </el-card>
+      </el-col>
+      <el-col :span="4">
+        <el-card shadow="hover">
+          <div class="text-gray-500 text-sm mb-2">配送中任务数</div>
+          <div class="text-2xl font-bold text-blue-500">{{ stats.flyingTasks }}</div>
+        </el-card>
+      </el-col>
+      <el-col :span="4">
+        <el-card shadow="hover" :class="{ 'is-danger': stats.exceptionTasks > 0 }">
+          <div class="text-gray-500 text-sm mb-2">异常任务数</div>
+          <div class="text-2xl font-bold" :class="stats.exceptionTasks > 0 ? 'text-red-500' : ''">
+            {{ stats.exceptionTasks }}
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="4">
+        <el-card shadow="hover">
+          <div class="text-gray-500 text-sm mb-2">可用无人机数</div>
+          <div class="text-2xl font-bold text-green-500">{{ stats.availableDrones }}</div>
+        </el-card>
+      </el-col>
+      <el-col :span="4">
+        <el-card shadow="hover">
+          <div class="text-gray-500 text-sm mb-2">平均电量</div>
+          <div class="text-2xl font-bold">{{ stats.avgBattery }}%</div>
+        </el-card>
+      </el-col>
+    </el-row>
+
     <el-card class="mb-4">
       <template #header>
         <span class="font-bold">无人机状态</span>
@@ -200,6 +235,24 @@ const filterOrderNo = ref('')
 const drawerVisible = ref(false)
 const currentTask = ref<DeliveryTask | null>(null)
 
+const stats = computed(() => {
+  const todayTasks = tasks.value.length
+  const flyingTasks = tasks.value.filter(t => t.status === 'flying').length
+  const exceptionTasks = tasks.value.filter(t => t.status === 'exception').length
+  const availableDrones = drones.value.filter(d => d.status === 'idle').length
+  const avgBattery = drones.value.length > 0
+    ? Math.round(drones.value.reduce((sum, d) => sum + d.battery, 0) / drones.value.length)
+    : 0
+  
+  return {
+    todayTasks,
+    flyingTasks,
+    exceptionTasks,
+    availableDrones,
+    avgBattery
+  }
+})
+
 const filteredTasks = computed(() => {
   return tasks.value.filter(task => {
     if (filterStatus.value && task.status !== filterStatus.value) return false
@@ -333,5 +386,8 @@ onMounted(() => {
 <style scoped>
 .font-bold {
   font-weight: bold;
+}
+.is-danger {
+  border: 1px solid #f56c6c;
 }
 </style>
