@@ -1,5 +1,5 @@
 import { ElMessage } from 'element-plus'
-import { getMockDeliveryTasks, getMockDrones } from '@/api/delivery/mock'
+import { getDeliveryTasks, getDrones } from '@/api/delivery'
 import type { DeliveryTask, Drone } from '../types'
 
 export const useDeliveryDashboard = () => {
@@ -17,6 +17,7 @@ export const useDeliveryDashboard = () => {
   const drawerVisible = ref(false)
   const currentTask = ref<DeliveryTask | null>(null)
 
+  // 前端本地筛选，后续接真实接口时可改为服务端筛选。
   const filteredTasks = computed(() => {
     return tasks.value.filter(task => {
       if (filterStatus.value && task.status !== filterStatus.value) return false
@@ -26,6 +27,7 @@ export const useDeliveryDashboard = () => {
     })
   })
 
+  // 页面统一从 delivery API 入口取数据，当前是 mock，后续可替换真实接口。
   const loadData = async () => {
     loading.value = true
     dronesLoading.value = true
@@ -33,8 +35,8 @@ export const useDeliveryDashboard = () => {
     
     try {
       const [dronesData, tasksData] = await Promise.all([
-        getMockDrones(),
-        getMockDeliveryTasks()
+        getDrones(),
+        getDeliveryTasks()
       ])
       drones.value = dronesData
       tasks.value = tasksData
@@ -60,6 +62,7 @@ export const useDeliveryDashboard = () => {
     drawerVisible.value = true
   }
 
+  // 以下操作只修改前端本地状态，用于 MVP 演示，不会写入后端。
   const handleAssignDrone = (task: DeliveryTask) => {
     if (!task.droneNo) {
       task.droneNo = 'DR-001'

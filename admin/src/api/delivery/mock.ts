@@ -1,3 +1,6 @@
+// 前端静态 mock 数据，仅用于管理端 MVP 演示。
+// 这里模拟"订单之外的配送任务"，不要把无人机状态塞进订单模型。
+
 export interface DeliveryTask {
   id: number
   orderNo: string
@@ -22,6 +25,7 @@ export interface Drone {
   lastUpdatedAt: string
 }
 
+// 配送任务与订单分离：orderNo 只是关联订单号，任务状态独立维护。
 const deliveryTasks: DeliveryTask[] = [
   {
     id: 1,
@@ -109,6 +113,7 @@ const deliveryTasks: DeliveryTask[] = [
   }
 ]
 
+// 无人机状态独立于订单和配送任务，后续可替换为实时设备数据。
 const drones: Drone[] = [
   {
     id: 1,
