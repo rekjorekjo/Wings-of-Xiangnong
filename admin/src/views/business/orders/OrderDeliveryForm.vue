@@ -27,7 +27,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
@@ -106,7 +106,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await StoreOrderApi.getStoreOrder(id)
+      formData.value = await OrderApi.getStoreOrder(id)
     } finally {
       formLoading.value = false
     }
@@ -124,9 +124,9 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as StoreOrderApi.StoreOrderVO
+    const data = formData.value as unknown as OrderApi.StoreOrderVO
     data.updateType = 'orderSend'
-    await StoreOrderApi.updateStoreOrder(data)
+    await OrderApi.updateStoreOrder(data)
     message.success(t('common.updateSuccess'))
   
     dialogVisible.value = false

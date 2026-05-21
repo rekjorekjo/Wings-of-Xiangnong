@@ -84,7 +84,7 @@
   </el-drawer>
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 import { formatDate } from '@/utils/formatTime'
 
 const { t } = useI18n() // 国际化
@@ -99,7 +99,7 @@ const addProductMark = ref(0)
 const open = async (type: string, id?: number) => {
   drawer.value = true
   dialogTitle.value = t('action.' + type)
-  DetailData.value = await StoreOrderApi.getStoreOrder(id)
+  DetailData.value = await OrderApi.getStoreOrder(id)
   nickname.value = DetailData.value.userRespVO.nickname
   product.value = DetailData.value.storeOrderCartInfoDOList
 }

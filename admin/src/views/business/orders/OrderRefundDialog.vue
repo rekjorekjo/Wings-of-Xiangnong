@@ -25,7 +25,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
@@ -102,7 +102,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await StoreOrderApi.getStoreOrder(id)
+      formData.value = await OrderApi.getStoreOrder(id)
     } finally {
       formLoading.value = false
     }
@@ -112,6 +112,7 @@ defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 
 /** 提交表单 */
 const emit = defineEmits(['success']) // 定义 success 事件，用于操作成功后的回调
+// 这里仍调用原订单接口；无人机配送状态不在订单表单中维护。
 const submitForm = async () => {
   // 校验表单
   if (!formRef) return
@@ -120,8 +121,8 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as StoreOrderApi.StoreOrderVO
-    await StoreOrderApi.rufundStoreOrder(data)
+    const data = formData.value as unknown as OrderApi.StoreOrderVO
+    await OrderApi.rufundStoreOrder(data)
     message.success(t('common.updateSuccess'))
     dialogVisible.value = false
     // 发送操作成功的事件

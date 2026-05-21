@@ -9,7 +9,7 @@
 
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 import { dateFormatter } from '@/utils/formatTime'
 
 const { t } = useI18n() // 国际化
@@ -21,7 +21,7 @@ const open = async (type: string, id?: number) => {
   drawer.value = true
   dialogTitle.value = t('action.' + type)
   console.log(id)
-  tableData.value = await StoreOrderApi.getStoreOrderRecordList(id)
+  tableData.value = await OrderApi.getStoreOrderRecordList(id)
 }
 defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 </script>

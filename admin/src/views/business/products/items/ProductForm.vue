@@ -235,7 +235,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as StoreProductApi from '@/api/business/products/product'
+import * as ProductApi from '@/api/business/products/product'
 import * as ProductCategoryApi from '@/api/business/products/category'
 import type { TabsPaneContext } from 'element-plus'
 import * as ShopApi from '@/api/business/sites'
@@ -523,7 +523,7 @@ const submitForm = async () => {
       if(formValidate.value.spec_type === 1 && manyFormValidate.value.length===0){
         message.warning('请点击生成规格！');
       }
-      await StoreProductApi.createStoreProduct(formValidate.value)
+      await ProductApi.createStoreProduct(formValidate.value)
     dialogVisible.value = false
     // 发送操作成功的事件
     emit('success')
@@ -681,7 +681,7 @@ const resetForm = () => {
  // 详情
 const  getInfo  = (id) => {
      // let that = this;
-      StoreProductApi.getStoreProductInfo(id).then(async res => {
+      ProductApi.getStoreProductInfo(id).then(async res => {
       let data = res.productInfo;
         console.log('data:', data)
       postageSet.value = false
@@ -740,7 +740,7 @@ const  getInfo  = (id) => {
 const route = useRoute()
  // 立即生成
 const generate = () => {
-  StoreProductApi.isFormatAttr(formValidate.value.id, { attrs: attrs.value }).then(res => {
+  ProductApi.isFormatAttr(formValidate.value.id, { attrs: attrs.value }).then(res => {
     manyFormValidate.value = res.value;
     let headerdel = {
       title: '操作',

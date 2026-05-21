@@ -60,7 +60,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as StoreProductRuleApi from '@/api/business/productRules'
+import * as ProductRuleApi from '@/api/business/productRules'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
@@ -94,7 +94,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await StoreProductRuleApi.getStoreProductRule(id)
+      formData.value = await ProductRuleApi.getStoreProductRule(id)
     } finally {
       formLoading.value = false
     }
@@ -112,12 +112,12 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as StoreProductRuleApi.StoreProductRuleVO
+    const data = formData.value as unknown as ProductRuleApi.StoreProductRuleVO
     if (formType.value === 'create') {
-      await StoreProductRuleApi.createStoreProductRule(data,0)
+      await ProductRuleApi.createStoreProductRule(data,0)
       message.success(t('common.createSuccess'))
     } else {
-      await StoreProductRuleApi.createStoreProductRule(data,data.id)
+      await ProductRuleApi.createStoreProductRule(data,data.id)
       message.success(t('common.updateSuccess'))
     }
     dialogVisible.value = false
