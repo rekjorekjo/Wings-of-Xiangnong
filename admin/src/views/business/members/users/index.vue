@@ -95,7 +95,7 @@
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item @click="openForm('update', scope.row.id)">编辑</el-dropdown-item>
-                  <el-dropdown-item @click="openForm('yue', scope.row.id)">积分余额</el-dropdown-item>
+                  <el-dropdown-item @click="openForm('balance', scope.row.id)">积分余额</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -113,9 +113,9 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <UserForm ref="formRef" @success="getList" />
-  <UserDetail ref="formRef1" />
-  <UserBalance ref="formRef2" @success="getList" />
+  <UserForm ref="userFormRef" @success="getList" />
+  <UserDetail ref="userDetailRef" />
+  <UserBalance ref="userBalanceRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="User">
@@ -176,16 +176,16 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
-const formRef1 = ref()
-const formRef2 = ref()
+const userFormRef = ref()
+const userDetailRef = ref()
+const userBalanceRef = ref()
 const openForm = (type: string, id?: number) => {
   if (type == 'update' || type == 'create') {
-    formRef.value.open(type, id)
+    userFormRef.value.open(type, id)
   } else if (type == 'userDetail') {
-    formRef1.value.open(type, id)
-  } else if (type == 'yue') {
-    formRef2.value.open(type, id)
+    userDetailRef.value.open(type, id)
+  } else if (type == 'balance') {
+    userBalanceRef.value.open(type, id)
   }
   
 }

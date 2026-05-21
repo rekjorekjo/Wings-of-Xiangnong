@@ -81,7 +81,7 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <ProductRuleForm ref="formRef" @success="getList" />
+  <ProductRuleForm ref="productRuleFormRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreProductRule">
@@ -128,9 +128,9 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
+const productRuleFormRef = ref()
 const openForm = (type: string, id?: number) => {
-  formRef.value.open(type, id)
+  productRuleFormRef.value.open(type, id)
 }
 
 /** 删除按钮操作 */

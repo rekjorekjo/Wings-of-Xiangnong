@@ -222,13 +222,13 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <OrderForm ref="formRef" @success="getList" />
-  <OrderDeliveryForm ref="formRef1" @success="getList" />
-  <OrderDeliveryInfo ref="formRef2" @success="getList" />
-  <OrderRemarkDialog ref="formRef3" @success="getList" />
-  <OrderDetail ref="formRef4" />
-  <OrderRecord ref="formRef5" />
-  <OrderRefundDialog ref="formRef6" @success="getList" />
+  <OrderForm ref="orderFormRef" @success="getList" />
+  <OrderDeliveryForm ref="orderDeliveryFormRef" @success="getList" />
+  <OrderDeliveryInfo ref="orderDeliveryInfoRef" @success="getList" />
+  <OrderRemarkDialog ref="orderRemarkDialogRef" @success="getList" />
+  <OrderDetail ref="orderDetailRef" />
+  <OrderRecord ref="orderRecordRef" />
+  <OrderRefundDialog ref="orderRefundDialogRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreOrder">
@@ -311,28 +311,28 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
-const formRef1 = ref()
-const formRef2 = ref()
-const formRef3 = ref()
-const formRef4 = ref()
-const formRef5 = ref()
-const formRef6 = ref()
+const orderFormRef = ref()
+const orderDeliveryFormRef = ref()
+const orderDeliveryInfoRef = ref()
+const orderRemarkDialogRef = ref()
+const orderDetailRef = ref()
+const orderRecordRef = ref()
+const orderRefundDialogRef = ref()
 const openForm = (type: string, id?: number) => {
   if (type == 'updateOrder') {
-    formRef.value.open(type, id)
+    orderFormRef.value.open(type, id)
   } else if (type == 'orderSend') {
-    formRef1.value.open(type, id)
+    orderDeliveryFormRef.value.open(type, id)
   }else if (type == 'sendInfo') {
-    formRef2.value.open(type, id)
+    orderDeliveryInfoRef.value.open(type, id)
   }else if (type == 'remark') {
-    formRef3.value.open(type, id)
+    orderRemarkDialogRef.value.open(type, id)
   }else if (type == 'orderDetail') {
-    formRef4.value.open(type, id)
+    orderDetailRef.value.open(type, id)
   }else if (type == 'orderRecord') {
-    formRef5.value.open(type, id)
+    orderRecordRef.value.open(type, id)
   }else if (type == 'refundOrder') {
-    formRef6.value.open(type, id)
+    orderRefundDialogRef.value.open(type, id)
   }
 
   

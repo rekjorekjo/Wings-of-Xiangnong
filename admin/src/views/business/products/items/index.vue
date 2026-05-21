@@ -124,7 +124,7 @@
    </el-col>
   </el-row>
   <!-- 表单弹窗：添加/修改 -->
-  <ProductForm ref="formRef" @success="getList" />
+  <ProductForm ref="productFormRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreProduct">
@@ -225,9 +225,9 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
+const productFormRef = ref()
 const openForm = (type: string, id?: number) => {
-  formRef.value.open(type, id)
+  productFormRef.value.open(type, id)
 }
 /** 上下架按钮操作 */
 const onSale = async (id,isShow) => {

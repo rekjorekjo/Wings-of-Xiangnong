@@ -83,7 +83,7 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <CategoryForm ref="formRef" @success="getList" />
+  <CategoryForm ref="categoryFormRef" @success="getList" />
 </template>
 <script setup lang="ts" name="ProductCategory">
 import { DICT_TYPE } from '@/utils/dict'
@@ -125,9 +125,9 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
+const categoryFormRef = ref()
 const openForm = (type: string, id?: number) => {
-  formRef.value.open(type, id)
+  categoryFormRef.value.open(type, id)
 }
 
 /** 删除按钮操作 */

@@ -122,8 +122,8 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <CouponForm ref="formRef" @success="getList" />
-  <CouponUseRecord ref="formRef5" />
+  <CouponForm ref="couponFormRef" @success="getList" />
+  <CouponUseRecord ref="couponUseRecordRef" />
 </template>
 
 <script setup lang="ts" name="Coupon">
@@ -188,13 +188,13 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
-const formRef5 = ref()
+const couponFormRef = ref()
+const couponUseRecordRef = ref()
 const openForm = (type: string, id?: number) => {
   if (type == 'couponRecord') {
-    formRef5.value.open(type, id)
+    couponUseRecordRef.value.open(type, id)
   }else{
-    formRef.value.open(type, id)
+    couponFormRef.value.open(type, id)
   }
   
 }

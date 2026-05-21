@@ -119,7 +119,7 @@
   </ContentWrap>
 
   <!-- 表单弹窗：添加/修改 -->
-  <SiteForm ref="formRef" @success="getList" />
+  <SiteForm ref="siteFormRef" @success="getList" />
 </template>
 
 <script setup lang="ts" name="StoreShop">
@@ -183,9 +183,9 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
+const siteFormRef = ref()
 const openForm = (type: string, id?: number) => {
-  formRef.value.open(type, id)
+  siteFormRef.value.open(type, id)
 }
 
 /** 删除按钮操作 */
