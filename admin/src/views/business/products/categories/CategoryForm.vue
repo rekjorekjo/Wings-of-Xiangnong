@@ -55,7 +55,7 @@ import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
 import { CommonStatusEnum } from '@/utils/constants'
 // import { handleTree } from '@/utils/tree'
 import * as ProductCategoryApi from '@/api/business/products/category'
-import * as ShopApi from '@/api/business/sites'
+import * as SiteApi from '@/api/business/sites'
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
 
@@ -106,7 +106,7 @@ defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 
 const getList = async () => {
   try {
-    const data = await ShopApi.getShopList()
+    const data = await SiteApi.getShopList()
     shopList.value = data
 
   } finally {

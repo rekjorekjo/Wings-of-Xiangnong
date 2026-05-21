@@ -84,7 +84,7 @@
   <MyMap ref="formRef1" @mapConfirm="mapConfirm" />
 </template>
 <script setup lang="ts">
-import * as ShopApi from '@/api/business/sites'
+import * as SiteApi from '@/api/business/sites'
 import * as UserApi from '@/api/system/user'
 import MyMap from './SiteMap.vue'
 import { CACHE_KEY, useCache } from '@/hooks/web/useCache'
@@ -157,7 +157,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await ShopApi.getShop(id)
+      formData.value = await SiteApi.getShop(id)
       formData.value.adminId = formData.value.adminId.map(Number)
     } finally {
       formLoading.value = false
@@ -176,12 +176,12 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as ShopApi.ShopVO
+    const data = formData.value as unknown as SiteApi.ShopVO
     if (formType.value === 'create') {
-      await ShopApi.createShop(data)
+      await SiteApi.createShop(data)
       message.success(t('common.createSuccess'))
     } else {
-      await ShopApi.updateShop(data)
+      await SiteApi.updateShop(data)
       message.success(t('common.updateSuccess'))
     }
     dialogVisible.value = false

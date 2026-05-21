@@ -238,7 +238,7 @@
 import * as ProductApi from '@/api/business/products/product'
 import * as ProductCategoryApi from '@/api/business/products/category'
 import type { TabsPaneContext } from 'element-plus'
-import * as ShopApi from '@/api/business/sites'
+import * as SiteApi from '@/api/business/sites'
 
 
 const { t } = useI18n() // 国际化
@@ -484,10 +484,10 @@ const selectShop = (val) => {
   getTree(val)
 }
 
-
+// 商品仍依赖默认站点数据，MVP 阶段保留 shop/store 底层字段。
 const getList = async () => {
   try {
-    const data = await ShopApi.getShopList()
+    const data = await SiteApi.getShopList()
     shopList.value = data
 
   } finally {

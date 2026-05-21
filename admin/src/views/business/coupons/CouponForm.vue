@@ -85,7 +85,7 @@
 </template>
 <script setup lang="ts">
 import * as Api from '@/api/business/coupons'
-import * as ShopApi from '@/api/business/sites'
+import * as SiteApi from '@/api/business/sites'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
@@ -176,7 +176,7 @@ const submitForm = async () => {
 }
 const getList = async () => {
   try {
-    const data = await ShopApi.getShopList()
+    const data = await SiteApi.getShopList()
     shopList.value = data
 
   } finally {
