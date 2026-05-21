@@ -122,10 +122,10 @@
   <SiteForm ref="siteFormRef" @success="getList" />
 </template>
 
-<script setup lang="ts" name="StoreShop">
+<script setup lang="ts" name="Sites">
 import { dateFormatter, dateFormatter2 } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as ShopApi from '@/api/business/sites'
+import * as SiteApi from '@/api/business/sites'
 import SiteForm from './SiteForm.vue'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
@@ -162,7 +162,7 @@ const exportLoading = ref(false) // 导出的加载中
 const getList = async () => {
   loading.value = true
   try {
-    const data = await ShopApi.getShopPage(queryParams)
+    const data = await SiteApi.getShopPage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -194,7 +194,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await ShopApi.deleteShop(id)
+    await SiteApi.deleteShop(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -208,7 +208,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await ShopApi.exportShop(queryParams)
+    const data = await SiteApi.exportShop(queryParams)
     download.excel(data, '站点管理.xls')
   } catch {
   } finally {

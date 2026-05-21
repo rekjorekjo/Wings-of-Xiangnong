@@ -84,7 +84,7 @@
   <AdsForm ref="formRef" @success="getList" />
 </template>
 
-<script setup lang="ts" name="ShopAds">
+<script setup lang="ts" name="Ads">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as AdsApi from '@/api/business/ads'

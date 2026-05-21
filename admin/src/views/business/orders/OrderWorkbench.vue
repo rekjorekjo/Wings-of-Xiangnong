@@ -89,18 +89,18 @@
  </ContentWrap>
 
  <!-- 表单弹窗：添加/修改 -->
- <OrderForm ref="formRef" @success="getList" />
- <OrderDeliveryForm ref="formRef1" @success="getList" />
- <OrderDeliveryInfo ref="formRef2" @success="getList" />
- <OrderRemarkDialog ref="formRef3" @success="getList" />
- <OrderDetail ref="formRef4" />
- <OrderRecord ref="formRef5" />
+ <OrderForm ref="orderFormRef" @success="getList" />
+ <OrderDeliveryForm ref="orderDeliveryFormRef" @success="getList" />
+ <OrderDeliveryInfo ref="orderDeliveryInfoRef" @success="getList" />
+ <OrderRemarkDialog ref="orderRemarkDialogRef" @success="getList" />
+ <OrderDetail ref="orderDetailRef" />
+ <OrderRecord ref="orderRecordRef" />
 </template>
 
-<script setup lang="ts" name="StoreOrder">
+<script setup lang="ts" name="OrderWorkbench">
 // import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 import OrderForm from './OrderForm.vue'
 import OrderDeliveryForm from './OrderDeliveryForm.vue'
 import OrderDeliveryInfo from './OrderDeliveryInfo.vue'
@@ -143,7 +143,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 const getList = async () => {
  loading.value = true
  try {
-   const data = await StoreOrderApi.getStoreOrderPage(queryParams)
+   const data = await OrderApi.getStoreOrderPage(queryParams)
    list.value = data.list
    //console.log("aa:",list.value)
    total.value = data.total
@@ -167,25 +167,25 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
-const formRef1 = ref()
-const formRef2 = ref()
-const formRef3 = ref()
-const formRef4 = ref()
-const formRef5 = ref()
+const orderFormRef = ref()
+const orderDeliveryFormRef = ref()
+const orderDeliveryInfoRef = ref()
+const orderRemarkDialogRef = ref()
+const orderDetailRef = ref()
+const orderRecordRef = ref()
 const openForm = (type: string, id?: number) => {
  if (type == 'updateOrder') {
-   formRef.value.open(type, id)
+   orderFormRef.value.open(type, id)
  } else if (type == 'orderSend') {
-   formRef1.value.open(type, id)
+   orderDeliveryFormRef.value.open(type, id)
  }else if (type == 'sendInfo') {
-   formRef2.value.open(type, id)
+   orderDeliveryInfoRef.value.open(type, id)
  }else if (type == 'remark') {
-   formRef3.value.open(type, id)
+   orderRemarkDialogRef.value.open(type, id)
  }else if (type == 'orderDetail') {
-   formRef4.value.open(type, id)
+   orderDetailRef.value.open(type, id)
  }else if (type == 'orderRecord') {
-   formRef5.value.open(type, id)
+   orderRecordRef.value.open(type, id)
  }
 
  
@@ -197,7 +197,7 @@ const handleDelete = async (id: number) => {
    // 删除的二次确认
    await message.delConfirm()
    // 发起删除
-   await StoreOrderApi.deleteStoreOrder(id)
+   await OrderApi.deleteStoreOrder(id)
    // 刷新列表
    getList()
  } catch {}
@@ -211,7 +211,7 @@ const handleExport = async () => {
    await message.exportConfirm()
    // 发起导出
    exportLoading.value = true
-   const data = await StoreOrderApi.exportStoreOrder(queryParams)
+   const data = await OrderApi.exportStoreOrder(queryParams)
    download.excel(data, '订单.xls')
  } catch {
  } finally {

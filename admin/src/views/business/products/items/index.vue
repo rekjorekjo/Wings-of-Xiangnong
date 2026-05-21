@@ -127,10 +127,10 @@
   <ProductForm ref="productFormRef" @success="getList" />
 </template>
 
-<script setup lang="ts" name="StoreProduct">
+<script setup lang="ts" name="ProductItems">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreProductApi from '@/api/business/products/product'
+import * as ProductApi from '@/api/business/products/product'
 import ProductForm from './ProductForm.vue'
 import CategoryTree from './CategoryTree.vue'
 import type { TabsPaneContext } from 'element-plus'
@@ -176,7 +176,7 @@ const tableTabs = ref([
 const getList = async () => {
   loading.value = true
   try {
-    const data = await StoreProductApi.getStoreProductPage(queryParams)
+    const data = await ProductApi.getStoreProductPage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -235,7 +235,7 @@ const onSale = async (id,isShow) => {
     // 删除的二次确认
     await message.confirm('确定要上下架？')
     // 发起删除
-    await StoreProductApi.saleStoreProduct(id,isShow)
+    await ProductApi.saleStoreProduct(id,isShow)
     message.success('操作成功')
     // 刷新列表
     await getList()
@@ -248,7 +248,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await StoreProductApi.deleteStoreProduct(id)
+    await ProductApi.deleteStoreProduct(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -262,7 +262,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await StoreProductApi.exportStoreProduct(queryParams)
+    const data = await ProductApi.exportStoreProduct(queryParams)
     download.excel(data, '商品.xls')
   } catch {
   } finally {

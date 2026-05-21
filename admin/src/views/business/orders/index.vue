@@ -231,10 +231,10 @@
   <OrderRefundDialog ref="orderRefundDialogRef" @success="getList" />
 </template>
 
-<script setup lang="ts" name="StoreOrder">
+<script setup lang="ts" name="Orders">
 import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 import OrderForm from './OrderForm.vue'
 import OrderDeliveryForm from './OrderDeliveryForm.vue'
 import OrderDeliveryInfo from './OrderDeliveryInfo.vue'
@@ -287,7 +287,7 @@ const queryPayStatus = (value) => {
 const getList = async () => {
   loading.value = true
   try {
-    const data = await StoreOrderApi.getStoreOrderPage(queryParams)
+    const data = await OrderApi.getStoreOrderPage(queryParams)
     list.value = data.list
     //console.log("aa:",list.value)
     total.value = data.total
@@ -335,8 +335,7 @@ const openForm = (type: string, id?: number) => {
     orderRefundDialogRef.value.open(type, id)
   }
 
-  
-}
+// 订单页只处理交易订单流程；无人机配送状态在 delivery 模块中独立维护。
 
 /** 删除按钮操作 */
 const handleDelete = async (id: number) => {
@@ -344,7 +343,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await StoreOrderApi.deleteStoreOrder(id)
+    await OrderApi.deleteStoreOrder(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -357,7 +356,7 @@ const handlePay = async (id: number) => {
     // 删除的二次确认
     await message.confirm('修改为支付状态')
     // 发起删除
-    await StoreOrderApi.payStoreOrder(id)
+    await OrderApi.payStoreOrder(id)
     message.success(t('common.updateSuccess'))
     // 刷新列表
     await getList()
@@ -370,7 +369,7 @@ const handleTake = async (id: number) => {
     // 删除的二次确认
     await message.confirm('修改收货状态')
     // 发起删除
-    await StoreOrderApi.takeStoreOrder(id)
+    await OrderApi.takeStoreOrder(id)
     message.success(t('common.updateSuccess'))
     // 刷新列表
     await getList()
@@ -384,7 +383,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await StoreOrderApi.exportStoreOrder(queryParams)
+    const data = await OrderApi.exportStoreOrder(queryParams)
     download.excel(data, '订单.xls')
   } catch {
   } finally {
