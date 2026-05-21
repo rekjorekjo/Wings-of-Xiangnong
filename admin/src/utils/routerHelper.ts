@@ -6,11 +6,56 @@ import qs from 'qs'
 
 const modules = import.meta.glob('../views/**/*.{vue,tsx}')
 
-// 兼容旧菜单 component 路径：数据库仍可能返回 mall/...，前端映射到 business/...
+// 兼容旧菜单 component 路径：数据库仍可能返回 mall/... 或旧 business/...，前端映射到当前 views/business 目录。
+const legacyComponentPathMap: Array<[RegExp, string]> = [
+  [/^mall\/product\/category\//, 'business/products/categories/'],
+  [/^business\/product\/category\//, 'business/products/categories/'],
+
+  [/^mall\/product\/storeProductRelation\//, 'business/products/relations/'],
+  [/^business\/product\/storeProductRelation\//, 'business/products/relations/'],
+
+  [/^mall\/product\/storeProductReply\//, 'business/products/reviews/'],
+  [/^business\/product\/storeProductReply\//, 'business/products/reviews/'],
+
+  [/^mall\/product\/storeProduct\//, 'business/products/items/'],
+  [/^business\/product\/storeProduct\//, 'business/products/items/'],
+
+  [/^mall\/shop\/storeProductRule\//, 'business/products/rules/'],
+  [/^business\/shop\/storeProductRule\//, 'business/products/rules/'],
+
+  [/^mall\/order\/storeOrder\//, 'business/orders/'],
+  [/^business\/order\/storeOrder\//, 'business/orders/'],
+
+  [/^mall\/store\/shop\//, 'business/sites/'],
+  [/^business\/store\/shop\//, 'business/sites/'],
+
+  [/^mall\/shop\/ads\//, 'business/operations/ads/'],
+  [/^business\/shop\/ads\//, 'business/operations/ads/'],
+
+  [/^mall\/shop\/recharge\//, 'business/operations/recharge/'],
+  [/^business\/shop\/recharge\//, 'business/operations/recharge/'],
+
+  [/^mall\/shop\/service\//, 'business/operations/services/'],
+  [/^business\/shop\/service\//, 'business/operations/services/'],
+
+  [/^mall\/coupon\//, 'business/coupons/'],
+  [/^business\/coupon\//, 'business/coupons/'],
+
+  [/^mall\/member\/userAddress\//, 'business/members/addresses/'],
+  [/^business\/member\/userAddress\//, 'business/members/addresses/'],
+
+  [/^mall\/member\/user\//, 'business/members/users/'],
+  [/^business\/member\/user\//, 'business/members/users/'],
+
+  [/^mall\//, 'business/']
+]
+
 const normalizeLegacyComponentPath = (component?: string) => {
   if (!component) return component
-  if (component.startsWith('mall/')) {
-    return component.replace(/^mall\//, 'business/')
+  for (const [pattern, replacement] of legacyComponentPathMap) {
+    if (pattern.test(component)) {
+      return component.replace(pattern, replacement)
+    }
   }
   return component
 }
