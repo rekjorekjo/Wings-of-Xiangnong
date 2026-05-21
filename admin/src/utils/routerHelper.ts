@@ -5,6 +5,15 @@ import { cloneDeep, omit } from 'lodash-es'
 import qs from 'qs'
 
 const modules = import.meta.glob('../views/**/*.{vue,tsx}')
+
+// 兼容旧菜单 component 路径：数据库仍可能返回 mall/...，前端映射到 business/...
+const normalizeLegacyComponentPath = (component?: string) => {
+  if (!component) return component
+  if (component.startsWith('mall/')) {
+    return component.replace(/^mall\//, 'business/')
+  }
+  return component
+}
 /**
  * 注册一个异步组件
  * @param componentPath 例:/bpm/oa/leave/detail
@@ -112,8 +121,9 @@ export const generateRoute = (routes: AppCustomRouteRecordRaw[]): AppRouteRecord
         redirect: route.redirect,
         meta: meta
       }
-      const index = route?.component
-        ? modulesRoutesKeys.findIndex((ev) => ev.includes(route.component))
+      const normalizedComponent = normalizeLegacyComponentPath(route.component)
+      const index = normalizedComponent
+        ? modulesRoutesKeys.findIndex((ev) => ev.includes(normalizedComponent))
         : modulesRoutesKeys.findIndex((ev) => ev.includes(route.path))
       childrenData.component = modules[modulesRoutesKeys[index]]
       data.children = [childrenData]
@@ -135,8 +145,9 @@ export const generateRoute = (routes: AppCustomRouteRecordRaw[]): AppRouteRecord
         // 菜单
       } else {
         // 对后端传component组件路径和不传做兼容（如果后端传component组件路径，那么path可以随便写，如果不传，component组件路径会根path保持一致）
-        const index = route?.component
-          ? modulesRoutesKeys.findIndex((ev) => ev.includes(route.component))
+        const normalizedComponent = normalizeLegacyComponentPath(route.component)
+        const index = normalizedComponent
+          ? modulesRoutesKeys.findIndex((ev) => ev.includes(normalizedComponent))
           : modulesRoutesKeys.findIndex((ev) => ev.includes(route.path))
         data.component = modules[modulesRoutesKeys[index]]
       }
