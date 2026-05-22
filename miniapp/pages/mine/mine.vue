@@ -106,29 +106,58 @@ const { member,isLogin } = storeToRefs(main)
 const title = ref('个人中心')
 const services = ref([])
 
-// 后端服务项可能仍返回冻结功能，前端用 FEATURES 和关键词做兜底隐藏。
-const mvpHiddenServiceKeywords = [
-  '积分',
-  '积分商城',
-  '余额',
-  '充值',
-  '会员卡',
-  '店铺',
-  '门店',
-  '公众号',
-  '扫码',
-  '桌台',
-  '收银'
-]
+// 后端服务项可能仍返回冻结功能入口。
+// MVP 阶段前端根据 FEATURES 做兜底过滤，后续恢复功能时优先调整 features.js。
+const getDisabledServiceKeywords = () => {
+  const keywords = []
 
-const shouldHideMvpService = (item) => {
+  if (!FEATURES.scoreMall) {
+    keywords.push('积分', '积分商城', 'score')
+  }
+
+  if (!FEATURES.balance) {
+    keywords.push('余额', '账单', 'balance', 'bill')
+  }
+
+  if (!FEATURES.recharge) {
+    keywords.push('充值', 'recharge')
+  }
+
+  if (!FEATURES.memberCard) {
+    keywords.push('会员卡', 'memberCard')
+  }
+
+  if (!FEATURES.mpOfficialAccount) {
+    keywords.push('公众号', 'mp')
+  }
+
+  if (!FEATURES.tableOrder) {
+    keywords.push('桌台', '桌号', 'table')
+  }
+
+  if (!FEATURES.cashier) {
+    keywords.push('收银', 'cashier')
+  }
+
+  if (!FEATURES.multiStore) {
+    keywords.push('门店', '店铺', 'shop', 'store')
+  }
+
+  return keywords
+}
+
+const shouldHideService = (item) => {
   const text = [
     item?.name,
+    item?.title,
     item?.pages,
+    item?.path,
+    item?.url,
     item?.type,
     item?.app_id
   ].filter(Boolean).join(' ')
-  return mvpHiddenServiceKeywords.some(keyword => text.includes(keyword))
+
+  return getDisabledServiceKeywords().some(keyword => text.includes(keyword))
 }
 
 const growthValue = computed(() => { 
@@ -160,7 +189,7 @@ const getServices = async() => {
 	let data = await mineService();
 	if (data) {
 		services.value = Array.isArray(data)
-			? data.filter(item => !shouldHideMvpService(item))
+			? data.filter(item => !shouldHideService(item))
 			: []
 	}
 }

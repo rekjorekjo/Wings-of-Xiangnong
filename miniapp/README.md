@@ -38,6 +38,8 @@ http://localhost:18081/app-api
 
 后续恢复积分、余额、会员、多门店等功能时，优先检查 FEATURES 配置。
 
+"我的服务"这类后端动态入口会根据 FEATURES 做前端兜底过滤，避免冻结功能在 MVP 阶段误展示。
+
 ## 注意
 
 - 不要修改 `uni_modules` 下第三方组件 README
