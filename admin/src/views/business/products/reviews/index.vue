@@ -80,7 +80,7 @@
 
 <script setup lang="ts" name="ProductReviews">
 import { dateFormatter } from '@/utils/formatTime'
-import * as ProductReviewApi from '@/api/business/products/storeProductReply'
+import * as ProductReviewApi from '@/api/business/products/reviews'
 const message = useMessage() // 消息弹窗
 const { t } = useI18n() // 国际化
 

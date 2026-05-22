@@ -60,7 +60,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import * as ProductRuleApi from '@/api/business/productRules'
+import * as ProductRuleApi from '@/api/business/products/rules'
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
