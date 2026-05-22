@@ -68,7 +68,7 @@ import { onLoad,onShow} from '@dcloudio/uni-app'
 import { formatDateTime } from '@/utils/util'
 import {
   balanceGetBillList
-} from '@/api/user'
+} from '@/api/account'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('账单')

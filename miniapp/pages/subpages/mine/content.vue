@@ -19,7 +19,7 @@ import {
 import { onLoad,onShow} from '@dcloudio/uni-app'
 import {
   mineServiceContent
-} from '@/api/user'
+} from '@/api/account'
 
 
 const title = ref('内容')

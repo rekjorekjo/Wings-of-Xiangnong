@@ -12,4 +12,3 @@ export function shopNearby(data) {
 export function menuGoods(data) {
   return api.get('/product/products', data, { login: false })
 }
-

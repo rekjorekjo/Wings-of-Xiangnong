@@ -199,7 +199,7 @@ import { formatDateTime } from '@/utils/util'
 import {
   orderDetail,
   orderReceive,
-} from '@/api/order'
+} from '@/api/orders'
 const title = ref('订单详情')
 const order = ref({
 	shop:{name:''},

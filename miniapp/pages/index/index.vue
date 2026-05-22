@@ -84,7 +84,7 @@ import {
 import { onLoad } from '@dcloudio/uni-app'
 import {
   menuAds
-} from '@/api/market'
+} from '@/api/ads'
 import { storeToRefs } from 'pinia'
 import { useMainStore } from '@/store/store'
 import { FEATURES } from '@/config/features'

@@ -66,7 +66,7 @@ import { onLoad,onShow ,onPullDownRefresh,onHide} from '@dcloudio/uni-app'
 import { formatDateTime,prePage } from '@/utils/util'
 import {
   couponMine
-} from '@/api/coupon'
+} from '@/api/coupons'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('优惠券')

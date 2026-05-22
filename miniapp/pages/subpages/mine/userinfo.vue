@@ -90,7 +90,7 @@ import { onLoad,onShow} from '@dcloudio/uni-app'
 import { formatDateTime } from '@/utils/util'
 import {
   userEdit
-} from '@/api/user'
+} from '@/api/account'
 import { VUE_APP_UPLOAD_URL } from '@/config';
 const main = useMainStore()
 const { openid, lang } = storeToRefs(main)

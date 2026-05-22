@@ -49,7 +49,7 @@ import {
 import { onReachBottom,onShow,onPullDownRefresh} from '@dcloudio/uni-app'
 import {
   scoreShopIndex
-} from '@/api/score'
+} from '@/api/points'
 const { proxy } = getCurrentInstance();
 
 const title = ref('积分商品')

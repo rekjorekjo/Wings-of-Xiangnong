@@ -140,7 +140,7 @@ import {
   couponReceive,
   couponMine,
   couponIndexApi
-} from '@/api/coupon'
+} from '@/api/coupons'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('优惠券')

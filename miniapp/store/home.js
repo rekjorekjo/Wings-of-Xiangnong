@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 import cookie from '@/utils/cookie'
-import { getUserInfo } from '@/api/user'
+import { getUserInfo } from '@/api/account'
 
 export const useMainStore = defineStore('home', {
   state: () => ({

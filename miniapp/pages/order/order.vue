@@ -73,7 +73,7 @@ import { formatDateTime,kmUnit } from '@/utils/util'
 import {
   orderGetOrders,
   orderReceive
-} from '@/api/order'
+} from '@/api/orders'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('我的订单')

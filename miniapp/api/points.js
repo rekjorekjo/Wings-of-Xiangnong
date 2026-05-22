@@ -49,4 +49,3 @@ export function getLogistic(data) {
   return api.get('/express/getLogistic', data, { login: false })
 }
 
-

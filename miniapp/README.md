@@ -40,6 +40,23 @@ http://localhost:18081/app-api
 
 "我的服务"这类后端动态入口会根据 FEATURES 做前端兜底过滤，避免冻结功能在 MVP 阶段误展示。
 
+## API 文件命名
+
+`miniapp/api` 已按业务含义整理：
+
+- products.js：商品/点餐商品
+- orders.js：订单
+- payment.js：支付
+- sites.js：站点/门店列表
+- ads.js：首页广告
+- account.js：用户信息、我的服务、余额/充值冻结能力
+- coupons.js：优惠券
+- points.js：积分商城冻结能力
+- address.js：地址
+- auth.js：登录鉴权
+
+本轮只改文件名和 import，接口 URL 与函数名保持兼容。
+
 ## 注意
 
 - 不要修改 `uni_modules` 下第三方组件 README

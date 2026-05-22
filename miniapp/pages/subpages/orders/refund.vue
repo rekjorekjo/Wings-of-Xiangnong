@@ -29,7 +29,7 @@ import {
 import { onLoad} from '@dcloudio/uni-app'
 import {
   orderRefund
-} from '@/api/order'
+} from '@/api/orders'
 const title = ref('申请退款')
 const orderId = ref('')
 const payPrice = ref('')

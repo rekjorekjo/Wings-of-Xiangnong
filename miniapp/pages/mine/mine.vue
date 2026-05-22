@@ -98,7 +98,7 @@ import { formatDateTime,kmUnit } from '@/utils/util'
 import {
   userGetUserInfo,
   mineService
-} from '@/api/user'
+} from '@/api/account'
 import { FEATURES } from '@/config/features'
 const main = useMainStore()
 const { member,isLogin } = storeToRefs(main)

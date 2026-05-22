@@ -230,13 +230,15 @@ import { formatDateTime,isWeixin } from '@/utils/util'
 import  debounce  from '@/uni_modules/uv-ui-tools/libs/function/debounce'
 
 import {
-  orderSubmit,
+  orderSubmit
+} from '@/api/orders'
+import {
   payUnify,
   getWechatConfig
-} from '@/api/order'
+} from '@/api/payment'
 import {
   couponCount
-} from '@/api/coupon'
+} from '@/api/coupons'
 import { FEATURES } from '@/config/features'
 // #ifdef H5
 import * as jweixin from 'weixin-js-sdk'

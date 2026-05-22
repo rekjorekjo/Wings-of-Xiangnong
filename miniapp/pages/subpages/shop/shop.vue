@@ -40,10 +40,10 @@ import { formatDateTime,kmUnit,prePage } from '@/utils/util'
 import {
   shopNearby,
   menuGoods
-} from '@/api/goods'
+} from '@/api/products'
 import {
   shopGetList
-} from '@/api/market'
+} from '@/api/sites'
 const main = useMainStore()
 const { store,location } = storeToRefs(main)
 const title = ref('店铺')

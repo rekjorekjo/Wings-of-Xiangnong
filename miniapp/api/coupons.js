@@ -27,5 +27,3 @@ export function couponIndexApi(data) {
 export function couponCount(data) {
   return api.get(`/coupon/count`, data, { login: false })
 }
-
-

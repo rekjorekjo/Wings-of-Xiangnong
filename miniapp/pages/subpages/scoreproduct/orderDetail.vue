@@ -115,7 +115,7 @@ import {
   scoreShopOrderDetail,
   scoreShopReceive,
   getLogistic
-} from '@/api/score'
+} from '@/api/points'
 const main = useMainStore()
 const { proxy } = getCurrentInstance();
 const { isLogin } = storeToRefs(main)

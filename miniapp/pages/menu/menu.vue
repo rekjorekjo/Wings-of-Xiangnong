@@ -246,10 +246,10 @@ import { formatDateTime,kmUnit } from '@/utils/util'
 import {
   shopNearby,
   menuGoods
-} from '@/api/goods'
+} from '@/api/products'
 import {
   menuAds
-} from '@/api/market'
+} from '@/api/ads'
 import { FEATURES } from '@/config/features'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)

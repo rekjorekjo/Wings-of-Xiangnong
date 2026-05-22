@@ -58,7 +58,7 @@ import { onReachBottom,onLoad,onPullDownRefresh} from '@dcloudio/uni-app'
 import {
   scoreShopExchange,
   scoreShopDetail
-} from '@/api/score'
+} from '@/api/points'
 import cookie from '@/utils/cookie'
 import { useMainStore } from '@/store/store'
 import { storeToRefs } from 'pinia'
