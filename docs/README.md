@@ -2,7 +2,7 @@
 
 ## 文档索引
 
-- [localtest.md](./localtest.md) - 本地启动说明
+- [localtest.md](./localtest.md) - 本地 MySQL、Redis、后端、管理端、小程序启动与常见问题说明
 - [mvp-admin-menu-hide.md](./mvp-admin-menu-hide.md) - 管理端菜单隐藏说明
 - [admin-refactor-notes.md](./admin-refactor-notes.md) - 管理端结构重构、旧路径兼容和命名边界说明
 - [frozen-features.md](./frozen-features.md) - MVP 阶段冻结功能清单、保留原因和未来恢复方式
