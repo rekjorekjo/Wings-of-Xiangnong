@@ -37,6 +37,12 @@ http://localhost:80
 - delivery 管理页面已新增
 - 管理端标题已改为香农之翼管理端
 
+### 旧菜单 component 路径兼容
+
+- 后端菜单 component 可能仍返回旧路径，例如 `mall/...`
+- 前端通过 `src/utils/legacyComponentPath.ts` 做兼容映射
+- 这只是前端组件解析兼容，不修改数据库菜单 path
+
 ## 重要边界
 
 - 不直接改数据库 `system_menu`
