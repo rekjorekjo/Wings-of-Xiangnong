@@ -46,20 +46,16 @@ export const createEditorConfig = (
 
         // 上传之前触发
         onBeforeUpload(file: File) {
-          console.log(file)
           return file
         },
         // 上传进度的回调函数
         onProgress(progress: number) {
           // progress 是 0-100 的数字
-          console.log('progress', progress)
         },
         onSuccess(file: File, res: any) {
-          console.log('onSuccess', file, res)
         },
         onFailed(file: File, res: any) {
           message.alertError(res.message)
-          console.log('onFailed', file, res)
         },
         onError(file: File, err: any, res: any) {
           message.alertError(err.message)

@@ -71,7 +71,6 @@ const open = async (type: string, id?: number) => {
   DetailData.value = data
   nickname.value = DetailData.value.userRespVO.nickname
   product.value = data.scoreProductRespVO
-  console.log('aa:',product.value )
 }
 defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 

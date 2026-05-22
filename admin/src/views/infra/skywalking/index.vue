@@ -9,7 +9,8 @@ import * as ConfigApi from '@/api/infra/config'
 defineOptions({ name: 'InfraSkyWalking' })
 
 const loading = ref(true) // 是否加载中
-const src = ref('http://skywalking.shop.yixiang.co')
+// MVP 阶段不配置 SkyWalking 地址，需要时由负责人改为真实监控地址。
+const src = ref('about:blank')
 
 /** 初始化 */
 onMounted(async () => {
