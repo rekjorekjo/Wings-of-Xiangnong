@@ -50,6 +50,10 @@ http://localhost:80
 - 通过菜单隐藏/入口隐藏/配置开关控制 MVP 范围
 - `views/business` 的 URL path 可能仍由后端菜单返回，不要随便改菜单 path
 
+## 冻结功能说明
+
+积分、余额、会员卡、公众号、收银台、多门店等功能当前不作为 MVP 主链路，但源码和模块保留。管理端通过菜单隐藏控制入口，详见 [docs/frozen-features.md](../docs/frozen-features.md)。
+
 ## delivery 页面说明
 
 路径：`/delivery/tasks`
