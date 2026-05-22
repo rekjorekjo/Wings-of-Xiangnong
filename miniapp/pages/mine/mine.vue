@@ -27,7 +27,7 @@
 					</view>
 					<!-- user grid begin -->
 					<view class="w-100 d-flex align-items-center just-content-center">
-						<view class="user-grid" @tap="serv({type:'pages',pages:'/pages/subpages/coupons/coupons'})">
+						<view class="user-grid" @tap="serv({type:'pages',pages:ROUTES.subpages.coupons})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.couponCount : 0}}
 							</view>
@@ -100,6 +100,7 @@ import {
   mineService
 } from '@/api/account'
 import { FEATURES } from '@/config/features'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { member,isLogin } = storeToRefs(main)
 
@@ -200,7 +201,7 @@ const makePhoneCall = (phoneNumber) => {
 }
 const login = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/login/login'
+		url: ROUTES.subpages.login
 	})
 }
 const packages = () => {

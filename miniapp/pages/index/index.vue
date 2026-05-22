@@ -88,6 +88,7 @@ import {
 import { storeToRefs } from 'pinia'
 import { useMainStore } from '@/store/store'
 import { FEATURES } from '@/config/features'
+import { ROUTES } from '@/config/routes'
 //
 const main = useMainStore()
 const { member,store, isLogin} = storeToRefs(main)
@@ -118,14 +119,14 @@ const handGetListAds = async () => {
 const takein = () => {
 	main.SET_ORDER_TYPE('takein')
 	uni.switchTab({
-		url: '/pages/menu/menu'
+		url: ROUTES.tabs.menu
 	})
 }
 
 const takeout = () => {
 	main.SET_ORDER_TYPE('takeout')
 	uni.switchTab({
-		url: '/pages/menu/menu'
+		url: ROUTES.tabs.menu
 	}) 
 }
 
@@ -133,11 +134,11 @@ const coupons = () => {
 	console.log("--> % orderType:\n", main.orderType)
 	console.log("--> % isLogin:\n", main.isLogin)
 	if(!main.isLogin) {
-		uni.navigateTo({url: '/pages/subpages/login/login'})
+		uni.navigateTo({url: ROUTES.subpages.login})
 		return
 	}
 	uni.navigateTo({
-		url: '/pages/subpages/coupons/coupons'
+		url: ROUTES.subpages.coupons
 	})
 }
 

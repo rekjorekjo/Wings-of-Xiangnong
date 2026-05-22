@@ -251,6 +251,7 @@ import {
   menuAds
 } from '@/api/ads'
 import { FEATURES } from '@/config/features'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)
 const title = ref('点餐')
@@ -348,7 +349,7 @@ const in_array = (search, array) => {
 }
 const selectShop = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/shop/shop'
+		url: ROUTES.subpages.shop
 	})
 }
 const uToast = ref()
@@ -476,7 +477,7 @@ const takout = (force = false) => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/subpages/login/login'
+			url: ROUTES.subpages.login
 		})
 		return
 	} 
@@ -488,7 +489,7 @@ const takein = (force = false) => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/subpages/login/login'
+			url: ROUTES.subpages.login
 		})
 		return
 	} 
@@ -674,7 +675,7 @@ const toPay = () => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/subpages/login/login'
+			url: ROUTES.subpages.login
 		})
 		return
 	} else {
@@ -698,7 +699,7 @@ const toPay = () => {
 		uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
 
 		uni.navigateTo({
-			url: '/pages/subpages/pay/pay'
+			url: ROUTES.subpages.pay
 		})
 	}
 

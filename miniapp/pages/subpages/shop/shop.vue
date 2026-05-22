@@ -44,6 +44,7 @@ import {
 import {
   shopGetList
 } from '@/api/sites'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { store,location } = storeToRefs(main)
 const title = ref('店铺')
@@ -100,7 +101,7 @@ const choice = (shop) => {
 	main.SET_STORE(shop);
 	uni.$emit('refreshMenu')
 	uni.switchTab({ 
-		url:'/pages/menu/menu',
+		url: ROUTES.tabs.menu,
 		success(res) {
 		},
 		fail(res) {

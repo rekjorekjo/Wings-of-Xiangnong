@@ -200,6 +200,7 @@ import {
   orderDetail,
   orderReceive,
 } from '@/api/orders'
+import { ROUTES } from '@/config/routes'
 const title = ref('订单详情')
 const order = ref({
 	shop:{name:''},
@@ -248,7 +249,7 @@ const receive  = async(order) => {
 //提交退款
 const refund = (order) => {
 	uni.navigateTo({
-		url: '/pages/subpages/orders/refund?orderId=' + order.orderId + '&payPrice=' + order.payPrice + '&totalPrice=' + order.totalPrice
+		url: `${ROUTES.subpages.orderRefund}?orderId=${order.orderId}&payPrice=${order.payPrice}&totalPrice=${order.totalPrice}`
 	})
 }
 

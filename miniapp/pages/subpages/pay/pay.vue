@@ -240,6 +240,7 @@ import {
   couponCount
 } from '@/api/coupons'
 import { FEATURES } from '@/config/features'
+import { ROUTES } from '@/config/routes'
 // #ifdef H5
 import * as jweixin from 'weixin-js-sdk'
 // #endif
@@ -478,7 +479,7 @@ const goToRemark = () => {
 }
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/address/address?is_choose=true&scene=pay'
+		url: `${ROUTES.subpages.address}?is_choose=true&scene=pay`
 	});
 }
 const goToPackages = () => {
@@ -493,7 +494,7 @@ const goToPackages = () => {
 }
 const goToShop = () => {
 	uni.navigateTo({
-		url: `/pages/subpages/shop/shop`
+		url: ROUTES.subpages.shop
 	});
 }
 const submit = () => {
@@ -631,7 +632,7 @@ const balancePay = async(order) => {
 	main.SET_MEMBER(member.value)
 	uni.removeStorageSync('cart');
 	uni.switchTab({
-		url: '/pages/order/order',
+		url: ROUTES.tabs.order,
 		fail(res) {
 			console.log(res);
 		}
@@ -679,7 +680,7 @@ const weixinPay = async(order) => {
 
 				uni.removeStorageSync('cart');
 				uni.switchTab({
-					url: '/pages/order/order'
+					url: ROUTES.tabs.order
 				});
 			},
 			fail: function(err) {

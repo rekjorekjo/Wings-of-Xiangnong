@@ -74,6 +74,7 @@ import {
   orderGetOrders,
   orderReceive
 } from '@/api/orders'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('我的订单')
@@ -110,7 +111,7 @@ const goodsNum = computed(() => { //计算单个饮品添加到购物车的数�
 })
 onLoad(() => {
 	if(!isLogin.value) {
-		uni.navigateTo({url: '/pages/subpages/login/login'})
+		uni.navigateTo({url: ROUTES.subpages.login})
 	}
 	getOrders(false)
 })
@@ -146,7 +147,7 @@ const getOrders = async(isRefresh = false) => {
 }
 const detail = (id) => {
 	uni.navigateTo({
-		url: '/pages/subpages/orders/detail?id=' + id
+		url: `${ROUTES.subpages.orderDetail}?id=${id}`
 	})
 }
 // 确认收到货
