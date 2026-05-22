@@ -42,7 +42,8 @@ $ExcludeDirs = @(
 $ExcludeFileNames = @(
     ".DS_Store",
     "Thumbs.db",
-    "package-lock.json"
+    "package-lock.json",
+    ".flattened-pom.xml"
 )
 
 # 需要排除的扩展名

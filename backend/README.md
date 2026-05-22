@@ -41,3 +41,7 @@ mvn clean install -DskipTests
 - 订单负责交易
 - 配送任务负责履约
 - 无人机状态、电量、轨迹、位置不要塞进订单表
+
+## 部署脚本说明
+
+backend/script 下的 Docker/部署脚本属于历史脚本，当前本地开发以 docs/localtest.md 和 IDEA 启动为准；正式部署前需要单独校准脚本。

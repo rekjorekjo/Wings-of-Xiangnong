@@ -8,21 +8,21 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
-        <module>yshop-dependencies</module>
-        <module>yshop-framework</module>
+        <module>dependencies</module>
+        <module>framework</module>
         <!-- Server 主项目 -->
-        <module>yshop-server</module>
-        <!-- 各种 module 拓展 -->
-        <module>yshop-module-system</module>
-        <module>yshop-module-infra</module>
-        <module>yshop-module-pay</module>
-        <module>yshop-module-mp</module>
-        <module>yshop-module-mall</module>
-        <module>yshop-module-message</module>
-        <module>yshop-module-score</module>
-        <module>yshop-module-express</module>
-        <module>yshop-module-marketing</module>
-        <module>yshop-module-member</module>
+        <module>server</module>
+        <!-- 业务模块 -->
+        <module>modules/business</module>
+        <module>modules/system</module>
+        <module>modules/infra</module>
+        <module>modules/pay</module>
+        <module>modules/mp</module>
+        <module>modules/message</module>
+        <module>modules/score</module>
+        <module>modules/express</module>
+        <module>modules/marketing</module>
+        <module>modules/member</module>
     </modules>
 
     <name>${project.artifactId}</name>

@@ -1,9 +1,12 @@
 #!/bin/bash
+# 历史部署脚本，当前 MVP 本地开发不使用。
+# backend 目录和端口已调整，正式部署前需要单独校准本脚本。
+
 set -e
 
 DATE=$(date +%Y%m%d%H%M)
 # 基础路径
-BASE_PATH=/work/projects/yshop-server
+BASE_PATH=/work/projects/wings-backend
 # 编译后 jar 的地址。部署时，Jenkins 会上传 jar 包到该目录下
 SOURCE_PATH=$BASE_PATH/build
 # 服务名称。同时约定部署服务的 jar 包名字也为它。
@@ -11,7 +14,7 @@ SERVER_NAME=yshop-server
 # 环境
 PROFILES_ACTIVE=development
 # 健康检查 URL
-HEALTH_CHECK_URL=http://127.0.0.1:48080/actuator/health/
+HEALTH_CHECK_URL=http://127.0.0.1:18081/actuator/health/
 
 # heapError 存放路径
 HEAP_ERROR_PATH=$BASE_PATH/heapError

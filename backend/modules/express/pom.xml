@@ -6,19 +6,20 @@
         <groupId>co.yixiang.boot</groupId>
         <artifactId>yshop</artifactId>
         <version>${revision}</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>yshop-module-member-api</module>
-        <module>yshop-module-member-biz</module>
-    </modules>
-    <artifactId>yshop-module-member</artifactId>
+    <artifactId>yshop-module-express</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>yshop-module-express-api</module>
+        <module>yshop-module-express-biz</module>
+    </modules>
 
     <name>${project.artifactId}</name>
     <description>
-        member 模块，我们放会员业务。
-        例如说：会员中心等等
+        express 模块
     </description>
+
 
 </project>

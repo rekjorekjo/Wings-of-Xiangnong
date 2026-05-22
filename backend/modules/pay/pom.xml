@@ -6,18 +6,19 @@
         <groupId>co.yixiang.boot</groupId>
         <artifactId>yshop</artifactId>
         <version>${revision}</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-module-message</artifactId>
-    <packaging>pom</packaging>
     <modules>
-        <module>yshop-module-message-api</module>
-        <module>yshop-module-message-biz</module>
+        <module>yshop-module-pay-api</module>
+        <module>yshop-module-pay-biz</module>
     </modules>
+    <artifactId>yshop-module-pay</artifactId>
+    <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
     <description>
-        message 模块
+        pay 模块
     </description>
 
 

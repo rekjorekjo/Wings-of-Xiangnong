@@ -10,7 +10,7 @@
 ├── Docker-HOWTO.md                 
 ├── docker-compose.yml              
 ├── docker.env                      <-- 提供docker-compose环境变量配置
-├── yshop-server
+├── server
 │   └── Dockerfile
 └── yshop-ui-admin
     ├── .dockerignore
@@ -44,6 +44,6 @@ docker compose --env-file docker.env up -d
 ## 服务器的宿主机端口映射
 
 - admin ui: http://localhost:8080
-- api server: http://localhost:48080
+- api server: http://localhost:18081
 - mysql: root/123456, port: 3306
 - redis: port: 6379

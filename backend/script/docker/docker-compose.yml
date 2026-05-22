@@ -1,3 +1,7 @@
+# 历史 Docker 部署脚本，当前本地开发不使用。
+# backend 目录已重构为 server/framework/modules 等结构；如需恢复 Docker 部署，需要单独维护本文件。
+# 历史默认端口 48080 已改为本地开发端口 18081。
+
 version: "3.4"
 
 name: yshop-system
@@ -29,11 +33,11 @@ services:
   server:
     container_name: yshop-server
     build:
-      context: ./yshop-server/
+      context: ../../server/
     image: yshop-server
     restart: unless-stopped
     ports:
-      - "48080:48080"
+      - "18081:18081"
     environment:
       # https://github.com/polovyivan/docker-pass-configs-to-container
       SPRING_PROFILES_ACTIVE: local
@@ -63,7 +67,7 @@ services:
         NODE_ENV:
           ENV=${NODE_ENV:-production}
           PUBLIC_PATH=${PUBLIC_PATH:-/}
-          VUE_APP_TITLE=${VUE_APP_TITLE:-意象商城管理系统}
+          VUE_APP_TITLE=${VUE_APP_TITLE:-香农之翼管理端}
           VUE_APP_BASE_API=${VUE_APP_BASE_API:-/prod-api}
           VUE_APP_APP_NAME=${VUE_APP_APP_NAME:-/}
           VUE_APP_TENANT_ENABLE=${VUE_APP_TENANT_ENABLE:-true}

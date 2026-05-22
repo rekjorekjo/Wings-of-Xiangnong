@@ -41,7 +41,7 @@ Wings-of-Xiangnong/
 后端本地配置文件：
 
 ```text
-backend/yshop-server/src/main/resources/application-local.yaml
+backend/server/src/main/resources/application-local.yaml
 ```
 
 当前数据库连接配置大致是：
@@ -267,7 +267,7 @@ backend/pom.xml
 启动类：
 
 ```text
-backend/yshop-server/src/main/java/co/yixiang/yshop/server/YshopServerApplication.java
+backend/server/src/main/java/co/yixiang/yshop/server/YshopServerApplication.java
 ```
 
 主类名：
