@@ -97,8 +97,6 @@ const message = useMessage() // 消息弹窗
 
 const tenantId = ref(getTenantId())
 
-console.log('tenantId:',tenantId.value)
-
 const dialogVisible = ref(false) // 弹窗的是否展示
 const dialogTitle = ref('') // 弹窗的标题
 const formLoading = ref(false) // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用

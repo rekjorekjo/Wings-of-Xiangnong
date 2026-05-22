@@ -64,7 +64,6 @@ const getShop = async(keywork = '') => {
 		shop_id: 0
 	});
 	if (data) {
-		//console.log(data);
 		if (page.value == 1) {
 			list.value = data;
 		} else {
@@ -76,14 +75,12 @@ const getShop = async(keywork = '') => {
 }
 //打开定位
 const openLocation = (shop) => {
-	//console.log(shop);
 	uni.openLocation({
 		latitude: parseFloat(shop.lat),
 		longitude: parseFloat(shop.lng),
 		name:shop.name,
 		address: shop.addressMap + shop.address,
 		fail: (res) => {
-			console.log(res);
 		}
 	})
 }
@@ -107,7 +104,6 @@ const choice = (shop) => {
 		success(res) {
 		},
 		fail(res) {
-			console.log(res);
 		}
 	});
 }

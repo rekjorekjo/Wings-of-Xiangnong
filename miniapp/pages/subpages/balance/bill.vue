@@ -108,7 +108,6 @@ const tabs = ref()
 const cate = ref(0)
 
 onLoad((option) => {
-	console.log('cate:',option.cate)
 	cate.value = option.cate
 	getBill();
 })

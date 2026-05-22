@@ -63,10 +63,6 @@ const props = defineProps({
 
 const dialogVideo = ref(false)
 
-// const handleEvent = (log) => {
-//   console.log('Basic player event', log)
-// }
-
 const playVideo = () => {
   dialogVideo.value = true
 }

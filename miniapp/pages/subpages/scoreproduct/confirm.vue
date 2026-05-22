@@ -77,7 +77,6 @@ const customStyle = computed(() =>{
 })
 
 onLoad(() => {
-	console.log('address:',address.value)
 	if(!isLogin.value) {
 		uni.navigateTo({url: '/pages/subpages/login/login'})
 	}

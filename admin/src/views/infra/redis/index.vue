@@ -249,7 +249,6 @@ const usedMemoryInstance = async () => {
       value: cache.value!.info.used_memory_human,
       name: '内存消耗'
     }
-    console.log(cache.value!.info)
     usedmemoryEchartChika.tooltip = {
       formatter: '{b} <br/>{a} : ' + cache.value!.info.used_memory_human
     }

@@ -99,7 +99,6 @@ onPullDownRefresh(() => {
 })
 
 const changeList = (e) => {
-	console.log('e:',e)
 	if(e.name == 'list1'){
 		list1.value.push(e.value)
 	}else{
@@ -120,11 +119,9 @@ const  getProduct = async() => {
 		page: page.value,
 		pagesize: pagesize.value
 	});
-	console.log('data:',data)
 	uni.stopPullDownRefresh();
 	if (data) {
 		list.value = data;
-		console.log('data2:',list.value)
 		if (data.length < pagesize.value) {
 			status.value = 'nomore';
 		}

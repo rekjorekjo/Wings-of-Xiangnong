@@ -37,7 +37,6 @@ const totalPrice = ref('')
 const refundReasonWapExplain = ref('')
 const toast = ref()
 onLoad((option) => {
-	console.log('option:',option)
 	orderId.value = option.orderId
 	payPrice.value = option.payPrice
 	totalPrice.value = option.totalPrice
