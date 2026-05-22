@@ -48,6 +48,7 @@ import {
   addressDelete,
   shopGetDistanceFromLocation
 } from '@/api/address'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { isLogin,addresses,store } = storeToRefs(main)
 const title = ref('我的地址')
@@ -79,12 +80,12 @@ const init = async() => {
 }
 const add = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/address/add'
+		url: ROUTES.subpages.addressAdd
 	})
 }
 const edit = (id) => {
 	uni.navigateTo({
-		url: '/pages/subpages/address/add?id=' + id
+		url: `${ROUTES.subpages.addressAdd}?id=${id}`
 	})
 }
 const handleSwipeClick = async(id) => {
@@ -152,7 +153,7 @@ const chooseAddress = async(address) => {
 
 		if (scene.value == 'menu') {
 			uni.switchTab({
-				url: '/pages/menu/menu'
+				url: ROUTES.tabs.menu
 			})
 		} else if (scene.value == 'pay') {
 			uni.navigateBack();

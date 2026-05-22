@@ -474,7 +474,7 @@ const takout = (value) => {
 }
 const goToRemark = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/remark/remark?remark=' + form.value.remark
+		url: `${ROUTES.subpages.remark}?remark=${form.value.remark}`
 	});
 }
 const chooseAddress = () => {
@@ -488,8 +488,7 @@ const goToPackages = () => {
 	let type = orderType.value == 'takein' ? 1 : 2;
 	let shop_id = store.value.id;
 	uni.navigateTo({
-		url: '/pages/subpages/packages/index?amount=' + newamount + '&coupon_id=' + coupon_id +
-			'&shop_id=' + shop_id + '&type=' + type
+		url: `${ROUTES.subpages.packages}?amount=${newamount}&coupon_id=${coupon_id}&shop_id=${shop_id}&type=${type}`
 	});
 }
 const goToShop = () => {

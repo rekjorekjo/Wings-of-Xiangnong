@@ -74,6 +74,7 @@ import {
   scoreShopOrder,
   scoreShopReceive
 } from '@/api/points'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { proxy } = getCurrentInstance();
 const { isLogin } = storeToRefs(main)
@@ -100,7 +101,7 @@ const tabList = ref([{
 onLoad(() => {
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/subpages/login/login'
+			url: ROUTES.subpages.login
 		})
 	}
 	getOrders(false)
@@ -141,7 +142,7 @@ const  getOrders = async(isRefresh = false) => {
 }
 const detail = (id) => {
 	uni.navigateTo({
-		url: '/pages/subpages/scoreproduct/orderDetail?id=' + id
+		url: `${ROUTES.subpages.scoreProductOrderDetail}?id=${id}`
 	})
 }
 // 确认收到货

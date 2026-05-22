@@ -52,6 +52,7 @@ import {
   scoreShopDetail
 } from '@/api/points'
 import cookie from '@/utils/cookie'
+import { ROUTES } from '@/config/routes'
 const { proxy } = getCurrentInstance();
 
 const buttonText = ref("立即兑换")
@@ -85,14 +86,14 @@ onLoad((options) => {
 // 选择地址
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/address/address?is_choose=true&scene=scoreShop'
+		url: `${ROUTES.subpages.address}?is_choose=true&scene=scoreShop`
 	})
 }
 
 const confirm = () => {
 	cookie.set('score_product',product.value)
 	uni.navigateTo({
-		url: '/pages/subpages/scoreproduct/confirm'
+		url: ROUTES.subpages.scoreProductConfirm
 	})
 }
 // 该表购买数量

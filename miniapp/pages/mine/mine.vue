@@ -18,7 +18,7 @@
 						<view class="d-flex flex-column flex-fill overflow-hidden" style="margin-top: 20rpx;">
 							<view v-if="isLogin"
 								class="font-size-lg font-weight-bold d-flex justify-content-start align-items-center"
-								@tap="serv({type:'pages',pages:'/pages/subpages/mine/userinfo'})">
+								@tap="serv({type:'pages',pages:ROUTES.subpages.userinfo})">
 								<view class="text-truncate">{{ member.nickname }}</view>
 								<view class="iconfont iconarrow-right line-height-100"></view>
 							</view>
@@ -33,7 +33,7 @@
 							</view>
 							<view class="font-size-sm text-color-assist">优惠券</view>
 						</view>
-						<view class="user-grid" v-if="FEATURES.scoreMall" @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=1'})">
+						<view class="user-grid" v-if="FEATURES.scoreMall" @tap="serv({type:'pages', pages: `${ROUTES.subpages.balanceBill}?cate=1`})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.integral : 0 }}
 							</view>
@@ -45,7 +45,7 @@
 							</view>
 							<view class="font-size-sm text-color-assist">余额</view>
 						</view>
-						<view class="user-grid" v-if="FEATURES.balance" @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=0'})">
+						<view class="user-grid" v-if="FEATURES.balance" @tap="serv({type:'pages', pages: `${ROUTES.subpages.balanceBill}?cate=0`})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.sumMoney : 0 }}
 							</view>
@@ -210,7 +210,7 @@ const packages = () => {
 		return
 	}
 	uni.navigateTo({
-		url: '/pages/subpages/packages/index'
+		url: ROUTES.subpages.packages
 	})
 }
 const serv = (item) => {
@@ -231,12 +231,12 @@ const serv = (item) => {
 			break;
 		case 'menu':
 			uni.navigateTo({
-				url: '/pages/subpages/mine/service?id=' + item.id + '&name=' + item.name
+				url: `${ROUTES.subpages.mineService}?id=${item.id}&name=${item.name}`
 			})
 			break;
 		case 'content':
 			uni.navigateTo({
-				url: '/pages/subpages/mine/content?id=' + item.id + '&name=' + item.name
+				url: `${ROUTES.subpages.mineContent}?id=${item.id}&name=${item.name}`
 			})
 			break;
 	}

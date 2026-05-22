@@ -18,7 +18,18 @@ export const ROUTES = {
     orderRefund: '/pages/subpages/orders/refund',
     coupons: '/pages/subpages/coupons/coupons',
     address: '/pages/subpages/address/address',
+    addressAdd: '/pages/subpages/address/add',
     login: '/pages/subpages/login/login',
-    remark: '/pages/subpages/remark/remark'
+    remark: '/pages/subpages/remark/remark',
+    packages: '/pages/subpages/packages/index',
+    userinfo: '/pages/subpages/mine/userinfo',
+    mineService: '/pages/subpages/mine/service',
+    mineContent: '/pages/subpages/mine/content',
+    balanceBill: '/pages/subpages/balance/bill',
+    scoreProductList: '/pages/subpages/scoreproduct/list',
+    scoreProductDetail: '/pages/subpages/scoreproduct/detail',
+    scoreProductConfirm: '/pages/subpages/scoreproduct/confirm',
+    scoreProductOrder: '/pages/subpages/scoreproduct/order',
+    scoreProductOrderDetail: '/pages/subpages/scoreproduct/orderDetail'
   }
 }

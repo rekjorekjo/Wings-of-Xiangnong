@@ -62,6 +62,7 @@ import {
 import cookie from '@/utils/cookie'
 import { useMainStore } from '@/store/store'
 import { storeToRefs } from 'pinia'
+import { ROUTES } from '@/config/routes'
 const { proxy } = getCurrentInstance();
 const main = useMainStore()
 const { address,isLogin} = storeToRefs(main)
@@ -78,16 +79,15 @@ const customStyle = computed(() =>{
 
 onLoad(() => {
 	if(!isLogin.value) {
-		uni.navigateTo({url: '/pages/subpages/login/login'})
+		uni.navigateTo({url: ROUTES.subpages.login})
 	}
 	product.value = cookie.get('score_product')
 	
 })
 
-// 选择地址
 const chooseAddress = () => {
 	uni.navigateTo({
-		url: '/pages/subpages/address/address?is_choose=true&scene=scoreShop'
+		url: `${ROUTES.subpages.address}?is_choose=true&scene=scoreShop`
 	})
 }
 
@@ -110,7 +110,7 @@ const submit = async() => {
 		cookie.remove('score_product')
 		setTimeout(function() {
 			uni.navigateTo({
-				url: '/pages/subpages/scoreproduct/order'
+				url: ROUTES.subpages.scoreProductOrder
 			})
 		}, 1000)
 	}

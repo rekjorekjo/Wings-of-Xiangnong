@@ -141,6 +141,7 @@ import {
   couponMine,
   couponIndexApi
 } from '@/api/coupons'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('优惠券')
@@ -244,7 +245,7 @@ const closeDetailModal = () => {
 }
 const useCoupon = () => {
 	uni.switchTab({
-		url: '/pages/menu/menu'
+		url: ROUTES.tabs.menu
 	})
 }
 const showTip1 = () => {

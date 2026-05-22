@@ -25,7 +25,7 @@
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
 									<view class="btn">
-										<navigator open-type="switchTab" url="/pages/menu/menu">随便逛逛</navigator>
+										<navigator open-type="switchTab" :url="ROUTES.tabs.menu">随便逛逛</navigator>
 									</view>
 								</view>
 								<view v-else>
@@ -69,6 +69,7 @@ import { formatDateTime } from '@/utils/util'
 import {
   balanceGetBillList
 } from '@/api/account'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('账单')

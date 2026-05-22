@@ -144,7 +144,7 @@ const coupons = () => {
 
 const goScore = () => { 
 	uni.navigateTo({
-		url: '/pages/subpages/scoreproduct/list'
+		url: ROUTES.subpages.scoreProductList
 	})
 }
 

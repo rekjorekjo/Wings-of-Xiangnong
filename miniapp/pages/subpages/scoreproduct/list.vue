@@ -50,6 +50,7 @@ import { onReachBottom,onShow,onPullDownRefresh} from '@dcloudio/uni-app'
 import {
   scoreShopIndex
 } from '@/api/points'
+import { ROUTES } from '@/config/routes'
 const { proxy } = getCurrentInstance();
 
 const title = ref('积分商品')
@@ -108,7 +109,7 @@ const changeList = (e) => {
 }
 const goDetail = (item) => {
 	uni.navigateTo({
-		url: '/pages/subpages/scoreproduct/detail?id=' + item.id
+		url: `${ROUTES.subpages.scoreProductDetail}?id=${item.id}`
 	})
 }
 const  getProduct = async() => {
