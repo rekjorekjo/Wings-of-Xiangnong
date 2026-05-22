@@ -33,27 +33,24 @@
 							</view>
 							<view class="font-size-sm text-color-assist">优惠券</view>
 						</view>
-						<!-- 香农之翼 MVP 阶段暂时隐藏：积分入口 -->
-						<!-- <view class="user-grid"  @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=1'})">
+						<view class="user-grid" v-if="FEATURES.scoreMall" @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=1'})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.integral : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">积分</view>
-						</view> -->
-						<!-- 香农之翼 MVP 阶段暂时隐藏：余额入口 -->
-						<!-- <view class="user-grid">
+						</view>
+						<view class="user-grid" v-if="FEATURES.balance">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.nowMoney : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">余额</view>
-						</view> -->
-						<!-- 香农之翼 MVP 阶段暂时隐藏：历史消费/余额账单入口 -->
-						<!-- <view class="user-grid" @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=0'})">
+						</view>
+						<view class="user-grid" v-if="FEATURES.balance" @tap="serv({type:'pages', pages: '/pages/subpages/balance/bill?cate=0'})">
 							<view class="value font-size-extra-lg font-weight-bold text-color-base">
 								{{ isLogin ? member.sumMoney : 0 }}
 							</view>
 							<view class="font-size-sm text-color-assist">历史消费</view>
-						</view> -->
+						</view>
 					</view>
 					<!-- user grid end -->
 				</view>
@@ -102,12 +99,14 @@ import {
   userGetUserInfo,
   mineService
 } from '@/api/user'
+import { FEATURES } from '@/config/features'
 const main = useMainStore()
 const { member,isLogin } = storeToRefs(main)
 
 const title = ref('个人中心')
 const services = ref([])
 
+// 后端服务项可能仍返回冻结功能，前端用 FEATURES 和关键词做兜底隐藏。
 const mvpHiddenServiceKeywords = [
   '积分',
   '积分商城',

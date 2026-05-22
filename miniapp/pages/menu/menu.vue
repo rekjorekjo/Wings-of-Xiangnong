@@ -19,22 +19,22 @@
 				<view class="header">
 					<view class="mr-1"><image :src="store.image" style="width:80rpx ; height: 80rpx; "></image></view>
 					<view class="left" v-if="orderType == 'takein'" style="">
-						<view class="store-name" @click="selectShop()">
+						<view class="store-name" @click="FEATURES.multiStore && selectShop()">
 							<text>{{ store.name }}</text>
-							<view class="iconfont iconarrow-right"></view>
+							<view class="iconfont iconarrow-right" v-if="FEATURES.multiStore"></view>
 						</view>
 						<view class="store-location">
 							<text>距离您 {{kmUnit(store.dis)}}</text>
 						</view>
 					</view>
 					<view class="left overflow-hidden" v-else>
-						<view class="store-name" @click="selectShop()">
+						<view class="store-name" @click="FEATURES.multiStore && selectShop()">
 							<view>{{ store.name }}
 								<text class="small" v-if="store.distance > 0 && orderType == 'takeout'">(配送距离:
 									{{store.distance}}km)</text>
 								<text class="small" v-else-if="orderType == 'takeout'">(本店不支持外卖)</text>
 							</view>
-							<view class="iconfont iconarrow-right"></view>
+							<view class="iconfont iconarrow-right" v-if="FEATURES.multiStore"></view>
 						</view>
 					</view>
 					<view class="right">
@@ -227,7 +227,7 @@
 		<view class="loading" v-else>
 			<uv-loading-icon  color="#DA5650" size=40 mode="circle" ></uv-loading-icon>
 			<button type="primary" style="z-index: 3001;position: absolute;top: 650rpx;" @click="init"
-				v-if="!store.id">定位最近的门店</button>
+				v-if="FEATURES.multiStore && !store.id">定位最近的门店</button>
 		<!-- 	<uv-toast ref="uToast"></uv-toast> -->
 		</view>
 	</layout>
@@ -250,6 +250,7 @@ import {
 import {
   menuAds
 } from '@/api/market'
+import { FEATURES } from '@/config/features'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)
 const title = ref('点餐')

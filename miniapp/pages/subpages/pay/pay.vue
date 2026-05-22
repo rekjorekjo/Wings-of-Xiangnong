@@ -140,7 +140,7 @@
 			<!-- 支付方式 begin -->
 			<view class="payment">
 				<list-cell last :hover="false"><text>支付方式</text></list-cell>
-				<list-cell>
+				<list-cell v-if="FEATURES.balance">
 					<view class="d-flex align-items-center justify-content-between w-100 disabled"
 						@click="setPayType('yue')">
 						<view class="iconfont iconbalance line-height-100 payment-icon"></view>
@@ -151,7 +151,7 @@
 						<view class="iconfont line-height-100 checkbox iconradio-button-off" v-else></view>
 					</view>
 				</list-cell>
-				<list-cell last>
+				<list-cell :last="!FEATURES.alipay">
 					<view class="d-flex align-items-center justify-content-between w-100" @click="setPayType('weixin')">
 						<view class="iconfont iconwxpay line-height-100 payment-icon" style="color: #7EB73A"></view>
 						<view class="flex-fill">微信支付</view>
@@ -161,7 +161,7 @@
 					</view>
 				</list-cell>
 				<!-- #ifdef H5 -->
-				<list-cell>
+				<list-cell last v-if="FEATURES.alipay">
 					<view class="d-flex align-items-center justify-content-between w-100" @click="setPayType('alipay')">
 						<view class="iconfont-yshop icon-alipay line-height-100 payment-icon" style="color:#07b4fd" ></view>
 						<view class="flex-fill">支付宝</view>
@@ -237,6 +237,7 @@ import {
 import {
   couponCount
 } from '@/api/coupon'
+import { FEATURES } from '@/config/features'
 // #ifdef H5
 import * as jweixin from 'weixin-js-sdk'
 // #endif
@@ -332,8 +333,6 @@ onShow(() => {
 	}
 	defaultTime.value = hour + ':' + minute;
 	
-	console.log('member:',member.value)
-	
 	if(orderType.value == 'takeout'){
 		active.value = true
 	}else{
@@ -344,6 +343,23 @@ onShow(() => {
 	
 	let paytype = uni.getStorageSync('paytype');
 	payType.value = paytype ? paytype : 'weixin';
+	
+	// 安全兜底：当余额支付被禁用时，切回微信支付
+	if (!FEATURES.balance && payType.value === 'yue') {
+		payType.value = 'weixin';
+		uni.setStorage({
+			key: 'paytype',
+			data: 'weixin'
+		});
+	}
+	// 安全兜底：当支付宝被禁用时，切回微信支付
+	if (!FEATURES.alipay && payType.value === 'alipay') {
+		payType.value = 'weixin';
+		uni.setStorage({
+			key: 'paytype',
+			data: 'weixin'
+		});
+	}
 	
 })
 onHide(() => {
@@ -365,11 +381,20 @@ const getSubscribeMss = async() => {
 }
 // 更改支付方式
 const setPayType = (paytype) => {
-	payType.value = 'weixin';
-	payType.value= paytype;
+	let nextPayType = paytype
+
+	if (!FEATURES.balance && nextPayType === 'yue') {
+		nextPayType = 'weixin'
+	}
+
+	if (!FEATURES.alipay && nextPayType === 'alipay') {
+		nextPayType = 'weixin'
+	}
+
+	payType.value = nextPayType
 	uni.setStorage({
 		key: 'paytype',
-		data: paytype
+		data: nextPayType
 	})
 }
 const getCoupons = async() => {

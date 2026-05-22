@@ -35,10 +35,10 @@
 						<view>自取</view>
 						<view class="font-small text-light-black">下单免排队</view>
 					</view>
-					<view class="flex flex-column align-center app-menu-item "  @tap="takeout">
+					<view class="flex flex-column align-center app-menu-item " v-if="FEATURES.takeout || FEATURES.droneDelivery" @tap="takeout">
 						<view><image src="/static/images/index003.png" mode="aspectFit" class="img-01"></image></view>
-						<view>外卖</view>
-						<view class="font-small text-light-black">美食送到家</view>
+						<view>无人机配送</view>
+						<view class="font-small text-light-black">送达校内站点</view>
 					</view>
 				</view>
 				 <view class="info">
@@ -57,8 +57,7 @@
 				
 					</view>
 				</view>
-				<!-- 香农之翼 MVP 阶段暂时隐藏：积分商城 -->
-				<!-- <view class="info">
+				<view class="info" v-if="FEATURES.scoreMall">
 					<view class="integral_section" @tap="goScore">
 						<view class="top">
 							<text class="title">积分商城</text>
@@ -71,7 +70,7 @@
 						<image src="/static/images/jifen.png"></image>
 						<text>逛一逛</text>
 					</view>
-				</view> -->
+				</view>
 				
 			</view>
 	</view>
@@ -88,6 +87,7 @@ import {
 } from '@/api/market'
 import { storeToRefs } from 'pinia'
 import { useMainStore } from '@/store/store'
+import { FEATURES } from '@/config/features'
 //
 const main = useMainStore()
 const { member,store, isLogin} = storeToRefs(main)
@@ -102,7 +102,6 @@ const handGetListAds = async () => {
 	});
 	if (data) {
 		listAds.value = data.list;
-		console.log('listAds:',listAds.value)
 		uni.setStorage({
 				key: 'isActive',
 				data: data.isActive

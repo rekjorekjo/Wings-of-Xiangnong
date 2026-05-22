@@ -30,6 +30,14 @@ http://localhost:18081/app-api
 - 不删除页面
 - 后续用配置开关或入口恢复
 
+## 功能开关
+
+`miniapp/config/features.js` 控制 MVP 阶段入口显示。
+
+冻结功能不删除页面和接口，只隐藏入口。
+
+后续恢复积分、余额、会员、多门店等功能时，优先检查 FEATURES 配置。
+
 ## 注意
 
 - 不要修改 `uni_modules` 下第三方组件 README
