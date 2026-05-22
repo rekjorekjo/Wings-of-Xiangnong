@@ -33,11 +33,11 @@ export const getProductReview = async (id: number) => {
   return await request.get({ url: `/product/store-product-reply/get?id=` + id })
 }
 
-export const createProductReview = async (data: StoreProductReplyVO) => {
+export const createProductReview = async (data: ProductReviewVO) => {
   return await request.post({ url: `/product/store-product-reply/create`, data })
 }
 
-export const updateProductReview = async (data: StoreProductReplyVO) => {
+export const updateProductReview = async (data: ProductReviewVO) => {
   return await request.put({ url: `/product/store-product-reply/update`, data })
 }
 

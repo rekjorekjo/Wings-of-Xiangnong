@@ -23,11 +23,11 @@ export const getProductRule = async (id: number) => {
   return await request.get({ url: `/product/store-product-rule/get?id=` + id })
 }
 
-export const createProductRule = async (data: StoreProductRuleVO,id: number) => {
+export const createProductRule = async (data: ProductRuleVO,id: number) => {
   return await request.post({ url: `/product/store-product-rule/save/` + id, data })
 }
 
-export const updateProductRule = async (data: StoreProductRuleVO) => {
+export const updateProductRule = async (data: ProductRuleVO) => {
   return await request.put({ url: `/product/store-product-rule/update`, data })
 }
 

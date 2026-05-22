@@ -42,11 +42,11 @@ export const getSite = async (id: number) => {
   return await request.get({ url: `/store/shop/get?id=` + id })
 }
 
-export const createSite = async (data: ShopVO) => {
+export const createSite = async (data: SiteVO) => {
   return await request.post({ url: `/store/shop/create`, data })
 }
 
-export const updateSite = async (data: ShopVO) => {
+export const updateSite = async (data: SiteVO) => {
   return await request.put({ url: `/store/shop/update`, data })
 }
 

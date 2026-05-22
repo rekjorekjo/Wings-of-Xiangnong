@@ -65,7 +65,7 @@ export const createProduct = async (data) => {
   return await request.post({ url: `/product/store-product/create`, data })
 }
 
-export const updateProduct = async (data: StoreProductVO) => {
+export const updateProduct = async (data: ProductVO) => {
   return await request.put({ url: `/product/store-product/update`, data })
 }
 

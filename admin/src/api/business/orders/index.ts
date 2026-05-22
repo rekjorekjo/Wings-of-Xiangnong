@@ -70,11 +70,11 @@ export const getOrder = async (id: number) => {
   return await request.get({ url: `/order/store-order/get?id=` + id })
 }
 
-export const createOrder = async (data: StoreOrderVO) => {
+export const createOrder = async (data: OrderVO) => {
   return await request.post({ url: `/order/store-order/create`, data })
 }
 
-export const updateOrder = async (data: StoreOrderVO) => {
+export const updateOrder = async (data: OrderVO) => {
   return await request.put({ url: `/order/store-order/update`, data })
 }
 

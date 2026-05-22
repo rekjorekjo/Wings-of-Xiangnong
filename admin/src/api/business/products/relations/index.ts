@@ -25,11 +25,11 @@ export const getProductRelation = async (id: number) => {
   return await request.get({ url: `/product/store-product-relation/get?id=` + id })
 }
 
-export const createProductRelation = async (data: StoreProductRelationVO) => {
+export const createProductRelation = async (data: ProductRelationVO) => {
   return await request.post({ url: `/product/store-product-relation/create`, data })
 }
 
-export const updateProductRelation = async (data: StoreProductRelationVO) => {
+export const updateProductRelation = async (data: ProductRelationVO) => {
   return await request.put({ url: `/product/store-product-relation/update`, data })
 }
 
