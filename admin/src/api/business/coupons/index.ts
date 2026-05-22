@@ -1,6 +1,6 @@
 import request from '@/config/axios'
 
-export interface VO {
+export interface CouponVO {
   id: number
   shopId: string
   shopName: string
@@ -20,6 +20,9 @@ export interface VO {
   image: string
   limit: number
 }
+
+// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+export type VO = CouponVO
 // 查询优惠券列表
 export const getCouponList = async () => {
   return await request.get({ url: `/coupon/list` })

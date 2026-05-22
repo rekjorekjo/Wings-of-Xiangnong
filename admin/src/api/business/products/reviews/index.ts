@@ -1,6 +1,6 @@
 import request from '@/config/axios'
 
-export interface StoreProductReplyVO {
+export interface ProductReviewVO {
   id: number
   uid: number
   oid: number
@@ -16,8 +16,17 @@ export interface StoreProductReplyVO {
   isReply: boolean
 }
 
+// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+export type StoreProductReplyVO = ProductReviewVO
+
+export type ProductReviewPageReqVO = Record<string, any>
+export type StoreProductReplyPageReqVO = ProductReviewPageReqVO
+
+export type ProductReviewExportReqVO = Record<string, any>
+export type StoreProductReplyExportReqVO = ProductReviewExportReqVO
+
 // 查询评论列表
-export const getStoreProductReplyPage = async (params: StoreProductReplyPageReqVO) => {
+export const getStoreProductReplyPage = async (params: ProductReviewPageReqVO) => {
   return await request.get({ url: `/product/store-product-reply/page`, params })
 }
 
@@ -42,6 +51,6 @@ export const deleteStoreProductReply = async (id: number) => {
 }
 
 // 导出评论 Excel
-export const exportStoreProductReply = async (params) => {
+export const exportStoreProductReply = async (params: ProductReviewExportReqVO) => {
   return await request.download({ url: `/product/store-product-reply/export-excel`, params })
 }

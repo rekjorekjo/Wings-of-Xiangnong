@@ -112,7 +112,7 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as ProductRuleApi.StoreProductRuleVO
+    const data = formData.value as unknown as ProductRuleApi.ProductRuleVO
     if (formType.value === 'create') {
       await ProductRuleApi.createStoreProductRule(data,0)
       message.success(t('common.createSuccess'))

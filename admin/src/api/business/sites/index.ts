@@ -1,6 +1,6 @@
 import request from '@/config/axios'
 
-export interface ShopVO {
+export interface SiteVO {
   id: number
   name: string
   mobile: string
@@ -21,12 +21,21 @@ export interface ShopVO {
   endTime: Date
 }
 
+// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+export type ShopVO = SiteVO
+
+export type SitePageReqVO = Record<string, any>
+export type ShopPageReqVO = SitePageReqVO
+
+export type SiteExportReqVO = Record<string, any>
+export type ShopExportReqVO = SiteExportReqVO
+
 export const getShopList = async () => {
   return await request.get({ url: `/store/shop/list` })
 }
 
 // 查询门店管理列表
-export const getShopPage = async (params: ShopPageReqVO) => {
+export const getShopPage = async (params: SitePageReqVO) => {
   return await request.get({ url: `/store/shop/page`, params })
 }
 
@@ -51,6 +60,6 @@ export const deleteShop = async (id: number) => {
 }
 
 // 导出门店管理 Excel
-export const exportShop = async (params) => {
+export const exportShop = async (params: SiteExportReqVO) => {
   return await request.download({ url: `/store/shop/export-excel`, params })
 }

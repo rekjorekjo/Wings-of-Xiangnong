@@ -1,6 +1,6 @@
 import request from '@/config/axios'
 
-export interface StoreProductVO {
+export interface ProductVO {
   id: number
   image: string
   sliderImage: string
@@ -40,8 +40,17 @@ export interface StoreProductVO {
   integral: number
 }
 
+// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+export type StoreProductVO = ProductVO
+
+export type ProductPageReqVO = Record<string, any>
+export type StoreProductPageReqVO = ProductPageReqVO
+
+export type ProductExportReqVO = Record<string, any>
+export type StoreProductExportReqVO = ProductExportReqVO
+
 // 查询商品列表
-export const getStoreProductPage = async (params: StoreProductPageReqVO) => {
+export const getStoreProductPage = async (params: ProductPageReqVO) => {
   return await request.get({ url: `/product/store-product/page`, params })
 }
 
@@ -71,7 +80,7 @@ export const deleteStoreProduct = async (id: number) => {
 }
 
 // 导出商品 Excel
-export const exportStoreProduct = async (params) => {
+export const exportStoreProduct = async (params: ProductExportReqVO) => {
   return await request.download({ url: `/product/store-product/export-excel`, params })
 }
 // 规格格式化

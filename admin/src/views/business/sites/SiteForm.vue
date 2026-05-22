@@ -176,7 +176,7 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as SiteApi.ShopVO
+    const data = formData.value as unknown as SiteApi.SiteVO
     if (formType.value === 'create') {
       await SiteApi.createShop(data)
       message.success(t('common.createSuccess'))

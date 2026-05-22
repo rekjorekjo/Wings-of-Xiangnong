@@ -1,6 +1,6 @@
 import request from '@/config/axios'
 
-export interface StoreOrderVO {
+export interface OrderVO {
   id: number
   orderId: string
   extendOrderId: string
@@ -53,8 +53,17 @@ export interface StoreOrderVO {
   isSystemDel: boolean
 }
 
+// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+export type StoreOrderVO = OrderVO
+
+export type OrderPageReqVO = Record<string, any>
+export type StoreOrderPageReqVO = OrderPageReqVO
+
+export type OrderExportReqVO = Record<string, any>
+export type StoreOrderExportReqVO = OrderExportReqVO
+
 // 查询订单列表
-export const getStoreOrderPage = async (params: StoreOrderPageReqVO) => {
+export const getStoreOrderPage = async (params: OrderPageReqVO) => {
   return await request.get({ url: `/order/store-order/page`, params })
 }
 
@@ -98,7 +107,7 @@ export const getStoreOrderRecordList = async (id: number) => {
 
 
 // 导出订单 Excel
-export const exportStoreOrder = async (params) => {
+export const exportStoreOrder = async (params: OrderExportReqVO) => {
   return await request.download({ url: `/order/store-order/export-excel`, params })
 }
 

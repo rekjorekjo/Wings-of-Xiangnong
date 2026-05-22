@@ -106,7 +106,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import * as StoreOrderApi from '@/api/business/orders'
+import * as OrderApi from '@/api/business/orders'
 import * as NoticeApi from '@/api/system/notice'
 import PanelGroupT from './PanelGroupT.vue'
 import { formatTime } from '@/utils'
@@ -136,7 +136,7 @@ const notice = ref([])
 /** 查询列表 */
 const getData = async () => {
   try {
-    const data = await StoreOrderApi.getShopCount()
+    const data = await OrderApi.getShopCount()
 
     count.value = data
   } finally {

@@ -121,7 +121,7 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as OrderApi.StoreOrderVO
+    const data = formData.value as unknown as OrderApi.OrderVO
     await OrderApi.rufundStoreOrder(data)
     message.success(t('common.updateSuccess'))
     dialogVisible.value = false
