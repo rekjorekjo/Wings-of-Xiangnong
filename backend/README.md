@@ -1,3 +1,43 @@
-意向订餐系统，类似肯德基点餐小程序模式，支持多门店模式，基础技术Java，uniapp（支持H5、微信小程序）
-采用当前流行技术组合的前后端分离点餐系统： SpringBoot3+jdk17、Spring Security OAuth2、MybatisPlus、SpringSecurity、jwt、redis、Vue3的前后端分离的系统，
-包含店铺管理、积分兑换、云小票打印、图片素材库、订单管理、多规格sku、积分、优惠券、充值、多门店、微信公众号等功能，更适合企业或个人二次开发.
+# 香农之翼后端
+
+## 后端职责
+
+- 用户、商品、订单、支付、优惠券等原有能力
+- 后续新增 delivery 独立模块
+- 当前保留 yshop 原模块，不做物理删除
+
+## 技术栈
+
+- Java 17
+- Spring Boot 3
+- MyBatis Plus
+- MySQL 8
+- Redis
+
+## 启动方式
+
+```bash
+cd backend
+mvn clean install -DskipTests
+```
+
+启动类：`co.yixiang.yshop.server.YshopServerApplication`
+
+## 本地配置
+
+- 配置文件：`application-local.yaml`
+- 端口：18081
+- 数据库：yixiang-drink-open
+- Redis：127.0.0.1:6379
+
+## 后端命名说明
+
+当前后端 Java package、Maven module 仍保留 `yshop`/`co.yixiang` 命名。
+
+这是为了降低 Spring/Maven/MyBatis 重命名风险。后续如需重命名，将单独作为高风险重构任务处理。
+
+## 架构原则
+
+- 订单负责交易
+- 配送任务负责履约
+- 无人机状态、电量、轨迹、位置不要塞进订单表

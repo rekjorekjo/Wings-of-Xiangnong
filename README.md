@@ -1,89 +1,70 @@
+# 香农之翼（Wings of Xiangnong）
 
+基于 yshop-drink 改造的东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP。
 
-## 平台简介
-
-香农之翼 - 东南大学九龙湖校区 DC 香农咖啡无人机配送系统 MVP。
-
-本项目基于 yshop-drink 点餐系统改造，原项目地址：https://www.yixiang.co/
-
-采用前后端分离架构：Spring Boot 3 + Vue3 + uni-app，支持 H5 和微信小程序。
-
-## 项目说明
+## 目录结构
 
 ```
-    backend             Java 后端工程 (Spring Boot 3)
-    admin               管理平台前端 (Vue3)
-    miniapp             小程序端 (uni-app + Vue3)
+backend     Spring Boot 3 后端
+admin       Vue3 管理端
+miniapp     uni-app 小程序端
+docs        项目文档
 ```
 
-## 本地快速启动
+## 本地环境
 
-##### 1、环境要求
+- JDK 17
+- Maven 3.8+
+- MySQL 8
+- Redis 127.0.0.1:6379
+- Node 20
+- pnpm 10
 
+## 本地地址
+
+| 服务 | 地址 |
+|------|------|
+| 后端 | http://localhost:18081 |
+| 管理端 | http://localhost:80 |
+| 小程序 API | http://localhost:18081/app-api |
+| 管理端 API | http://localhost:18081/admin-api |
+
+## 启动命令
+
+### 后端
+
+```bash
+cd backend
+mvn clean install -DskipTests
 ```
-    jdk17
-    mysql8
-    redis6+
-    node16+
-    maven3.8+
+
+启动类：`co.yixiang.yshop.server.YshopServerApplication`
+
+### 管理端
+
+```bash
+cd admin
+pnpm install
+pnpm dev
 ```
 
-##### 2、开发工具
+### 小程序
 
-```
-    idea
-    vscode
-    hbuilder
-```
+1. 使用 HBuilderX 打开 `miniapp`
+2. 确认 `miniapp/config/index.js` 指向 `http://localhost:18081/app-api`
 
-##### 3、后端启动
+## 当前改造策略
 
--   3.1 请使用idea打开Java工程，自动会安装依赖
--   3.2 创建数据库且导入工程目录下sql/yixiang-drink.sql 文件
--   3.3 找到项目下的yshop-server 的yml,修改数据库相关信息和redis相关信息
--   3.4 工程下输入
-    ``` 
-    mvn clean install package '-Dmaven.test.skip=true
-    ```
--   3.5 启动项目
+- 第一阶段先做结构收敛和管理端 MVP
+- 旧功能不物理删除
+- 积分、余额、会员卡、公众号、收银台等功能先隐藏/冻结
+- 后续商家需要时通过入口、菜单、配置开关恢复
+- 订单和配送任务分离，不把无人机状态塞进订单表
 
-##### 4、管理端启动
+## 来源说明
 
--   4.1 vscode 打开 admin 目录，输入命令: 
-    ``` 
-    pnpm install
-    ```
--   4.2 配置 .env.dev 中的 API 地址
--   4.3 本地启动:
-    ```
-    npm run dev
-    ```
-
-##### 5、小程序端启动
-
--   5.1 hbuilder 导入 miniapp 项目
--   5.2 配置 config/index.js 中的 API 地址
--   5.3 配置 manifest.json 中的小程序 appid
--   5.4 运行小程序或 H5
-
-## 技术栈
-
-- Spring Boot 3
-- Spring Security OAuth2
-- MyBatis Plus
-- Redis
-- Vue3
-- Element Plus
-- uni-app (Vue3)
-
-## 特别鸣谢
-
-- yshop-drink: https://www.yixiang.co/
-- ruoyi-vue-pro: https://gitee.com/zhijiantianya/ruoyi-vue-pro
-- element-plus: https://element-plus.gitee.io/zh-CN/
-- vue: https://cn.vuejs.org/
-- uniapp: https://uniapp.dcloud.net.cn/
+本项目基于 yshop-drink 改造，原项目地址：https://www.yixiang.co/
 
 ## 开源协议
 
-本项目采用比 Apache 2.0 更宽松的 [MIT License](https://gitee.com/guchengwuyue/yshop-drink/blob/master/LICENSE) 开源协议，个人与企业可 100% 免费使用，不用保留类作者、Copyright 信息。
+MIT License
