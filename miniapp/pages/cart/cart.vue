@@ -51,6 +51,7 @@ import {
 import { useMainStore } from '@/store/store'
 import { storeToRefs } from 'pinia'
 import { onLoad,onShow} from '@dcloudio/uni-app'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)
 const title = ref('购物车')
@@ -121,7 +122,7 @@ const toPay = () => {
 
 	if (!isLogin.value) {
 		uni.navigateTo({
-			url: '/pages/subpages/login/login'
+			url: ROUTES.subpages.login
 		})
 		return
 	} else {
@@ -141,7 +142,7 @@ const toPay = () => {
 		uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
 
 		uni.navigateTo({
-			url: '/pages/subpages/pay/pay'
+			url: ROUTES.subpages.pay
 		})
 	}
 

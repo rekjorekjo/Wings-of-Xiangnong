@@ -37,6 +37,7 @@ import {
   computed
 } from 'vue'
 import { onLoad} from '@dcloudio/uni-app'
+import { ROUTES } from '@/config/routes'
 
 const remark = ref('')
 const quickInputs = ref( ['请放门把手上', '请放门口', '请放前台桌上', '如地址封闭管理，请电话与我联系'])
@@ -65,7 +66,7 @@ const submit = () => {
 		return
 	}
 	uni.navigateTo({
-		url: "/pages/subpages/pay/pay?remark=" + remark.value
+		url: `${ROUTES.subpages.pay}?remark=${remark.value}`
 	})
 }
 	

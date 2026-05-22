@@ -18,6 +18,7 @@ export const ROUTES = {
     orderRefund: '/pages/subpages/orders/refund',
     coupons: '/pages/subpages/coupons/coupons',
     address: '/pages/subpages/address/address',
-    login: '/pages/subpages/login/login'
+    login: '/pages/subpages/login/login',
+    remark: '/pages/subpages/remark/remark'
   }
 }
