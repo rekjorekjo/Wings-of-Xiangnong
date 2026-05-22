@@ -14,6 +14,7 @@ import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisServerCommands;
 import org.springframework.data.redis.connection.stream.Consumer;
@@ -32,12 +33,15 @@ import java.util.Properties;
 
 /**
  * Redis 消息队列 Consumer 配置类
+ * 
+ * local 可通过配置关闭 Redis Stream 消费，避免无消息时轮询空 records 刷日志。
  *
  * @author yshop
  */
 @Slf4j
 @EnableScheduling // 启用定时任务，用于 RedisPendingMessageResendJob 重发消息
 @AutoConfiguration(after = YshopRedisAutoConfiguration.class)
+@ConditionalOnProperty(prefix = "yshop.redis-mq", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class YshopRedisMQConsumerAutoConfiguration {
 
     /**

@@ -188,6 +188,8 @@ wx:
 
 # yshop配置项，设置当前项目所有自定义的配置
 yshop:
+  redis-mq:
+    enabled: false # 本地开发关闭 Redis Stream 消费，避免空 stream 轮询刷 NPE；不影响订单/微信消息业务代码。
   captcha:
     enable: false # 本地环境，暂时关闭图片验证码，方便登录等接口的测试；
   security:
