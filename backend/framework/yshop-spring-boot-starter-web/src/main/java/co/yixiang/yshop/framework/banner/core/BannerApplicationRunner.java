@@ -22,11 +22,13 @@ public class BannerApplicationRunner implements ApplicationRunner {
             ThreadUtil.sleep(1, TimeUnit.SECONDS); // 延迟 1 秒，保证输出到结尾
             log.info("\n----------------------------------------------------------\n\t" +
                             "项目启动成功！\n\t" +
-                            "接口文档: \t{} \n\t" +
-                            "开发文档: \t{} \n\t" +
+                            "后端地址: \t{} \n\t" +
+                            "接口前缀: \t{} \n\t" +
+                            "项目文档: \t{} \n\t" +
                             "----------------------------------------------------------",
-                    "https://www.yixiang.co/api-doc/",
-                    "https://www.yixiang.co");
+                    "http://localhost:18081",
+                    "/admin-api /app-api",
+                    "docs/localtest.md");
 
 
         });

@@ -30,6 +30,28 @@ mvn clean install -DskipTests
 - 数据库：yixiang-drink-open
 - Redis：127.0.0.1:6379
 
+## 当前后端目录结构
+
+```
+backend/
+├── dependencies/       # Maven 依赖版本管理
+├── framework/          # 公共框架能力
+├── server/             # Spring Boot 启动模块
+└── modules/
+    ├── business/       # 商品、订单、店铺等业务模块（原 yshop-module-mall）
+    ├── system/         # 系统管理
+    ├── infra/          # 基础设施
+    ├── pay/            # 支付
+    ├── member/         # 用户/会员底层能力
+    ├── marketing/      # 营销
+    ├── message/        # 消息
+    ├── mp/             # 公众号（当前冻结）
+    ├── score/          # 积分商城（当前冻结）
+    └── express/        # 快递物流（当前冻结）
+```
+
+Java package 和 Maven artifactId 仍保留 yshop/co.yixiang 命名，属于兼容保留，不在本轮修改范围。
+
 ## 后端命名说明
 
 当前后端 Java package、Maven module 仍保留 `yshop`/`co.yixiang` 命名。
