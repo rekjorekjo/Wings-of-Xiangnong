@@ -487,7 +487,7 @@ const selectShop = (val) => {
 // 商品仍依赖默认站点数据，MVP 阶段保留 shop/store 底层字段。
 const getList = async () => {
   try {
-    const data = await SiteApi.getShopList()
+    const data = await SiteApi.getSiteList()
     shopList.value = data
 
   } finally {
@@ -523,7 +523,7 @@ const submitForm = async () => {
       if(formValidate.value.spec_type === 1 && manyFormValidate.value.length===0){
         message.warning('请点击生成规格！');
       }
-      await ProductApi.createStoreProduct(formValidate.value)
+      await ProductApi.createProduct(formValidate.value)
     dialogVisible.value = false
     // 发送操作成功的事件
     emit('success')
@@ -681,7 +681,7 @@ const resetForm = () => {
  // 详情
 const  getInfo  = (id) => {
      // let that = this;
-      ProductApi.getStoreProductInfo(id).then(async res => {
+      ProductApi.getProductInfo(id).then(async res => {
       let data = res.productInfo;
         console.log('data:', data)
       postageSet.value = false

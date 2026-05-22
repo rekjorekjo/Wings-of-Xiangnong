@@ -143,7 +143,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 const getList = async () => {
  loading.value = true
  try {
-   const data = await OrderApi.getStoreOrderPage(queryParams)
+   const data = await OrderApi.getOrderPage(queryParams)
    list.value = data.list
    //console.log("aa:",list.value)
    total.value = data.total
@@ -197,7 +197,7 @@ const handleDelete = async (id: number) => {
    // 删除的二次确认
    await message.delConfirm()
    // 发起删除
-   await OrderApi.deleteStoreOrder(id)
+   await OrderApi.deleteOrder(id)
    // 刷新列表
    getList()
  } catch {}
@@ -211,7 +211,7 @@ const handleExport = async () => {
    await message.exportConfirm()
    // 发起导出
    exportLoading.value = true
-   const data = await OrderApi.exportStoreOrder(queryParams)
+   const data = await OrderApi.exportOrder(queryParams)
    download.excel(data, '订单.xls')
  } catch {
  } finally {

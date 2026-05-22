@@ -49,46 +49,48 @@ export type StoreProductPageReqVO = ProductPageReqVO
 export type ProductExportReqVO = Record<string, any>
 export type StoreProductExportReqVO = ProductExportReqVO
 
-// 查询商品列表
-export const getStoreProductPage = async (params: ProductPageReqVO) => {
+export const getProductPage = async (params: ProductPageReqVO) => {
   return await request.get({ url: `/product/store-product/page`, params })
 }
 
-// 查询商品详情
-export const getStoreProduct = async (id: number) => {
+export const getProduct = async (id: number) => {
   return await request.get({ url: `/product/store-product/get?id=` + id })
 }
 
-// 查询商品详情
-export const getStoreProductInfo = async (id: number) => {
+export const getProductInfo = async (id: number) => {
   return await request.get({ url: `/product/store-product/info/` + id })
 }
 
-// 新增商品
-export const createStoreProduct = async (data) => {
+export const createProduct = async (data) => {
   return await request.post({ url: `/product/store-product/create`, data })
 }
 
-// 修改商品
-export const updateStoreProduct = async (data: StoreProductVO) => {
+export const updateProduct = async (data: StoreProductVO) => {
   return await request.put({ url: `/product/store-product/update`, data })
 }
 
-// 删除商品
-export const deleteStoreProduct = async (id: number) => {
+export const deleteProduct = async (id: number) => {
   return await request.delete({ url: `/product/store-product/delete?id=` + id })
 }
 
-// 导出商品 Excel
-export const exportStoreProduct = async (params: ProductExportReqVO) => {
+export const exportProduct = async (params: ProductExportReqVO) => {
   return await request.download({ url: `/product/store-product/export-excel`, params })
 }
-// 规格格式化
+
 export const isFormatAttr = async (id, data) => {
   return await request.post({ url: '/product/store-product/isFormatAttr/' + id, data })
 }
 
-// 删除商品
-export const saleStoreProduct = async (id,isShow) => {
+export const updateProductSaleStatus = async (id,isShow) => {
   return await request.get({ url: `/product/store-product/sale?id=` + id + `&type=` + isShow })
 }
+
+// 兼容旧 yshop API 函数名，调用方逐步迁移到新命名。
+export const getStoreProductPage = getProductPage
+export const getStoreProduct = getProduct
+export const getStoreProductInfo = getProductInfo
+export const createStoreProduct = createProduct
+export const updateStoreProduct = updateProduct
+export const deleteStoreProduct = deleteProduct
+export const exportStoreProduct = exportProduct
+export const saleStoreProduct = updateProductSaleStatus

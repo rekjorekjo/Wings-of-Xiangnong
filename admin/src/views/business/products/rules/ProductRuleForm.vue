@@ -94,7 +94,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await ProductRuleApi.getStoreProductRule(id)
+      formData.value = await ProductRuleApi.getProductRule(id)
     } finally {
       formLoading.value = false
     }
@@ -114,10 +114,10 @@ const submitForm = async () => {
   try {
     const data = formData.value as unknown as ProductRuleApi.ProductRuleVO
     if (formType.value === 'create') {
-      await ProductRuleApi.createStoreProductRule(data,0)
+      await ProductRuleApi.createProductRule(data,0)
       message.success(t('common.createSuccess'))
     } else {
-      await ProductRuleApi.createStoreProductRule(data,data.id)
+      await ProductRuleApi.createProductRule(data,data.id)
       message.success(t('common.updateSuccess'))
     }
     dialogVisible.value = false

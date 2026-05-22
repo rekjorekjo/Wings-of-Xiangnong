@@ -176,7 +176,7 @@ const submitForm = async () => {
 }
 const getList = async () => {
   try {
-    const data = await SiteApi.getShopList()
+    const data = await SiteApi.getSiteList()
     shopList.value = data
 
   } finally {

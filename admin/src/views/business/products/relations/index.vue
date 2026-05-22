@@ -80,7 +80,7 @@ const queryFormRef = ref() // 搜索的表单
 const getList = async () => {
   loading.value = true
   try {
-    const data = await ProductRelationApi.getStoreProductRelationPage(queryParams)
+    const data = await ProductRelationApi.getProductRelationPage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -108,7 +108,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await ProductRelationApi.deleteStoreProductRelation(id)
+    await ProductRelationApi.deleteProductRelation(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()

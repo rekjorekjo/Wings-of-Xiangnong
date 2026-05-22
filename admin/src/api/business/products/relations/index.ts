@@ -17,32 +17,34 @@ export type StoreProductRelationPageReqVO = ProductRelationPageReqVO
 export type ProductRelationExportReqVO = Record<string, any>
 export type StoreProductRelationExportReqVO = ProductRelationExportReqVO
 
-// 查询商品点赞和收藏列表
-export const getStoreProductRelationPage = async (params: ProductRelationPageReqVO) => {
+export const getProductRelationPage = async (params: ProductRelationPageReqVO) => {
   return await request.get({ url: `/product/store-product-relation/page`, params })
 }
 
-// 查询商品点赞和收藏详情
-export const getStoreProductRelation = async (id: number) => {
+export const getProductRelation = async (id: number) => {
   return await request.get({ url: `/product/store-product-relation/get?id=` + id })
 }
 
-// 新增商品点赞和收藏
-export const createStoreProductRelation = async (data: StoreProductRelationVO) => {
+export const createProductRelation = async (data: StoreProductRelationVO) => {
   return await request.post({ url: `/product/store-product-relation/create`, data })
 }
 
-// 修改商品点赞和收藏
-export const updateStoreProductRelation = async (data: StoreProductRelationVO) => {
+export const updateProductRelation = async (data: StoreProductRelationVO) => {
   return await request.put({ url: `/product/store-product-relation/update`, data })
 }
 
-// 删除商品点赞和收藏
-export const deleteStoreProductRelation = async (id: number) => {
+export const deleteProductRelation = async (id: number) => {
   return await request.delete({ url: `/product/store-product-relation/delete?id=` + id })
 }
 
-// 导出商品点赞和收藏 Excel
-export const exportStoreProductRelation = async (params: ProductRelationExportReqVO) => {
+export const exportProductRelation = async (params: ProductRelationExportReqVO) => {
   return await request.download({ url: `/product/store-product-relation/export-excel`, params })
 }
+
+// 兼容旧 yshop API 函数名，调用方逐步迁移到新命名。
+export const getStoreProductRelationPage = getProductRelationPage
+export const getStoreProductRelation = getProductRelation
+export const createStoreProductRelation = createProductRelation
+export const updateStoreProductRelation = updateProductRelation
+export const deleteStoreProductRelation = deleteProductRelation
+export const exportStoreProductRelation = exportProductRelation

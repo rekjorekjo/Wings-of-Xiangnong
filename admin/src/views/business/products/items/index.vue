@@ -176,7 +176,7 @@ const tableTabs = ref([
 const getList = async () => {
   loading.value = true
   try {
-    const data = await ProductApi.getStoreProductPage(queryParams)
+    const data = await ProductApi.getProductPage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -235,7 +235,7 @@ const onSale = async (id,isShow) => {
     // 删除的二次确认
     await message.confirm('确定要上下架？')
     // 发起删除
-    await ProductApi.saleStoreProduct(id,isShow)
+    await ProductApi.updateProductSaleStatus(id,isShow)
     message.success('操作成功')
     // 刷新列表
     await getList()
@@ -248,7 +248,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await ProductApi.deleteStoreProduct(id)
+    await ProductApi.deleteProduct(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -262,7 +262,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await ProductApi.exportStoreProduct(queryParams)
+    const data = await ProductApi.exportProduct(queryParams)
     download.excel(data, '商品.xls')
   } catch {
   } finally {

@@ -106,7 +106,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await OrderApi.getStoreOrder(id)
+      formData.value = await OrderApi.getOrder(id)
     } finally {
       formLoading.value = false
     }
@@ -126,7 +126,7 @@ const submitForm = async () => {
   try {
     const data = formData.value as unknown as OrderApi.OrderVO
     data.updateType = 'orderSend'
-    await OrderApi.updateStoreOrder(data)
+    await OrderApi.updateOrder(data)
     message.success(t('common.updateSuccess'))
   
     dialogVisible.value = false

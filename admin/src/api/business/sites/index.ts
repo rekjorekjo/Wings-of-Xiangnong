@@ -30,36 +30,39 @@ export type ShopPageReqVO = SitePageReqVO
 export type SiteExportReqVO = Record<string, any>
 export type ShopExportReqVO = SiteExportReqVO
 
-export const getShopList = async () => {
+export const getSiteList = async () => {
   return await request.get({ url: `/store/shop/list` })
 }
 
-// 查询门店管理列表
-export const getShopPage = async (params: SitePageReqVO) => {
+export const getSitePage = async (params: SitePageReqVO) => {
   return await request.get({ url: `/store/shop/page`, params })
 }
 
-// 查询门店管理详情
-export const getShop = async (id: number) => {
+export const getSite = async (id: number) => {
   return await request.get({ url: `/store/shop/get?id=` + id })
 }
 
-// 新增门店管理
-export const createShop = async (data: ShopVO) => {
+export const createSite = async (data: ShopVO) => {
   return await request.post({ url: `/store/shop/create`, data })
 }
 
-// 修改门店管理
-export const updateShop = async (data: ShopVO) => {
+export const updateSite = async (data: ShopVO) => {
   return await request.put({ url: `/store/shop/update`, data })
 }
 
-// 删除门店管理
-export const deleteShop = async (id: number) => {
+export const deleteSite = async (id: number) => {
   return await request.delete({ url: `/store/shop/delete?id=` + id })
 }
 
-// 导出门店管理 Excel
-export const exportShop = async (params: SiteExportReqVO) => {
+export const exportSite = async (params: SiteExportReqVO) => {
   return await request.download({ url: `/store/shop/export-excel`, params })
 }
+
+// 兼容旧 yshop API 函数名，调用方逐步迁移到新命名。
+export const getShopList = getSiteList
+export const getShopPage = getSitePage
+export const getShop = getSite
+export const createShop = createSite
+export const updateShop = updateSite
+export const deleteShop = deleteSite
+export const exportShop = exportSite

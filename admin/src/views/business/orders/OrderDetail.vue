@@ -99,7 +99,7 @@ const addProductMark = ref(0)
 const open = async (type: string, id?: number) => {
   drawer.value = true
   dialogTitle.value = t('action.' + type)
-  DetailData.value = await OrderApi.getStoreOrder(id)
+  DetailData.value = await OrderApi.getOrder(id)
   nickname.value = DetailData.value.userRespVO.nickname
   product.value = DetailData.value.storeOrderCartInfoDOList
 }

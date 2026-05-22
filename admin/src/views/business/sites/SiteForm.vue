@@ -157,7 +157,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await SiteApi.getShop(id)
+      formData.value = await SiteApi.getSite(id)
       formData.value.adminId = formData.value.adminId.map(Number)
     } finally {
       formLoading.value = false
@@ -178,10 +178,10 @@ const submitForm = async () => {
   try {
     const data = formData.value as unknown as SiteApi.SiteVO
     if (formType.value === 'create') {
-      await SiteApi.createShop(data)
+      await SiteApi.createSite(data)
       message.success(t('common.createSuccess'))
     } else {
-      await SiteApi.updateShop(data)
+      await SiteApi.updateSite(data)
       message.success(t('common.updateSuccess'))
     }
     dialogVisible.value = false

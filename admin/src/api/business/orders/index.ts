@@ -62,52 +62,43 @@ export type StoreOrderPageReqVO = OrderPageReqVO
 export type OrderExportReqVO = Record<string, any>
 export type StoreOrderExportReqVO = OrderExportReqVO
 
-// 查询订单列表
-export const getStoreOrderPage = async (params: OrderPageReqVO) => {
+export const getOrderPage = async (params: OrderPageReqVO) => {
   return await request.get({ url: `/order/store-order/page`, params })
 }
 
-// 查询订单详情
-export const getStoreOrder = async (id: number) => {
+export const getOrder = async (id: number) => {
   return await request.get({ url: `/order/store-order/get?id=` + id })
 }
 
-// 新增订单
-export const createStoreOrder = async (data: StoreOrderVO) => {
+export const createOrder = async (data: StoreOrderVO) => {
   return await request.post({ url: `/order/store-order/create`, data })
 }
 
-// 修改订单
-export const updateStoreOrder = async (data: StoreOrderVO) => {
+export const updateOrder = async (data: StoreOrderVO) => {
   return await request.put({ url: `/order/store-order/update`, data })
 }
 
-// 删除订单
-export const deleteStoreOrder = async (id: number) => {
+export const deleteOrder = async (id: number) => {
   return await request.delete({ url: `/order/store-order/delete?id=` + id })
 }
 
-export const payStoreOrder = async (id: number) => {
+export const payOrder = async (id: number) => {
   return await request.get({ url: `/order/store-order/pay?id=` + id })
 }
 
-export const takeStoreOrder = async (id: number) => {
+export const takeOrder = async (id: number) => {
   return await request.get({ url: `/order/store-order/take?id=` + id })
 }
 
-export const rufundStoreOrder = async (data) => {
+export const refundOrder = async (data) => {
   return await request.post({ url: `/order/store-order/refund`,data })
 }
 
-
-export const getStoreOrderRecordList = async (id: number) => {
+export const getOrderRecordList = async (id: number) => {
   return await request.get({ url: `/order/store-order/record-list?id=` + id })
 }
 
-
-
-// 导出订单 Excel
-export const exportStoreOrder = async (params: OrderExportReqVO) => {
+export const exportOrder = async (params: OrderExportReqVO) => {
   return await request.download({ url: `/order/store-order/export-excel`, params })
 }
 
@@ -119,10 +110,23 @@ export const getOrderHtml = async (param1,param2) => {
   return await request.get({ url: `/order/store-order/printOrder?id=` + param1 + `&electId=` + param2})
 }
 
-export const getShopCount = async () => {
+export const getOrderStats = async () => {
   return await request.get({ url: `/order/store-order/count`})
 }
 
 export const orderNoticeUrl = async () => {
   return await request.get({ url: `/order/store-order/notice`})
 }
+
+// 兼容旧 yshop API 函数名，调用方逐步迁移到新命名。
+export const getStoreOrderPage = getOrderPage
+export const getStoreOrder = getOrder
+export const createStoreOrder = createOrder
+export const updateStoreOrder = updateOrder
+export const deleteStoreOrder = deleteOrder
+export const payStoreOrder = payOrder
+export const takeStoreOrder = takeOrder
+export const rufundStoreOrder = refundOrder
+export const getStoreOrderRecordList = getOrderRecordList
+export const exportStoreOrder = exportOrder
+export const getShopCount = getOrderStats

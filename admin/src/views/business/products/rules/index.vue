@@ -107,7 +107,7 @@ const exportLoading = ref(false) // 导出的加载中
 const getList = async () => {
   loading.value = true
   try {
-    const data = await ProductRuleApi.getStoreProductRulePage(queryParams)
+    const data = await ProductRuleApi.getProductRulePage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -139,7 +139,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await ProductRuleApi.deleteStoreProductRule(id)
+    await ProductRuleApi.deleteProductRule(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -153,7 +153,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await ProductRuleApi.exportStoreProductRule(queryParams)
+    const data = await ProductRuleApi.exportProductRule(queryParams)
     download.excel(data, '商品规则值(规格).xls')
   } catch {
   } finally {

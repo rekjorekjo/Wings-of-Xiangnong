@@ -102,7 +102,7 @@ const open = async (type: string, id?: number) => {
   if (id) {
     formLoading.value = true
     try {
-      formData.value = await OrderApi.getStoreOrder(id)
+      formData.value = await OrderApi.getOrder(id)
     } finally {
       formLoading.value = false
     }
@@ -122,7 +122,7 @@ const submitForm = async () => {
   formLoading.value = true
   try {
     const data = formData.value as unknown as OrderApi.OrderVO
-    await OrderApi.rufundStoreOrder(data)
+    await OrderApi.refundOrder(data)
     message.success(t('common.updateSuccess'))
     dialogVisible.value = false
     // 发送操作成功的事件

@@ -136,7 +136,7 @@ const notice = ref([])
 /** 查询列表 */
 const getData = async () => {
   try {
-    const data = await OrderApi.getShopCount()
+    const data = await OrderApi.getOrderStats()
 
     count.value = data
   } finally {

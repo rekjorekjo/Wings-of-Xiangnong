@@ -21,7 +21,7 @@ const open = async (type: string, id?: number) => {
   drawer.value = true
   dialogTitle.value = t('action.' + type)
   console.log(id)
-  tableData.value = await OrderApi.getStoreOrderRecordList(id)
+  tableData.value = await OrderApi.getOrderRecordList(id)
 }
 defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 </script>

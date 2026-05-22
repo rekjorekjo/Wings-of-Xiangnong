@@ -287,7 +287,7 @@ const queryPayStatus = (value) => {
 const getList = async () => {
   loading.value = true
   try {
-    const data = await OrderApi.getStoreOrderPage(queryParams)
+    const data = await OrderApi.getOrderPage(queryParams)
     list.value = data.list
     //console.log("aa:",list.value)
     total.value = data.total
@@ -343,7 +343,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await OrderApi.deleteStoreOrder(id)
+    await OrderApi.deleteOrder(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
@@ -356,7 +356,7 @@ const handlePay = async (id: number) => {
     // 删除的二次确认
     await message.confirm('修改为支付状态')
     // 发起删除
-    await OrderApi.payStoreOrder(id)
+    await OrderApi.payOrder(id)
     message.success(t('common.updateSuccess'))
     // 刷新列表
     await getList()
@@ -369,7 +369,7 @@ const handleTake = async (id: number) => {
     // 删除的二次确认
     await message.confirm('修改收货状态')
     // 发起删除
-    await OrderApi.takeStoreOrder(id)
+    await OrderApi.takeOrder(id)
     message.success(t('common.updateSuccess'))
     // 刷新列表
     await getList()
@@ -383,7 +383,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await OrderApi.exportStoreOrder(queryParams)
+    const data = await OrderApi.exportOrder(queryParams)
     download.excel(data, '订单.xls')
   } catch {
   } finally {

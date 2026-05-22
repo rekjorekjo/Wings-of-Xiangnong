@@ -98,7 +98,7 @@ const queryFormRef = ref() // 搜索的表
 const getList = async () => {
   loading.value = true
   try {
-    const data = await ProductReviewApi.getStoreProductReplyPage(queryParams)
+    const data = await ProductReviewApi.getProductReviewPage(queryParams)
     list.value = data.list
     total.value = data.total
   } finally {
@@ -130,7 +130,7 @@ const handleDelete = async (id: number) => {
     // 删除的二次确认
     await message.delConfirm()
     // 发起删除
-    await ProductReviewApi.deleteStoreProductReply(id)
+    await ProductReviewApi.deleteProductReview(id)
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()

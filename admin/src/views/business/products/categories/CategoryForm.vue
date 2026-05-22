@@ -106,7 +106,7 @@ defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 
 const getList = async () => {
   try {
-    const data = await SiteApi.getShopList()
+    const data = await SiteApi.getSiteList()
     shopList.value = data
 
   } finally {
