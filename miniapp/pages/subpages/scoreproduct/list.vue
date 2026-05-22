@@ -41,6 +41,7 @@
 </template>
 
 <script setup>
+// 积分商城当前为冻结功能，页面保留，入口由 FEATURES.scoreMall 控制。
 import {
   ref,
   computed,

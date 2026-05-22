@@ -61,6 +61,13 @@ http://localhost:18081/app-api
 
 `miniapp/config/routes.js` 集中维护常用页面路径。新增跳转优先引用 ROUTES，避免 pages/subpages 路径调整时漏改。
 
+冻结页面也可以使用 ROUTES 维护路径，但是否展示入口仍由 FEATURES 控制。
+
+## 配送进度
+
+订单详情页当前通过 api/delivery.js 使用前端 mock 展示无人机配送进度。
+后续接入后端 delivery 模块时，优先替换 api/delivery.js。
+
 ## 注意
 
 - 不要修改 `uni_modules` 下第三方组件 README

@@ -74,6 +74,38 @@
 								</view>
 							</view>
 							<!-- steps end -->
+							<!-- drone delivery progress begin -->
+							<view v-if="FEATURES.droneDelivery && deliveryInfo" class="delivery-progress">
+								<view class="delivery-progress__title">无人机配送进度</view>
+								<view class="delivery-progress__info">
+									<view class="delivery-progress__row">
+										<text class="delivery-progress__label">当前状态：</text>
+										<text class="delivery-progress__value">{{ deliveryInfo.statusText }}</text>
+									</view>
+									<view class="delivery-progress__row">
+										<text class="delivery-progress__label">预计送达：</text>
+										<text class="delivery-progress__value">{{ deliveryInfo.estimatedArrivalTime }}</text>
+									</view>
+									<view class="delivery-progress__row">
+										<text class="delivery-progress__label">当前位置：</text>
+										<text class="delivery-progress__value">{{ deliveryInfo.currentLocation }}</text>
+									</view>
+								</view>
+								<view class="delivery-progress__timeline">
+									<view 
+										v-for="(item, index) in deliveryInfo.progress" 
+										:key="index"
+										class="delivery-progress__timeline-item"
+									>
+										<view class="delivery-progress__timeline-dot"></view>
+										<view class="delivery-progress__timeline-content">
+											<text class="delivery-progress__timeline-title">{{ item.title }}</text>
+											<text class="delivery-progress__timeline-time">{{ item.time }}</text>
+										</view>
+									</view>
+								</view>
+							</view>
+							<!-- drone delivery progress end -->
 							<view v-if="order.status==0 && order.paid > 0" class="d-flex just-content-center align-items-center font-size-base text-color-assist mb-40">
 								您前面还有 <text class="text-color-primary mr-10 ml-10">{{order.preNum}}</text> 单待制作
 							</view>
@@ -201,11 +233,14 @@ import {
   orderReceive,
 } from '@/api/orders'
 import { ROUTES } from '@/config/routes'
+import { FEATURES } from '@/config/features'
+import { getOrderDelivery } from '@/api/delivery'
 const title = ref('订单详情')
 const order = ref({
 	shop:{name:''},
 	statusDto:{payType:''}
 })
+const deliveryInfo = ref(null)
 const numForMading = ref(5)
 
 onLoad((option) => {
@@ -216,6 +251,15 @@ const detail =  async(id) => {
 	let data = await orderDetail(id);
 	if (data) {
 		order.value = data;
+	}
+	// 配送进度独立于订单详情，后续替换为 backend delivery API。
+	if (FEATURES.droneDelivery && id) {
+		try {
+			const delivery = await getOrderDelivery(id)
+			deliveryInfo.value = delivery
+		} catch (e) {
+			console.warn('获取配送进度失败:', e)
+		}
 	}
 }
 const openLocation = () => {
@@ -409,5 +453,78 @@ const refund = (order) => {
 	}
 	.iconfont-yshop {
 		color: #09b4f1;
+	}
+	
+	.delivery-progress {
+		margin: 30rpx 0;
+		padding: 30rpx;
+		background-color: #f8f8f8;
+		border-radius: 16rpx;
+		
+		.delivery-progress__title {
+			font-size: 32rpx;
+			font-weight: bold;
+			color: $text-color-base;
+			margin-bottom: 20rpx;
+		}
+		
+		.delivery-progress__info {
+			margin-bottom: 20rpx;
+		}
+		
+		.delivery-progress__row {
+			display: flex;
+			margin-bottom: 10rpx;
+			font-size: 28rpx;
+		}
+		
+		.delivery-progress__label {
+			color: $text-color-assist;
+		}
+		
+		.delivery-progress__value {
+			color: $text-color-base;
+		}
+		
+		.delivery-progress__timeline {
+			margin-top: 20rpx;
+			padding-left: 20rpx;
+		}
+		
+		.delivery-progress__timeline-item {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 16rpx;
+			position: relative;
+			
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		
+		.delivery-progress__timeline-dot {
+			width: 16rpx;
+			height: 16rpx;
+			background-color: #09b4f1;
+			border-radius: 50%;
+			margin-right: 16rpx;
+			margin-top: 6rpx;
+			flex-shrink: 0;
+		}
+		
+		.delivery-progress__timeline-content {
+			display: flex;
+			justify-content: space-between;
+			flex: 1;
+			font-size: 26rpx;
+		}
+		
+		.delivery-progress__timeline-title {
+			color: $text-color-base;
+		}
+		
+		.delivery-progress__timeline-time {
+			color: $text-color-assist;
+		}
 	}
 </style>

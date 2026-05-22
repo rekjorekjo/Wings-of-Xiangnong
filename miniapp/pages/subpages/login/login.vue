@@ -71,6 +71,7 @@ import {
 } from '@/api/auth'
 import * as util  from '@/utils/util'
 import { mobile as testMobible } from '@/uni_modules/uv-ui-tools/libs/function/test'
+import { ROUTES } from '@/config/routes'
 const main = useMainStore()
 const title = ref('登录')
 const mobile = ref('')
@@ -244,7 +245,7 @@ const login = async () => {
 
 const serv = (id,name) => {
 	uni.navigateTo({
-			url: '/pages/subpages/mine/content?id=' + id + '&name=' + name
+			url: `${ROUTES.subpages.mineContent}?id=${id}&name=${name}`
 	})
 }
 
