@@ -236,3 +236,17 @@ justauth:
     prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
     timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
 
+xiangnong:
+  feature:
+    cloud-printer: false
+    score-mall: false
+    recharge: false
+    member-card: false
+    mp-official-account: false
+  payment:
+    mock-enabled: true
+  delivery:
+    mock-enabled: true
+    default-tenant-id: 1
+    default-store-id: 1
+    default-site-name: Xiangnong Station A
