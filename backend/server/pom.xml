@@ -92,6 +92,13 @@
             <version>${revision}</version>
         </dependency>
 
+        <!-- 配送服务 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-delivery-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
 
         <!-- 服务保障相关 -->
         <dependency>

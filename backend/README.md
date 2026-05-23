@@ -45,6 +45,7 @@ backend/
     ├── member/         # 用户/会员底层能力
     ├── marketing/      # 营销
     ├── message/        # 消息
+    ├── delivery/       # 无人机配送（MVP mock）
     ├── mp/             # 公众号（当前冻结）
     ├── score/          # 积分商城（当前冻结）
     └── express/        # 快递物流（当前冻结）

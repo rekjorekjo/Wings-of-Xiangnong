@@ -23,6 +23,7 @@
         <module>modules/express</module>
         <module>modules/marketing</module>
         <module>modules/member</module>
+        <module>modules/delivery</module>
     </modules>
 
     <name>${project.artifactId}</name>
