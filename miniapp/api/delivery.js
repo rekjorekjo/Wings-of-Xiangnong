@@ -1,37 +1,22 @@
-// 香农之翼 MVP：订单配送进度前端 mock。
-// 后续接入 backend delivery API 时，优先替换本文件实现。
+import api from './api'
 
 export function getOrderDelivery(orderId) {
-  const mockData = {
-    orderId,
-    deliveryTaskId: 'DT-' + orderId,
-    status: 'in_flight',
-    statusText: '无人机配送中',
-    estimatedArrivalTime: '约 8 分钟',
-    currentLocation: '九龙湖校区配送航线',
-    progress: [
-      {
-        status: 'created',
-        title: '配送任务已创建',
-        time: '14:20'
-      },
-      {
-        status: 'waiting_pickup',
-        title: '等待无人机取货',
-        time: '14:23'
-      },
-      {
-        status: 'in_flight',
-        title: '无人机配送中',
-        time: '14:28'
-      },
-      {
-        status: 'arrived',
-        title: '预计送达站点',
-        time: '14:36'
-      }
-    ]
-  }
-  
-  return Promise.resolve(mockData)
+  return api.get(`/order/${orderId}/delivery`, {}, { login: false }).then((res) => {
+    const data = res || {}
+    const progress = Array.isArray(data.progress) ? data.progress : []
+    
+    return {
+      orderId: data.orderId || orderId,
+      deliveryTaskId: data.deliveryTaskId || '',
+      status: data.status || 'pending',
+      statusText: data.statusText || '配送任务处理中',
+      estimatedArrivalTime: data.estimatedArrivalTime || '暂无预计时间',
+      currentLocation: data.currentLocation || '暂无位置信息',
+      progress: progress.map((item) => ({
+        status: item.status || '',
+        title: item.title || '',
+        time: item.time || ''
+      }))
+    }
+  })
 }
