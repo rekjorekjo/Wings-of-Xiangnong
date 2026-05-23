@@ -61,13 +61,16 @@ const normalizeDrone = (raw: RawDrone): Drone => ({
 })
 
 export const getDeliveryTasks = async (params?: DeliveryTaskQuery): Promise<DeliveryTask[]> => {
-  const response = await request.get<{ list?: RawDeliveryTask[] }>('/delivery/tasks', { params })
-  const list = response?.data?.list || response?.data || []
+  const list = await request.get<RawDeliveryTask[]>({
+    url: '/delivery/tasks',
+    params
+  })
   return (Array.isArray(list) ? list : []).map(normalizeDeliveryTask)
 }
 
 export const getDrones = async (): Promise<Drone[]> => {
-  const response = await request.get<RawDrone[]>('/delivery/drones')
-  const list = response?.data || []
+  const list = await request.get<RawDrone[]>({
+    url: '/delivery/drones'
+  })
   return (Array.isArray(list) ? list : []).map(normalizeDrone)
 }
