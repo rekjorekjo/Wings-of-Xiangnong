@@ -1,9 +1,9 @@
 package co.yixiang.yshop.module.delivery.controller.admin.delivery;
 
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
+import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryDroneRespVO;
+import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryTaskRespVO;
 import co.yixiang.yshop.module.delivery.service.DeliveryMockService;
-import co.yixiang.yshop.module.delivery.service.DeliveryMockService.DeliveryDroneRespVO;
-import co.yixiang.yshop.module.delivery.service.DeliveryMockService.DeliveryTaskRespVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -28,15 +28,16 @@ public class DeliveryAdminController {
 
     @GetMapping("/tasks")
     @Operation(summary = "Get delivery mock tasks")
-    public CommonResult<List<DeliveryTaskRespVO>> getDeliveryTasks(
+    public CommonResult<List<AdminDeliveryTaskRespVO>> getDeliveryTasks(
+            @RequestParam(value = "orderNo", required = false) String orderNo,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "droneNo", required = false) String droneNo) {
-        return success(deliveryMockService.getTasks(status, droneNo));
+        return success(deliveryMockService.getTasks(orderNo, status, droneNo));
     }
 
     @GetMapping("/drones")
     @Operation(summary = "Get delivery mock drones")
-    public CommonResult<List<DeliveryDroneRespVO>> getDeliveryDrones() {
+    public CommonResult<List<AdminDeliveryDroneRespVO>> getDeliveryDrones() {
         return success(deliveryMockService.getDrones());
     }
 }
