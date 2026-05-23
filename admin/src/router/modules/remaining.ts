@@ -30,6 +30,8 @@ const { t } = useI18n()
  followAuth: '/dashboard'  跟随哪个路由进行权限过滤
 
  canTo: true               设置为true即使hidden为true，也依然可以进行路由跳转(默认 false)
+
+ workspace: true           标记为工作区入口，用于侧边栏过滤
  }
  **/
 const remainingRouter: AppRouteRecordRaw[] = [
@@ -53,19 +55,53 @@ const remainingRouter: AppRouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/index',
+    redirect: '/workspace/home',
     name: 'Home',
     meta: {},
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/Home/Index.vue'),
-        name: 'Index',
+        path: 'workspace/home',
+        component: () => import('@/views/workspace/home/index.vue'),
+        name: 'WorkspaceHome',
         meta: {
-          title: t('router.home'),
+          title: '首页',
           icon: 'ep:home-filled',
           noCache: false,
-          affix: true
+          affix: true,
+          workspace: true
+        }
+      },
+      {
+        path: 'workspace/operations',
+        component: () => import('@/views/workspace/operations/index.vue'),
+        name: 'WorkspaceOperations',
+        meta: {
+          title: '运营中心',
+          icon: 'ep:shop',
+          noCache: false,
+          workspace: true
+        }
+      },
+      {
+        path: 'workspace/dispatch',
+        component: () => import('@/views/workspace/dispatch/index.vue'),
+        name: 'WorkspaceDispatch',
+        meta: {
+          title: '调度中心',
+          icon: 'ep:position',
+          noCache: false,
+          workspace: true
+        }
+      },
+      {
+        path: 'workspace/settings',
+        component: () => import('@/views/workspace/settings/index.vue'),
+        name: 'WorkspaceSettings',
+        meta: {
+          title: '系统设置',
+          icon: 'ep:setting',
+          noCache: false,
+          workspace: true
         }
       }
     ]
@@ -241,7 +277,6 @@ const remainingRouter: AppRouteRecordRaw[] = [
     meta: {
       noCache: true,
       hidden: true,
-      // canTo: true,
       title: '上传图片',
     },
 
@@ -254,7 +289,9 @@ const remainingRouter: AppRouteRecordRaw[] = [
     meta: {
       title: '配送管理',
       icon: 'ep:promotion',
-      alwaysShow: true
+      alwaysShow: true,
+      hidden: true,
+      canTo: true
     },
     children: [
       {
@@ -264,7 +301,9 @@ const remainingRouter: AppRouteRecordRaw[] = [
         meta: {
           title: '配送任务',
           icon: 'ep:position',
-          noCache: false
+          noCache: false,
+          hidden: true,
+          canTo: true
         }
       }
     ]

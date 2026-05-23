@@ -42,7 +42,7 @@ export default defineComponent({
     })
 
     const routers = computed(() =>
-      unref(layout) === 'cutMenu' ? permissionStore.getMenuTabRouters : permissionStore.getRouters
+      unref(layout) === 'cutMenu' ? permissionStore.getMenuTabRouters : permissionStore.getSidebarRouters
     )
 
     const collapse = computed(() => appStore.getCollapse)

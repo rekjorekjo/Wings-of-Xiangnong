@@ -28,18 +28,35 @@ export const usePermissionStore = defineStore('permission', {
     },
     getMenuTabRouters(): AppRouteRecordRaw[] {
       return this.menuTabRouters
+    },
+    getSidebarRouters(): AppRouteRecordRaw[] {
+      const homeRoute = this.routers.find(
+        (route) => route.name === 'Home' || route.path === '/'
+      )
+      if (!homeRoute || !homeRoute.children) {
+        return []
+      }
+      const workspaceChildren = homeRoute.children.filter((child) => {
+        const meta = child.meta || {}
+        return meta.workspace === true && !meta.hidden
+      })
+      return workspaceChildren.map((child) => ({
+        ...child,
+        path: `/${child.path}`,
+        meta: {
+          ...child.meta
+        }
+      }))
     }
   },
   actions: {
     async generateRoutes(): Promise<unknown> {
       return new Promise<void>(async (resolve) => {
-        // 获得菜单列表，它在登录的时候，setUserInfoAction 方法中已经进行获取
         let res: AppCustomRouteRecordRaw[] = []
         if (wsCache.get(CACHE_KEY.ROLE_ROUTERS)) {
           res = wsCache.get(CACHE_KEY.ROLE_ROUTERS) as AppCustomRouteRecordRaw[]
         }
         const routerMap: AppRouteRecordRaw[] = generateRoute(res)
-        // 动态路由，404一定要放到最后面
         this.addRouters = routerMap.concat([
           {
             path: '/:path(.*)*',
@@ -51,7 +68,6 @@ export const usePermissionStore = defineStore('permission', {
             }
           }
         ])
-        // 渲染菜单的所有路由
         this.routers = cloneDeep(remainingRouter).concat(routerMap)
         resolve()
       })
