@@ -3,7 +3,8 @@ package co.yixiang.yshop.module.delivery.controller.admin.delivery;
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
 import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryDroneRespVO;
 import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryTaskRespVO;
-import co.yixiang.yshop.module.delivery.service.DeliveryMockService;
+import co.yixiang.yshop.module.delivery.service.DeliveryDroneService;
+import co.yixiang.yshop.module.delivery.service.DeliveryTaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -17,27 +18,30 @@ import java.util.List;
 
 import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;
 
-@Tag(name = "Admin - Delivery mock")
+@Tag(name = "Admin - Delivery")
 @RestController
 @RequestMapping("/delivery")
 @Validated
 public class DeliveryAdminController {
 
     @Resource
-    private DeliveryMockService deliveryMockService;
+    private DeliveryTaskService deliveryTaskService;
+
+    @Resource
+    private DeliveryDroneService deliveryDroneService;
 
     @GetMapping("/tasks")
-    @Operation(summary = "Get delivery mock tasks")
+    @Operation(summary = "Get delivery tasks")
     public CommonResult<List<AdminDeliveryTaskRespVO>> getDeliveryTasks(
             @RequestParam(value = "orderNo", required = false) String orderNo,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "droneNo", required = false) String droneNo) {
-        return success(deliveryMockService.getTasks(orderNo, status, droneNo));
+        return success(deliveryTaskService.getTaskList(orderNo, status, droneNo));
     }
 
     @GetMapping("/drones")
-    @Operation(summary = "Get delivery mock drones")
+    @Operation(summary = "Get delivery drones")
     public CommonResult<List<AdminDeliveryDroneRespVO>> getDeliveryDrones() {
-        return success(deliveryMockService.getDrones());
+        return success(deliveryDroneService.getDroneList());
     }
 }

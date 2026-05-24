@@ -1,63 +1,29 @@
-package co.yixiang.yshop.module.delivery.service;
+package co.yixiang.yshop.module.delivery.service.mock;
 
 import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryDroneRespVO;
 import co.yixiang.yshop.module.delivery.controller.admin.delivery.vo.AdminDeliveryTaskRespVO;
 import co.yixiang.yshop.module.delivery.controller.app.delivery.vo.AppOrderDeliveryRespVO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
-@Service
-public class DeliveryMockService {
+@Component
+public class DeliveryMockDataProvider {
 
     @Value("${xiangnong.delivery.mock-enabled:true}")
     private boolean mockEnabled;
 
-    public List<AdminDeliveryTaskRespVO> getTasks(String orderNo, String status, String droneNo) {
+    public boolean isMockEnabled() {
+        return mockEnabled;
+    }
+
+    public List<AdminDeliveryTaskRespVO> getMockTasks() {
         if (!mockEnabled) {
             return List.of();
         }
-        return mockTasks().stream()
-                .filter(task -> matches(orderNo, task.orderNo()))
-                .filter(task -> matches(status, task.status()))
-                .filter(task -> matches(droneNo, task.droneNo()))
-                .toList();
-    }
-
-    public List<AdminDeliveryDroneRespVO> getDrones() {
-        if (!mockEnabled) {
-            return List.of();
-        }
-        return List.of(
-                new AdminDeliveryDroneRespVO(1L, "XN-D001", "idle", "空闲", 92, "Station A", "无", LocalDateTime.now().minusMinutes(3)),
-                new AdminDeliveryDroneRespVO(2L, "XN-D002", "flying", "配送中", 68, "飞越图书馆上空", "2杯拿铁", LocalDateTime.now().minusMinutes(1)),
-                new AdminDeliveryDroneRespVO(3L, "XN-D003", "charging", "充电中", 34, "Station A", "无", LocalDateTime.now().minusMinutes(8))
-        );
-    }
-
-    public Optional<AppOrderDeliveryRespVO> getOrderDelivery(Long orderId) {
-        if (!mockEnabled) {
-            return Optional.empty();
-        }
-        return mockAppDeliveries().stream()
-                .filter(d -> d.orderId().equals(orderId))
-                .findFirst()
-                .or(() -> Optional.of(new AppOrderDeliveryRespVO(
-                        orderId,
-                        900000L + orderId,
-                        "pending",
-                        "待分配",
-                        LocalDateTime.now().plusMinutes(18),
-                        "待分配无人机",
-                        List.of(new AppOrderDeliveryRespVO.ProgressVO("pending", "订单已提交，等待分配无人机", LocalDateTime.now().minusMinutes(1)))
-                )));
-    }
-
-    private List<AdminDeliveryTaskRespVO> mockTasks() {
         return List.of(
                 new AdminDeliveryTaskRespVO(
                         10001L,
@@ -109,7 +75,21 @@ public class DeliveryMockService {
         );
     }
 
-    private List<AppOrderDeliveryRespVO> mockAppDeliveries() {
+    public List<AdminDeliveryDroneRespVO> getMockDrones() {
+        if (!mockEnabled) {
+            return List.of();
+        }
+        return List.of(
+                new AdminDeliveryDroneRespVO(1L, "XN-D001", "idle", "空闲", 92, "Station A", "无", LocalDateTime.now().minusMinutes(3)),
+                new AdminDeliveryDroneRespVO(2L, "XN-D002", "flying", "配送中", 68, "飞越图书馆上空", "2杯拿铁", LocalDateTime.now().minusMinutes(1)),
+                new AdminDeliveryDroneRespVO(3L, "XN-D003", "charging", "充电中", 34, "Station A", "无", LocalDateTime.now().minusMinutes(8))
+        );
+    }
+
+    public List<AppOrderDeliveryRespVO> getMockAppDeliveries() {
+        if (!mockEnabled) {
+            return List.of();
+        }
         return List.of(
                 new AppOrderDeliveryRespVO(
                         30001L,
@@ -149,8 +129,21 @@ public class DeliveryMockService {
         );
     }
 
-    private boolean matches(String expected, String actual) {
-        return expected == null || expected.isBlank()
-                || (actual != null && actual.toLowerCase(Locale.ROOT).contains(expected.toLowerCase(Locale.ROOT)));
+    public Optional<AppOrderDeliveryRespVO> findMockAppDeliveryByOrderId(Long orderId) {
+        return getMockAppDeliveries().stream()
+                .filter(d -> d.orderId().equals(orderId))
+                .findFirst();
+    }
+
+    public AppOrderDeliveryRespVO createDefaultAppDelivery(Long orderId) {
+        return new AppOrderDeliveryRespVO(
+                orderId,
+                900000L + orderId,
+                "pending",
+                "待分配",
+                LocalDateTime.now().plusMinutes(18),
+                "待分配无人机",
+                List.of(new AppOrderDeliveryRespVO.ProgressVO("pending", "订单已提交，等待分配无人机", LocalDateTime.now().minusMinutes(1)))
+        );
     }
 }
