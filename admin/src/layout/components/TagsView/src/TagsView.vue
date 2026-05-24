@@ -266,6 +266,7 @@ watch(
     class="relative w-full flex bg-[#fff] dark:bg-[var(--el-bg-color)]"
   >
     <span
+      v-show="false"
       :class="`${prefixCls}__tool ${prefixCls}__tool--first`"
       class="h-[var(--tags-view-height)] w-[var(--tags-view-height)] flex cursor-pointer items-center justify-center"
       @click="move(-200)"
@@ -383,6 +384,7 @@ watch(
       </ElScrollbar>
     </div>
     <span
+      v-show="false"
       :class="`${prefixCls}__tool`"
       class="h-[var(--tags-view-height)] w-[var(--tags-view-height)] flex cursor-pointer items-center justify-center"
       @click="move(200)"

@@ -19,20 +19,34 @@ const isDark = computed({
 </script>
 
 <template>
-  <ElSwitch
-    v-model="isDark"
-    :class="prefixCls"
-    inline-prompt
-    active-text="深"
-    inactive-text="浅"
-    :width="56"
-  />
+  <div :class="prefixCls" class="theme-switch">
+    <span class="theme-label" :class="{ active: !isDark }">浅</span>
+    <ElSwitch v-model="isDark" />
+    <span class="theme-label" :class="{ active: isDark }">深</span>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--el-text-color-secondary);
+  transition: color 0.2s;
+
+  &.active {
+    color: var(--el-color-primary);
+  }
+}
+
 :deep(.el-switch) {
   --el-switch-on-color: var(--el-color-primary);
-  --el-switch-off-color: #e5e7eb;
+  --el-switch-off-color: var(--el-border-color);
 }
 
 :deep(.el-switch__core) {
@@ -41,19 +55,5 @@ const isDark = computed({
 
 :deep(.el-switch.is-checked .el-switch__core) {
   border-color: var(--el-color-primary);
-}
-
-:deep(.el-switch:not(.is-checked) .el-switch__inner),
-:deep(.el-switch:not(.is-checked) .el-switch__inner span) {
-  color: #000 !important;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-:deep(.el-switch.is-checked .el-switch__inner),
-:deep(.el-switch.is-checked .el-switch__inner span) {
-  color: #fff !important;
-  font-size: 12px;
-  font-weight: 600;
 }
 </style>

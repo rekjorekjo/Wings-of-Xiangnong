@@ -14,7 +14,6 @@ const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('user-info')
 
 const avatar = computed(() => userStore.user.avatar ?? avatarImg)
-const userName = computed(() => userStore.user.nickname ?? 'Admin')
 
 const toProfile = () => {
   push('/user/profile')
@@ -28,8 +27,5 @@ const toProfile = () => {
     @click="toProfile"
   >
     <ElAvatar :src="avatar" alt="" class="w-[calc(var(--logo-height)-25px)] rounded-[50%]" />
-    <span class="pl-[5px] text-14px text-[var(--top-header-text-color)] <lg:hidden">
-      {{ userName }}
-    </span>
   </div>
 </template>
