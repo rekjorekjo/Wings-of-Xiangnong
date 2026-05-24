@@ -17,7 +17,20 @@
           <div class="module-desc">{{ module.desc }}</div>
           <div class="module-actions">
             <template v-for="(action, index) in module.actions" :key="action.label">
-              <el-button type="primary" link @click="navigateByCandidates(action.paths)">
+              <el-button
+                v-if="action.type === 'navigate'"
+                type="primary"
+                link
+                @click="navigateByCandidates(action.paths)"
+              >
+                {{ action.label }}
+              </el-button>
+              <el-button
+                v-else-if="action.type === 'logout'"
+                type="danger"
+                link
+                @click="handleLogout"
+              >
                 {{ action.label }}
               </el-button>
               <el-divider v-if="index < module.actions.length - 1" direction="vertical" />
@@ -31,10 +44,14 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Icon } from '@/components/Icon'
+import { useUserStore } from '@/store/modules/user'
+import { useTagsViewStore } from '@/store/modules/tagsView'
 
 const router = useRouter()
+const userStore = useUserStore()
+const tagsViewStore = useTagsViewStore()
 
 const modules = [
   {
@@ -43,10 +60,10 @@ const modules = [
     icon: 'ep:user-filled',
     color: '#409EFF',
     actions: [
-      { label: '用户管理', paths: ['/system/user'] },
-      { label: '角色管理', paths: ['/system/role'] },
-      { label: '部门管理', paths: ['/system/dept'] },
-      { label: '岗位管理', paths: ['/system/post'] }
+      { label: '用户管理', type: 'navigate', paths: ['/system/user'] },
+      { label: '角色管理', type: 'navigate', paths: ['/system/role'] },
+      { label: '部门管理', type: 'navigate', paths: ['/system/dept'] },
+      { label: '岗位管理', type: 'navigate', paths: ['/system/post'] }
     ]
   },
   {
@@ -54,9 +71,7 @@ const modules = [
     desc: '管理系统菜单和权限配置',
     icon: 'ep:menu',
     color: '#67C23A',
-    actions: [
-      { label: '菜单管理', paths: ['/system/menu'] }
-    ]
+    actions: [{ label: '菜单管理', type: 'navigate', paths: ['/system/menu'] }]
   },
   {
     title: '字典配置',
@@ -64,8 +79,8 @@ const modules = [
     icon: 'ep:collection',
     color: '#E6A23C',
     actions: [
-      { label: '字典类型', paths: ['/system/dict'] },
-      { label: '字典数据', paths: ['/system/dict'] }
+      { label: '字典类型', type: 'navigate', paths: ['/system/dict'] },
+      { label: '字典数据', type: 'navigate', paths: ['/system/dict'] }
     ]
   },
   {
@@ -73,9 +88,7 @@ const modules = [
     desc: '管理系统参数配置',
     icon: 'ep:setting',
     color: '#F56C6C',
-    actions: [
-      { label: '参数管理', paths: ['/infra/config'] }
-    ]
+    actions: [{ label: '参数管理', type: 'navigate', paths: ['/infra/config'] }]
   },
   {
     title: '文件管理',
@@ -83,8 +96,8 @@ const modules = [
     icon: 'ep:folder',
     color: '#909399',
     actions: [
-      { label: '文件列表', paths: ['/infra/file'] },
-      { label: '文件配置', paths: ['/infra/file-config'] }
+      { label: '文件列表', type: 'navigate', paths: ['/infra/file'] },
+      { label: '文件配置', type: 'navigate', paths: ['/infra/file-config'] }
     ]
   },
   {
@@ -93,9 +106,9 @@ const modules = [
     icon: 'ep:message',
     color: '#9B59B6',
     actions: [
-      { label: '公告管理', paths: ['/system/notice'] },
-      { label: '站内信模板', paths: ['/system/notify-template'] },
-      { label: '站内信消息', paths: ['/system/notify-message'] }
+      { label: '公告管理', type: 'navigate', paths: ['/system/notice'] },
+      { label: '站内信模板', type: 'navigate', paths: ['/system/notify-template'] },
+      { label: '站内信消息', type: 'navigate', paths: ['/system/notify-message'] }
     ]
   },
   {
@@ -104,8 +117,18 @@ const modules = [
     icon: 'ep:document',
     color: '#3498DB',
     actions: [
-      { label: '登录日志', paths: ['/system/loginlog'] },
-      { label: '操作日志', paths: ['/system/operatelog'] }
+      { label: '登录日志', type: 'navigate', paths: ['/system/loginlog'] },
+      { label: '操作日志', type: 'navigate', paths: ['/system/operatelog'] }
+    ]
+  },
+  {
+    title: '账户操作',
+    desc: '管理当前登录账号和退出系统',
+    icon: 'ep:user',
+    color: '#17A2B8',
+    actions: [
+      { label: '个人中心', type: 'navigate', paths: ['/user/profile'] },
+      { label: '退出系统', type: 'logout' }
     ]
   }
 ]
@@ -118,6 +141,19 @@ const navigateByCandidates = (paths: string[]) => {
     ElMessage.warning('该功能暂未开放')
   }
 }
+
+const handleLogout = async () => {
+  try {
+    await ElMessageBox.confirm('确定要退出系统吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+    await userStore.loginOut()
+    tagsViewStore.delAllViews()
+    router.replace('/login?redirect=/index')
+  } catch {}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -127,14 +163,14 @@ const navigateByCandidates = (paths: string[]) => {
 
 .page-header {
   margin-bottom: 24px;
-  
+
   h1 {
     font-size: 24px;
     font-weight: 600;
     margin: 0 0 8px 0;
     color: #303133;
   }
-  
+
   .subtitle {
     font-size: 14px;
     color: #909399;
@@ -145,12 +181,12 @@ const navigateByCandidates = (paths: string[]) => {
 .module-card {
   margin-bottom: 20px;
   transition: all 0.3s;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
-  
+
   :deep(.el-card__body) {
     padding: 20px;
   }
