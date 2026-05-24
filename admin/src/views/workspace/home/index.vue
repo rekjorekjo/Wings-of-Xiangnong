@@ -5,32 +5,28 @@
       <p class="subtitle">东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP</p>
     </div>
 
-    <el-row :gutter="20" class="stats-row">
-      <el-col :xs="12" :sm="8" :lg="4" v-for="stat in stats" :key="stat.title">
-        <el-card shadow="hover" class="stat-card">
-          <div class="stat-icon" :style="{ backgroundColor: stat.color }">
-            <Icon :icon="stat.icon" :size="24" />
-          </div>
-          <div class="stat-content">
-            <div class="stat-value">{{ stat.value }}</div>
-            <div class="stat-title">{{ stat.title }}</div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+    <div class="stats-grid">
+      <el-card shadow="hover" class="stat-card" v-for="stat in stats" :key="stat.title">
+        <div class="stat-icon" :style="{ backgroundColor: stat.color }">
+          <Icon :icon="stat.icon" :size="24" />
+        </div>
+        <div class="stat-content">
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-title">{{ stat.title }}</div>
+        </div>
+      </el-card>
+    </div>
 
     <div class="section-title">快捷入口</div>
-    <el-row :gutter="20" class="shortcuts-row">
-      <el-col :xs="12" :sm="8" :lg="6" v-for="shortcut in shortcuts" :key="shortcut.title">
-        <el-card shadow="hover" class="shortcut-card" @click="navigateByCandidates(shortcut.paths)">
-          <div class="shortcut-icon">
-            <Icon :icon="shortcut.icon" :size="32" />
-          </div>
-          <div class="shortcut-title">{{ shortcut.title }}</div>
-          <div class="shortcut-desc">{{ shortcut.desc }}</div>
-        </el-card>
-      </el-col>
-    </el-row>
+    <div class="shortcuts-grid">
+      <el-card shadow="hover" class="shortcut-card" @click="navigateByCandidates(shortcut.paths)" v-for="shortcut in shortcuts" :key="shortcut.title">
+        <div class="shortcut-icon">
+          <Icon :icon="shortcut.icon" :size="32" />
+        </div>
+        <div class="shortcut-title">{{ shortcut.title }}</div>
+        <div class="shortcut-desc">{{ shortcut.desc }}</div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -86,35 +82,41 @@ onMounted(() => {
 <style lang="scss" scoped>
 .workspace-home {
   padding: 20px;
+  background-color: var(--el-bg-color-page);
+  min-height: 100%;
 }
 
 .page-header {
   margin-bottom: 24px;
-  
+
   h1 {
     font-size: 24px;
     font-weight: 600;
     margin: 0 0 8px 0;
-    color: #303133;
+    color: var(--el-text-color-primary);
   }
-  
+
   .subtitle {
     font-size: 14px;
-    color: #909399;
+    color: var(--el-text-color-secondary);
     margin: 0;
   }
 }
 
-.stats-row {
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
   margin-bottom: 24px;
 }
 
 .stat-card {
-  display: flex;
-  align-items: center;
-  padding: 16px;
+  height: 100%;
+  min-height: 80px;
+  box-sizing: border-box;
+  background-color: var(--el-bg-color);
   cursor: default;
-  
+
   :deep(.el-card__body) {
     display: flex;
     align-items: center;
@@ -143,57 +145,65 @@ onMounted(() => {
 .stat-value {
   font-size: 24px;
   font-weight: 600;
-  color: #303133;
+  color: var(--el-text-color-primary);
   line-height: 1.2;
 }
 
 .stat-title {
   font-size: 13px;
-  color: #909399;
+  color: var(--el-text-color-secondary);
   margin-top: 4px;
 }
 
 .section-title {
   font-size: 16px;
   font-weight: 600;
-  color: #303133;
+  color: var(--el-text-color-primary);
   margin-bottom: 16px;
 }
 
-.shortcuts-row {
-  margin-bottom: 24px;
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
 
 .shortcut-card {
+  height: 100%;
+  min-height: 140px;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   text-align: center;
-  padding: 24px 16px;
-  
+  background-color: var(--el-bg-color);
+
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--el-box-shadow-light);
+    border-color: var(--el-color-primary-light-5);
   }
-  
+
   :deep(.el-card__body) {
     padding: 24px 16px;
+    height: 100%;
+    box-sizing: border-box;
   }
 }
 
 .shortcut-icon {
-  color: #409EFF;
+  color: var(--el-color-primary);
   margin-bottom: 12px;
 }
 
 .shortcut-title {
   font-size: 16px;
   font-weight: 500;
-  color: #303133;
+  color: var(--el-text-color-primary);
   margin-bottom: 8px;
 }
 
 .shortcut-desc {
   font-size: 13px;
-  color: #909399;
+  color: var(--el-text-color-secondary);
 }
 </style>

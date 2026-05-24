@@ -69,33 +69,19 @@ export const useAppStore = defineStore('app', {
       isDark: wsCache.get(CACHE_KEY.IS_DARK) || false, // 是否是暗黑模式
       currentSize: wsCache.get('default') || 'default', // 组件尺寸
       theme: wsCache.get(CACHE_KEY.THEME) || {
-        // 主题色
         elColorPrimary: '#409eff',
-        // 左侧菜单边框颜色
-        leftMenuBorderColor: 'inherit',
-        // 左侧菜单背景颜色
-        leftMenuBgColor: '#001529',
-        // 左侧菜单浅色背景颜色
-        leftMenuBgLightColor: '#0f2438',
-        // 左侧菜单选中背景颜色
-        leftMenuBgActiveColor: 'var(--el-color-primary)',
-        // 左侧菜单收起选中背景颜色
-        leftMenuCollapseBgActiveColor: 'var(--el-color-primary)',
-        // 左侧菜单字体颜色
-        leftMenuTextColor: '#bfcbd9',
-        // 左侧菜单选中字体颜色
-        leftMenuTextActiveColor: '#fff',
-        // logo字体颜色
-        logoTitleTextColor: '#fff',
-        // logo边框颜色
-        logoBorderColor: 'inherit',
-        // 头部背景颜色
+        leftMenuBorderColor: 'var(--el-border-color-light)',
+        leftMenuBgColor: 'var(--el-bg-color)',
+        leftMenuBgLightColor: 'var(--el-bg-color-page)',
+        leftMenuBgActiveColor: 'var(--el-color-primary-light-9)',
+        leftMenuCollapseBgActiveColor: 'var(--el-color-primary-light-9)',
+        leftMenuTextColor: 'var(--el-text-color-regular)',
+        leftMenuTextActiveColor: 'var(--el-color-primary)',
+        logoTitleTextColor: 'var(--el-text-color-primary)',
+        logoBorderColor: 'var(--el-border-color-light)',
         topHeaderBgColor: '#fff',
-        // 头部字体颜色
         topHeaderTextColor: 'inherit',
-        // 头部悬停颜色
         topHeaderHoverColor: '#f6f6f6',
-        // 头部边框颜色
         topToolBorderColor: '#eee'
       }
     }
@@ -243,11 +229,31 @@ export const useAppStore = defineStore('app', {
       if (this.isDark) {
         document.documentElement.classList.add('dark')
         document.documentElement.classList.remove('light')
+        this.theme.leftMenuBorderColor = 'var(--el-border-color-light)'
+        this.theme.leftMenuBgColor = 'var(--el-bg-color)'
+        this.theme.leftMenuBgLightColor = 'var(--el-bg-color-page)'
+        this.theme.leftMenuBgActiveColor = 'var(--el-color-primary)'
+        this.theme.leftMenuCollapseBgActiveColor = 'var(--el-color-primary)'
+        this.theme.leftMenuTextColor = 'var(--el-text-color-regular)'
+        this.theme.leftMenuTextActiveColor = '#fff'
+        this.theme.logoTitleTextColor = 'var(--el-text-color-primary)'
+        this.theme.logoBorderColor = 'var(--el-border-color-light)'
       } else {
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
+        this.theme.leftMenuBorderColor = 'var(--el-border-color-light)'
+        this.theme.leftMenuBgColor = 'var(--el-bg-color)'
+        this.theme.leftMenuBgLightColor = 'var(--el-bg-color-page)'
+        this.theme.leftMenuBgActiveColor = 'var(--el-color-primary-light-9)'
+        this.theme.leftMenuCollapseBgActiveColor = 'var(--el-color-primary-light-9)'
+        this.theme.leftMenuTextColor = 'var(--el-text-color-regular)'
+        this.theme.leftMenuTextActiveColor = 'var(--el-color-primary)'
+        this.theme.logoTitleTextColor = 'var(--el-text-color-primary)'
+        this.theme.logoBorderColor = 'var(--el-border-color-light)'
       }
+      this.setCssVarTheme()
       wsCache.set(CACHE_KEY.IS_DARK, this.isDark)
+      wsCache.set(CACHE_KEY.THEME, this.theme)
     },
     setCurrentSize(currentSize: ElementPlusSize) {
       this.currentSize = currentSize

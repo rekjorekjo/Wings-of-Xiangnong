@@ -5,40 +5,38 @@
       <p class="subtitle">管理系统账号、权限、字典、参数和日志。</p>
     </div>
 
-    <el-row :gutter="20">
-      <el-col :xs="24" :sm="12" :lg="8" :xl="6" v-for="module in modules" :key="module.title">
-        <el-card shadow="hover" class="module-card">
-          <div class="module-header">
-            <div class="module-icon" :style="{ backgroundColor: module.color }">
-              <Icon :icon="module.icon" :size="24" />
-            </div>
-            <div class="module-title">{{ module.title }}</div>
+    <div class="modules-grid">
+      <el-card shadow="hover" class="module-card" v-for="module in modules" :key="module.title">
+        <div class="module-header">
+          <div class="module-icon" :style="{ backgroundColor: module.color }">
+            <Icon :icon="module.icon" :size="24" />
           </div>
-          <div class="module-desc">{{ module.desc }}</div>
-          <div class="module-actions">
-            <template v-for="(action, index) in module.actions" :key="action.label">
-              <el-button
-                v-if="action.type === 'navigate'"
-                type="primary"
-                link
-                @click="navigateByCandidates(action.paths)"
-              >
-                {{ action.label }}
-              </el-button>
-              <el-button
-                v-else-if="action.type === 'logout'"
-                type="danger"
-                link
-                @click="handleLogout"
-              >
-                {{ action.label }}
-              </el-button>
-              <el-divider v-if="index < module.actions.length - 1" direction="vertical" />
-            </template>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+          <div class="module-title">{{ module.title }}</div>
+        </div>
+        <div class="module-desc">{{ module.desc }}</div>
+        <div class="module-actions">
+          <template v-for="(action, index) in module.actions" :key="action.label">
+            <el-button
+              v-if="action.type === 'navigate'"
+              type="primary"
+              link
+              @click="navigateByCandidates(action.paths)"
+            >
+              {{ action.label }}
+            </el-button>
+            <el-button
+              v-else-if="action.type === 'logout'"
+              type="danger"
+              link
+              @click="handleLogout"
+            >
+              {{ action.label }}
+            </el-button>
+            <el-divider v-if="index < module.actions.length - 1" direction="vertical" />
+          </template>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -159,6 +157,8 @@ const handleLogout = async () => {
 <style lang="scss" scoped>
 .workspace-settings {
   padding: 20px;
+  background-color: var(--el-bg-color-page);
+  min-height: 100%;
 }
 
 .page-header {
@@ -168,27 +168,42 @@ const handleLogout = async () => {
     font-size: 24px;
     font-weight: 600;
     margin: 0 0 8px 0;
-    color: #303133;
+    color: var(--el-text-color-primary);
   }
 
   .subtitle {
     font-size: 14px;
-    color: #909399;
+    color: var(--el-text-color-secondary);
     margin: 0;
   }
 }
 
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
 .module-card {
-  margin-bottom: 20px;
-  transition: all 0.3s;
+  height: 100%;
+  min-height: 180px;
+  box-sizing: border-box;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  background-color: var(--el-bg-color);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    box-shadow: var(--el-box-shadow-light);
+    border-color: var(--el-color-primary-light-5);
   }
 
   :deep(.el-card__body) {
     padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -213,15 +228,15 @@ const handleLogout = async () => {
 .module-title {
   font-size: 16px;
   font-weight: 600;
-  color: #303133;
+  color: var(--el-text-color-primary);
 }
 
 .module-desc {
   font-size: 13px;
-  color: #909399;
+  color: var(--el-text-color-secondary);
   line-height: 1.5;
   margin-bottom: 16px;
-  min-height: 40px;
+  flex: 1;
 }
 
 .module-actions {
