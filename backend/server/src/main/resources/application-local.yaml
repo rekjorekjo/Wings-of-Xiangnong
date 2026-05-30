@@ -250,3 +250,5 @@ xiangnong:
     default-tenant-id: 1
     default-store-id: 1
     default-site-name: Xiangnong Station A
+    default-longitude: 118.817
+    default-latitude: 31.892

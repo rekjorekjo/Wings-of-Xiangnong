@@ -1,5 +1,6 @@
 package co.yixiang.yshop.module.delivery.controller.app.delivery.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public record AppOrderDeliveryRespVO(
         @Schema(description = "状态文本", example = "配送中")
         String statusText,
         @Schema(description = "预计到达时间")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         LocalDateTime estimatedArrivalTime,
         @Schema(description = "当前位置", example = "飞越图书馆上空")
         String currentLocation,
@@ -29,6 +31,7 @@ public record AppOrderDeliveryRespVO(
             @Schema(description = "标题", example = "无人机已分配")
             String title,
             @Schema(description = "时间")
+            @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime time
     ) {}
 }

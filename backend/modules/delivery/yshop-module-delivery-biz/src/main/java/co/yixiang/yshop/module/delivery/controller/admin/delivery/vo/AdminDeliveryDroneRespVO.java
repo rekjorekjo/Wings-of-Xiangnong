@@ -1,5 +1,6 @@
 package co.yixiang.yshop.module.delivery.controller.admin.delivery.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
@@ -21,5 +22,6 @@ public record AdminDeliveryDroneRespVO(
         @Schema(description = "载重信息", example = "2杯咖啡")
         String payload,
         @Schema(description = "最后更新时间")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         LocalDateTime lastUpdatedAt
 ) {}

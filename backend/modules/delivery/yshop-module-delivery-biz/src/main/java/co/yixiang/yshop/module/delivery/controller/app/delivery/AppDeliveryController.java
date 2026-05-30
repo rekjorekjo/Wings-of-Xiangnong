@@ -15,7 +15,7 @@ import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "App - Delivery")
 @RestController
-@RequestMapping("/order")
+@RequestMapping({"/order", "/orders"})
 public class AppDeliveryController {
 
     @Resource
