@@ -1,1 +1,1 @@
-co.yixiang.yshop.framework.tenant.config.YshopTenantAutoConfiguration
+com.wings.framework.tenant.config.WingsTenantAutoConfiguration

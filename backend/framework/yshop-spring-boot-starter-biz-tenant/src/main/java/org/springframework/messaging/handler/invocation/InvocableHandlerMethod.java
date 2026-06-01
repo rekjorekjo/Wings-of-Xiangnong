@@ -21,8 +21,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
-import co.yixiang.yshop.framework.tenant.core.context.TenantContextHolder;
-import co.yixiang.yshop.framework.tenant.core.util.TenantUtils;
+import com.wings.framework.tenant.core.context.TenantContextHolder;
+import com.wings.framework.tenant.core.util.TenantUtils;
 import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
@@ -32,7 +32,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.HandlerMethod;
 import org.springframework.util.ObjectUtils;
 
-import static co.yixiang.yshop.framework.web.core.util.WebFrameworkUtils.HEADER_TENANT_ID;
+import static com.wings.framework.web.core.util.WebFrameworkUtils.HEADER_TENANT_ID;
 
 /**
  * Extension of {@link HandlerMethod} that invokes the underlying method with
@@ -40,7 +40,7 @@ import static co.yixiang.yshop.framework.web.core.util.WebFrameworkUtils.HEADER_
  * {@link HandlerMethodArgumentResolver}.
  *
  * 针对 rabbitmq-spring 和 kafka-spring，不存在合适的拓展点，可以实现 Consumer 消费前，读取 Header 中的 tenant-id 设置到 {@link TenantContextHolder} 中
- * TODO yshop：持续跟进，看看有没新的拓展点
+ * TODO wings：持续跟进，看看有没新的拓展点
  *
  * @author Rossen Stoyanchev
  * @author Juergen Hoeller

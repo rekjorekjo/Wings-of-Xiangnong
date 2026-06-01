@@ -1,2 +1,2 @@
-co.yixiang.yshop.framework.redis.config.YshopRedisAutoConfiguration
-co.yixiang.yshop.framework.redis.config.YshopCacheAutoConfiguration
+com.wings.framework.redis.config.WingsRedisAutoConfiguration
+com.wings.framework.redis.config.WingsCacheAutoConfiguration

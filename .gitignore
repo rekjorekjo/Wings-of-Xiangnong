@@ -8,6 +8,7 @@
 
 *.sql
 *.zip
+*.py
 
 assets/
 _upload_packages/

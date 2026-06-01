@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop-framework</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings-framework</artifactId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-spring-boot-starter-security</artifactId>
+    <artifactId>wings-spring-boot-starter-security</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -16,12 +16,12 @@
         1. security：用户的认证、权限的校验，实现「谁」可以做「什么事」
         2. operatelog：操作日志，实现「谁」在「什么时间」对「什么」做了「什么事」
     </description>
-    <url>https://gitee.com/guchengwuyue/yshop-drink</url>
+    <url>https://gitee.com/guchengwuyue/wings</url>
 
     <dependencies>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-common</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-common</artifactId>
         </dependency>
 
         <!-- Spring 核心 -->
@@ -32,8 +32,8 @@
 
         <!-- Web 相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-web</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-web</artifactId>
         </dependency>
         <!-- spring boot 配置所需依赖 -->
         <dependency>
@@ -62,8 +62,8 @@
 
         <!-- 业务组件 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-system-api</artifactId> <!-- 需要使用它，进行 Token 的校验 -->
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-system-api</artifactId> <!-- 需要使用它，进行 Token 的校验 -->
             <version>${revision}</version>
         </dependency>
     </dependencies>

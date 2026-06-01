@@ -1,2 +1,2 @@
-co.yixiang.yshop.framework.quartz.config.YshopQuartzAutoConfiguration
-co.yixiang.yshop.framework.quartz.config.YshopAsyncAutoConfiguration
+com.wings.framework.quartz.config.WingsQuartzAutoConfiguration
+com.wings.framework.quartz.config.WingsAsyncAutoConfiguration

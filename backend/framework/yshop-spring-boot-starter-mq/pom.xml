@@ -3,23 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop-framework</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings-framework</artifactId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-spring-boot-starter-mq</artifactId>
+    <artifactId>wings-spring-boot-starter-mq</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>消息队列，支持 Redis、RocketMQ、RabbitMQ、Kafka 四种</description>
-    <url>https://gitee.com/guchengwuyue/yshop-drink</url>
+    <url>https://gitee.com/guchengwuyue/wings</url>
 
     <dependencies>
         <!-- DB 相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-redis</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-redis</artifactId>
         </dependency>
 
         <!-- 消息队列相关 -->

@@ -11,7 +11,7 @@
 当前项目目录：
 
 ```text
-Wings-of-Xiangnong/
+Wings/
 ├── backend   # Spring Boot 后端
 ├── admin     # Vue3 管理端
 ├── miniapp   # uni-app 小程序端
@@ -30,7 +30,7 @@ Wings-of-Xiangnong/
 | Redis      | 127.0.0.1:6379                     |
 | Node       | 20                                 |
 | pnpm       | 10                                 |
-| 数据库名   | `yixiang-drink-open`               |
+| 数据库名   | `wings`               |
 | 后端端口   | `18081`                            |
 | 管理端端口 | `80`                               |
 | 管理端地址 | `http://localhost:80`              |
@@ -52,7 +52,7 @@ spring:
     dynamic:
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/yixiang-drink-open
+          url: jdbc:mysql://127.0.0.1:3306/wings
           username: root
           password: root
   data:
@@ -86,7 +86,7 @@ spring:
 项目需要本地 MySQL 8，数据库名：
 
 ```text
-yixiang-drink-open
+wings
 ```
 
 ### 3.1 方式 A：MySQL 已安装成 Windows 服务
@@ -155,11 +155,11 @@ mysql -u root -p
 
 ```sql
 SHOW DATABASES;
-USE yixiang-drink-open;
+USE wings;
 SHOW TABLES;
 ```
 
-如果 `USE yixiang-drink-open;` 报数据库不存在，说明还没导入数据库。
+如果 `USE wings;` 报数据库不存在，说明还没导入数据库。
 
 本项目当前不强制提交 `.sql` 文件，因为 `.gitignore` 忽略 `*.sql`，避免误提交数据库 dump 或敏感 SQL。数据库 dump 需要从本地已有备份或负责人提供的初始化文件导入。
 
@@ -250,7 +250,7 @@ PONG
 ### 5.1 编译后端
 
 ```powershell
-cd F:\projects\Wings-of-Xiangnong\backend
+cd F:\projects\Wings\backend
 mvn clean install -DskipTests
 ```
 
@@ -267,19 +267,19 @@ backend/pom.xml
 启动类：
 
 ```text
-backend/server/src/main/java/co/yixiang/yshop/server/YshopServerApplication.java
+backend/server/src/main/java/co/wings/wings/server/WingsServerApplication.java
 ```
 
 主类名：
 
 ```text
-co.yixiang.yshop.server.YshopServerApplication
+com.wings.server.WingsServerApplication
 ```
 
 Run Configuration 里注意：
 
 ```text
-Use classpath of module: yshop-server
+Use classpath of module: wings-server
 ```
 
 启动成功后，后端地址是：
@@ -301,7 +301,7 @@ http://localhost:18081
 常见错误：
 
 ```text
-ClassNotFoundException: co.yixiang.yshop.server.YshopServerApplication
+ClassNotFoundException: com.wings.server.WingsServerApplication
 ```
 
 处理方式：
@@ -310,8 +310,8 @@ ClassNotFoundException: co.yixiang.yshop.server.YshopServerApplication
 1. 删除旧 Run Configuration
 2. 重新导入 backend/pom.xml
 3. 等 Maven 重新索引
-4. 右键 YshopServerApplication.java 启动
-5. 确认 Use classpath of module 是 yshop-server
+4. 右键 WingsServerApplication.java 启动
+5. 确认 Use classpath of module 是 wings-server
 ```
 
 ---
@@ -319,7 +319,7 @@ ClassNotFoundException: co.yixiang.yshop.server.YshopServerApplication
 ## 6. 启动管理端 admin
 
 ```powershell
-cd F:\projects\Wings-of-Xiangnong\admin
+cd F:\projects\Wings\admin
 pnpm install
 pnpm dev
 ```
@@ -349,7 +349,7 @@ VITE_APP_CAPTCHA_ENABLE=false
 如果报 `esbuild` 或其它依赖找不到：
 
 ```powershell
-cd F:\projects\Wings-of-Xiangnong\admin
+cd F:\projects\Wings\admin
 pnpm install
 pnpm dev
 ```
@@ -448,7 +448,7 @@ http://localhost:18081/app-api
 admin 能启动后，可以试：
 
 ```powershell
-cd F:\projects\Wings-of-Xiangnong\admin
+cd F:\projects\Wings\admin
 pnpm build
 ```
 
@@ -484,7 +484,7 @@ mysql -u root -p
 
 ```text
 1. MySQL 已启动
-2. 数据库 yixiang-drink-open 存在
+2. 数据库 wings 存在
 3. application-local.yaml 的 username/password 和本机一致
 ```
 

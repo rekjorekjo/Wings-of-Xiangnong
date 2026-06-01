@@ -16,7 +16,7 @@ export const useMainStore = defineStore('main', {
 	openid:"",
 	token:"",
 	lang: 'zh-cn',
-	cookieKey:'YSESSID=yshop-e4dk4o2utr3c0n95tp42p745ai',
+	cookieKey:'WINGS_SESSION=wings-e4dk4o2utr3c0n95tp42p745ai',
 	// 默认地为你为北京地址
 	location: {},
 	mycoupon: {}

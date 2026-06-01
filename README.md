@@ -1,6 +1,6 @@
-# 香农之翼（Wings of Xiangnong）
+# 香农之翼（Wings）
 
-基于 yshop-drink 改造的东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP。
+基于 wings 改造的东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP。
 
 ## 目录结构
 
@@ -38,7 +38,7 @@ cd backend
 mvn clean install -DskipTests
 ```
 
-启动类：`co.yixiang.yshop.server.YshopServerApplication`
+启动类：`com.wings.server.WingsServerApplication`
 
 ### 管理端
 
@@ -63,7 +63,7 @@ pnpm dev
 
 ## 来源说明
 
-本项目基于 yshop-drink 改造，原项目地址：https://www.yixiang.co/
+本项目基于 wings 改造，原项目地址：https://www.wings.co/
 
 ## 开源协议
 

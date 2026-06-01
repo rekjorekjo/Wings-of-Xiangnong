@@ -1,6 +1,6 @@
 spring:
   application:
-    name: yshop-server
+    name: wings-server
 
   profiles:
     active: local
@@ -18,7 +18,7 @@ spring:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER # 解决 SpringFox 与 SpringBoot 2.6.x 不兼容的问题，参见 SpringFoxHandlerProviderBeanPostProcessor 类
 #    throw-exception-if-no-handler-found: true # 404 错误时抛出异常，方便统一处理
-#    static-path-pattern: /static/** # 静态资源路径; 注意：如果不配置，则 throw-exception-if-no-handler-found 不生效！！！ TODO yshop：不能配置，会导致 swagger 不生效
+#    static-path-pattern: /static/** # 静态资源路径; 注意：如果不配置，则 throw-exception-if-no-handler-found 不生效！！！ TODO wings：不能配置，会导致 swagger 不生效
 
   # Jackson 配置项
   jackson:
@@ -74,7 +74,7 @@ mybatis-plus:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
     banner: false # 关闭控制台的 Banner 打印
-  type-aliases-package: ${yshop.info.base-package}.module.*.dal.dataobject
+  type-aliases-package: ${wings.info.base-package}.module.*.dal.dataobject
   encryptor:
     password: XDV71a+xqStEA3WH # 加解密的秘钥，可使用 https://www.imaegoo.com/2020/aes-key-generator/ 网站生成
 
@@ -142,12 +142,12 @@ spring:
     listener:
       missing-topics-fatal: false # 消费监听接口监听的主题不存在时，默认会报错。所以通过设置为 false ，解决报错
 
---- #################### yshop相关配置 ####################
+--- #################### wings相关配置 ####################
 
-yshop:
+wings:
   info:
     version: 3.0.0
-    base-package: co.yixiang.yshop
+    base-package: com.wings
     isActive: true
   web:
     admin-ui:
@@ -171,15 +171,15 @@ yshop:
   swagger:
     title: 香农之翼点餐系统
     description: 东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP
-    version: ${yshop.info.version}
-    url: ${yshop.web.admin-ui.url}
-    email: wings@xiangnong.local
+    version: ${wings.info.version}
+    url: ${wings.web.admin-ui.url}
+    email: wings@wings.local
     license: MIT
-    license-url: https://gitee.com/guchengwuyue/yshop-drink
+    license-url: https://gitee.com/guchengwuyue/wings
   captcha:
     enable: true # 验证码的开关，默认为 true
   codegen:
-    base-package: ${yshop.info.base-package}
+    base-package: ${wings.info.base-package}
     db-schemas: ${spring.datasource.dynamic.datasource.master.name}
     front-type: 10 # 前端模版的类型，参见 CodegenFrontTypeEnum 枚举类
   tenant: # 多租户相关配置项
@@ -222,13 +222,13 @@ yshop:
       - infra_job_log
       - infra_job_log
       - infra_data_source_config
-      - yshop_store_product_attr
-      - yshop_store_product_attr_result
-      - yshop_store_product_attr_value
-      - yshop_store_order_cart_info
-      - yshop_store_order_status
-      - yshop_order_number
-      - yshop_qrcode
+      - wings_store_product_attr
+      - wings_store_product_attr_result
+      - wings_store_product_attr_value
+      - wings_store_order_cart_info
+      - wings_store_order_status
+      - wings_order_number
+      - wings_qrcode
   sms-code: # 短信验证码相关的配置项
     expire-times: 10m
     send-frequency: 1m

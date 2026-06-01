@@ -46,12 +46,12 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/yixiang-drink-open?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://127.0.0.1:3306/wings?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
           username: root
           password: root
         slave: # 模拟从库，可根据自己需要修改
           lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:3306/yixiang-drink-open?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://127.0.0.1:3306/wings?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
           username: root
           password: root
 
@@ -146,23 +146,23 @@ logging:
     name: ${user.home}/logs/${spring.application.name}.log # 日志文件名，全路径
   level:
     # 配置自己写的 MyBatis Mapper 打印日志
-    co.yixiang.yshop.module.bpm.dal.mysql: debug
-    co.yixiang.yshop.module.infra.dal.mysql: debug
-    co.yixiang.yshop.module.infra.dal.mysql.logger.ApiErrorLogMapper: INFO # 配置 ApiErrorLogMapper 的日志级别为 info，避免和 GlobalExceptionHandler 重复打印
-    co.yixiang.yshop.module.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
-    co.yixiang.yshop.module.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
-    co.yixiang.yshop.module.pay.dal.mysql: debug
-    co.yixiang.yshop.module.pay.dal.mysql.notify.PayNotifyTaskMapper: INFO # 配置 PayNotifyTaskMapper 的日志级别为 info
-    co.yixiang.yshop.module.system.dal.mysql: debug
-    co.yixiang.yshop.module.system.dal.mysql.sms.SmsChannelMapper: INFO # 配置 SmsChannelMapper 的日志级别为 info
-    co.yixiang.yshop.module.tool.dal.mysql: debug
-    co.yixiang.yshop.module.member.dal.mysql: debug
-    co.yixiang.yshop.module.order.dal.mysql: debug
-    co.yixiang.yshop.module.product.dal.mysql: debug
-    co.yixiang.yshop.module.store.dal.mysql: debug
-    co.yixiang.yshop.module.shop.dal.mysql: debug
-    co.yixiang.yshop.module.coupon.dal.mysql: debug
-    org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO yshop：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
+    com.wings.module.bpm.dal.mysql: debug
+    com.wings.module.infra.dal.mysql: debug
+    com.wings.module.infra.dal.mysql.logger.ApiErrorLogMapper: INFO # 配置 ApiErrorLogMapper 的日志级别为 info，避免和 GlobalExceptionHandler 重复打印
+    com.wings.module.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
+    com.wings.module.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
+    com.wings.module.pay.dal.mysql: debug
+    com.wings.module.pay.dal.mysql.notify.PayNotifyTaskMapper: INFO # 配置 PayNotifyTaskMapper 的日志级别为 info
+    com.wings.module.system.dal.mysql: debug
+    com.wings.module.system.dal.mysql.sms.SmsChannelMapper: INFO # 配置 SmsChannelMapper 的日志级别为 info
+    com.wings.module.tool.dal.mysql: debug
+    com.wings.module.member.dal.mysql: debug
+    com.wings.module.order.dal.mysql: debug
+    com.wings.module.product.dal.mysql: debug
+    com.wings.module.store.dal.mysql: debug
+    com.wings.module.shop.dal.mysql: debug
+    com.wings.module.coupon.dal.mysql: debug
+    org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO wings：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 
 debug: false
 
@@ -184,10 +184,10 @@ wx:
       key-prefix: wa # Redis Key 的前缀
       http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
 
---- #################### yshop相关配置 ####################
+--- #################### wings相关配置 ####################
 
-# yshop配置项，设置当前项目所有自定义的配置
-yshop:
+# wings配置项，设置当前项目所有自定义的配置
+wings:
   redis-mq:
     enabled: false # 本地开发关闭 Redis Stream 消费，避免空 stream 轮询刷 NPE；不影响订单/微信消息业务代码。
   captcha:
@@ -200,8 +200,8 @@ yshop:
       - ${spring.boot.admin.context-path}/** # 不处理 Spring Boot Admin 的请求
       - ${management.endpoints.web.base-path}/** # 不处理 Actuator 的请求
   pay:
-    order-notify-url: http://yshop.natapp1.cc/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
-    refund-notify-url: http://yshop.natapp1.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
+    order-notify-url: http://wings.natapp1.cc/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
+    refund-notify-url: http://wings.natapp1.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
   access-log: # 访问日志的配置项
     enable: false
   demo: false # 关闭演示模式
@@ -236,7 +236,7 @@ justauth:
     prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
     timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
 
-xiangnong:
+wings:
   feature:
     cloud-printer: false
     score-mall: false
@@ -249,6 +249,6 @@ xiangnong:
     mock-enabled: true
     default-tenant-id: 1
     default-store-id: 1
-    default-site-name: Xiangnong Station A
+    default-site-name: Wings Station A
     default-longitude: 118.817
     default-latitude: 31.892

@@ -16,7 +16,7 @@ export interface ProductReviewVO {
   isReply: boolean
 }
 
-// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+// 兼容旧 wings 类型名，后续逐步迁移调用方到新类型名。
 export type StoreProductReplyVO = ProductReviewVO
 
 export type ProductReviewPageReqVO = Record<string, any>
@@ -49,7 +49,7 @@ export const exportProductReview = async (params: ProductReviewExportReqVO) => {
   return await request.download({ url: `/product/store-product-reply/export-excel`, params })
 }
 
-// 兼容旧 yshop API 函数名，调用方逐步迁移到新命名。
+// 兼容旧 wings API 函数名，调用方逐步迁移到新命名。
 export const getStoreProductReplyPage = getProductReviewPage
 export const getStoreProductReply = getProductReview
 export const createStoreProductReply = createProductReview

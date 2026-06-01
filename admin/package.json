@@ -133,12 +133,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/guchengwuyue/yshop-drink"
+    "url": "git+https://gitee.com/guchengwuyue/wings"
   },
   "bugs": {
-    "url": "https://gitee.com/guchengwuyue/yshop-drink"
+    "url": "https://gitee.com/guchengwuyue/wings"
   },
-  "homepage": "https://gitee.com/guchengwuyue/yshop-drink",
+  "homepage": "https://gitee.com/guchengwuyue/wings",
   "engines": {
     "node": ">= 16.0.0",
     "pnpm": ">=8.6.0"

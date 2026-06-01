@@ -1,2 +1,2 @@
-co.yixiang.yshop.framework.tracer.config.YshopTracerAutoConfiguration
-co.yixiang.yshop.framework.tracer.config.YshopMetricsAutoConfiguration
+com.wings.framework.tracer.config.WingsTracerAutoConfiguration
+com.wings.framework.tracer.config.WingsMetricsAutoConfiguration

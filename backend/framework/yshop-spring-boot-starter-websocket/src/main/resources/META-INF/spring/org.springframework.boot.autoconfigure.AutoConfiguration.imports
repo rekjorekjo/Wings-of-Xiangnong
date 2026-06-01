@@ -1,1 +1,1 @@
-co.yixiang.yshop.framework.websocket.config.YshopWebSocketAutoConfiguration
+com.wings.framework.websocket.config.WingsWebSocketAutoConfiguration

@@ -11,7 +11,7 @@ export const rules = reactive({
 #end
 })
 
-// CrudSchema https://www.yixiang.co/vue3/crud-schema/
+// CrudSchema https://www.wings.co/vue3/crud-schema/
 const crudSchemas = reactive<CrudSchema[]>([
 #foreach($column in $columns)
 #if ($column.listOperation || $column.listOperationResult || $column.createOperation || $column.updateOperation)

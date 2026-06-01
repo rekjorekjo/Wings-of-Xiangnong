@@ -1,3 +1,3 @@
-co.yixiang.yshop.framework.idempotent.config.YshopIdempotentConfiguration
-co.yixiang.yshop.framework.lock4j.config.YshopLock4jConfiguration
-co.yixiang.yshop.framework.ratelimiter.config.YshopRateLimiterConfiguration
+com.wings.framework.idempotent.config.WingsIdempotentConfiguration
+com.wings.framework.lock4j.config.WingsLock4jConfiguration
+com.wings.framework.ratelimiter.config.WingsRateLimiterConfiguration

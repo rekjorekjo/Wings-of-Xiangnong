@@ -1,2 +1,2 @@
-co.yixiang.yshop.framework.datapermission.config.YshopDataPermissionAutoConfiguration
-co.yixiang.yshop.framework.datapermission.config.YshopDeptDataPermissionAutoConfiguration
+com.wings.framework.datapermission.config.WingsDataPermissionAutoConfiguration
+com.wings.framework.datapermission.config.WingsDeptDataPermissionAutoConfiguration

@@ -1,6 +1,6 @@
-co.yixiang.yshop.framework.apilog.config.YshopApiLogAutoConfiguration
-co.yixiang.yshop.framework.jackson.config.YshopJacksonAutoConfiguration
-co.yixiang.yshop.framework.swagger.config.YshopSwaggerAutoConfiguration
-co.yixiang.yshop.framework.web.config.YshopWebAutoConfiguration
-co.yixiang.yshop.framework.xss.config.YshopXssAutoConfiguration
-co.yixiang.yshop.framework.banner.config.YshopBannerAutoConfiguration
+com.wings.framework.apilog.config.WingsApiLogAutoConfiguration
+com.wings.framework.jackson.config.WingsJacksonAutoConfiguration
+com.wings.framework.swagger.config.WingsSwaggerAutoConfiguration
+com.wings.framework.web.config.WingsWebAutoConfiguration
+com.wings.framework.xss.config.WingsXssAutoConfiguration
+com.wings.framework.banner.config.WingsBannerAutoConfiguration

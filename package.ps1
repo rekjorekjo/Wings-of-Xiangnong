@@ -5,7 +5,7 @@
 $ErrorActionPreference = "Stop"
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$ProjectName = "wings-of-xiangnong"
+$ProjectName = "wings"
 $Timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
 $OutputDir = Join-Path $Root "_upload_packages"

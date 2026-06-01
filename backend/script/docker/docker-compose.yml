@@ -4,25 +4,25 @@
 
 version: "3.4"
 
-name: yshop-system
+name: wings-system
 
 services:
   mysql:
-    container_name: yshop-mysql
+    container_name: wings-mysql
     image: mysql:8
     restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-yixiang-drink}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wings-drink}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
     volumes:
       - mysql:/var/lib/mysql/
-      - ./sql/mysql/yixiang-drink.sql:/docker-entrypoint-initdb.d/yixiang-drink.sql:ro
+      - ./sql/mysql/wings-drink.sql:/docker-entrypoint-initdb.d/wings-drink.sql:ro
 
   redis:
-    container_name: yshop-redis
+    container_name: wings-redis
     image: redis:6-alpine
     restart: unless-stopped
     ports:
@@ -31,10 +31,10 @@ services:
       - redis:/data
 
   server:
-    container_name: yshop-server
+    container_name: wings-server
     build:
       context: ../../server/
-    image: yshop-server
+    image: wings-server
     restart: unless-stopped
     ports:
       - "18081:18081"
@@ -48,21 +48,21 @@ services:
           -Djava.security.egd=file:/dev/./urandom
         }
       ARGS:
-        --spring.datasource.dynamic.datasource.master.url=${MASTER_DATASOURCE_URL:-jdbc:mysql://yshop-mysql:3306/yixiang-drink?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true}
+        --spring.datasource.dynamic.datasource.master.url=${MASTER_DATASOURCE_URL:-jdbc:mysql://wings-mysql:3306/wings-drink?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true}
         --spring.datasource.dynamic.datasource.master.username=${MASTER_DATASOURCE_USERNAME:-root}
         --spring.datasource.dynamic.datasource.master.password=${MASTER_DATASOURCE_PASSWORD:-123456}
-        --spring.datasource.dynamic.datasource.slave.url=${SLAVE_DATASOURCE_URL:-jdbc:mysql://yshop-mysql:3306/yixiang-drink?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true}
+        --spring.datasource.dynamic.datasource.slave.url=${SLAVE_DATASOURCE_URL:-jdbc:mysql://wings-mysql:3306/wings-drink?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true}
         --spring.datasource.dynamic.datasource.slave.username=${SLAVE_DATASOURCE_USERNAME:-root}
         --spring.datasource.dynamic.datasource.slave.password=${SLAVE_DATASOURCE_PASSWORD:-123456}
-        --spring.data.redis.host=${REDIS_HOST:-yshop-redis}
+        --spring.data.redis.host=${REDIS_HOST:-wings-redis}
     depends_on:
       - mysql
       - redis
 
   admin:
-    container_name: yshop-admin
+    container_name: wings-admin
     build:
-      context: ./yshop-ui-admin
+      context: ./wings-ui-admin
       args:
         NODE_ENV:
           ENV=${NODE_ENV:-production}
@@ -74,7 +74,7 @@ services:
           VUE_APP_CAPTCHA_ENABLE=${VUE_APP_CAPTCHA_ENABLE:-true}
           VUE_APP_DOC_ENABLE=${VUE_APP_DOC_ENABLE:-true}
           VUE_APP_BAIDU_CODE=${VUE_APP_BAIDU_CODE:-fadc1bd5db1a1d6f581df60a1807f8ab}
-    image: yshop-admin
+    image: wings-admin
     restart: unless-stopped
     ports:
       - "8080:80"

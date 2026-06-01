@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop-module-mall</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings-module-mall</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>yshop-module-store-api</artifactId>
+    <artifactId>wings-module-store-api</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -19,8 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-common</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-common</artifactId>
         </dependency>
 
         <!-- 参数校验 -->

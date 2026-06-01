@@ -163,7 +163,7 @@
 				<!-- #ifdef H5 -->
 				<list-cell last v-if="FEATURES.alipay">
 					<view class="d-flex align-items-center justify-content-between w-100" @click="setPayType('alipay')">
-						<view class="iconfont-yshop icon-alipay line-height-100 payment-icon" style="color:#07b4fd" ></view>
+						<view class="iconfont-wings icon-alipay line-height-100 payment-icon" style="color:#07b4fd" ></view>
 						<view class="flex-fill">支付宝</view>
 						<view class="iconfont line-height-100 checkbox checked iconradio-button-on" v-if="payType == 'alipay'" ></view>
 						<view class="iconfont line-height-100 checkbox iconradio-button-off" v-else ></view>     

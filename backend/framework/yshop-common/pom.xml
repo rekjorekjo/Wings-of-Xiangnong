@@ -3,17 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop-framework</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings-framework</artifactId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-common</artifactId>
+    <artifactId>wings-common</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>定义基础 pojo 类、枚举、工具类等等</description>
-    <url>https://gitee.com/guchengwuyue/yshop-drink</url>
+    <url>https://gitee.com/guchengwuyue/wings</url>
 
     <dependencies>
         <!-- Spring 核心 -->

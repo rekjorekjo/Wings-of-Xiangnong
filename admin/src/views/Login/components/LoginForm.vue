@@ -122,7 +122,7 @@ const loginData = reactive({
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE,
   loginForm: {
     tenantName: '香农之翼',
-    //username: 'yshop002',
+    //username: 'wings002',
     //password: '123456789',
     username: 'admin',
     password: 'admin123',

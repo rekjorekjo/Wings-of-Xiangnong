@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>co.yixiang.boot</groupId>
-    <artifactId>yshop</artifactId>
+    <groupId>com.wings</groupId>
+    <artifactId>wings</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
@@ -27,8 +27,8 @@
     </modules>
 
     <name>${project.artifactId}</name>
-    <description>yshop项目基础脚手架</description>
-    <url>https://gitee.com/guchengwuyue/yshop-drink</url>
+    <description>wings项目基础脚手架</description>
+    <url>https://gitee.com/guchengwuyue/wings</url>
 
     <properties>
         <revision>3.0.0</revision>
@@ -49,8 +49,8 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>co.yixiang.boot</groupId>
-                <artifactId>yshop-dependencies</artifactId>
+                <groupId>com.wings</groupId>
+                <artifactId>wings-dependencies</artifactId>
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>

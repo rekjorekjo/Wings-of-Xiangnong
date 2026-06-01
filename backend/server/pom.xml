@@ -3,32 +3,32 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings</artifactId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yshop-server</artifactId>
+    <artifactId>wings-server</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>
-        后端 Server 的主项目，通过引入需要 yshop-module-xxx 的依赖，
+        后端 Server 的主项目，通过引入需要 wings-module-xxx 的依赖，
         从而实现提供 RESTful API 给前端项目。
         本质上来说，它就是个空壳（容器）！！
     </description>
-    <url>https://gitee.com/guchengwuyue/yshop-drink</url>
+    <url>https://gitee.com/guchengwuyue/wings</url>
 
     <dependencies>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-system-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-system-biz</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-infra-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-infra-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
@@ -44,66 +44,66 @@
 
         <!-- 支付服务 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-pay-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-pay-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <!-- 快递服务 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-express-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-express-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
 
         <!-- 消息服务 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-message-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-message-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <!-- 微信公众号模块。默认注释，保证编译速度 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-mp-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-mp-biz</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-shop-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-shop-biz</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-order-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-order-biz</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-coupon-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-coupon-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-score-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-score-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <!-- 配送服务 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-delivery-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-delivery-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
 
         <!-- 服务保障相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-protection</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-protection</artifactId>
         </dependency>
 
     </dependencies>

@@ -10,7 +10,7 @@ BASE_PATH=/work/projects/wings-backend
 # 编译后 jar 的地址。部署时，Jenkins 会上传 jar 包到该目录下
 SOURCE_PATH=$BASE_PATH/build
 # 服务名称。同时约定部署服务的 jar 包名字也为它。
-SERVER_NAME=yshop-server
+SERVER_NAME=wings-server
 # 环境
 PROFILES_ACTIVE=development
 # 健康检查 URL

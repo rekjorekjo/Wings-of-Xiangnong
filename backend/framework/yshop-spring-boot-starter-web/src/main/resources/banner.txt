@@ -1,4 +1,4 @@
-香农之翼 Wings of Xiangnong
+香农之翼 Wings
 DC 香农咖啡无人机配送 MVP
-Application Version: ${yshop.info.version}
+Application Version: ${wings.info.version}
 Spring Boot Version: ${spring-boot.version}

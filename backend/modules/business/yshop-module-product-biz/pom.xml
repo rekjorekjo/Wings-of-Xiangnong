@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>co.yixiang.boot</groupId>
-        <artifactId>yshop-module-mall</artifactId>
+        <groupId>com.wings</groupId>
+        <artifactId>wings-module-mall</artifactId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-module-product-biz</artifactId>
+    <artifactId>wings-module-product-biz</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -19,48 +19,48 @@
 
     <dependencies>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-product-api</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-product-api</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-module-store-biz</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-module-store-biz</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <!-- 业务组件 -->
 <!--        <dependency>-->
-<!--            <groupId>co.yixiang.boot</groupId>-->
-<!--            <artifactId>yshop-spring-boot-starter-biz-operatelog</artifactId>-->
+<!--            <groupId>com.wings</groupId>-->
+<!--            <artifactId>wings-spring-boot-starter-biz-operatelog</artifactId>-->
 <!--        </dependency>-->
 
         <!-- Web 相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-web</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-security</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- DB 相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-mybatis</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-mybatis</artifactId>
         </dependency>
 
         <!-- Test 测试相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-test</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-test</artifactId>
         </dependency>
 
         <!-- 工具类相关 -->
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-spring-boot-starter-excel</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-spring-boot-starter-excel</artifactId>
         </dependency>
     </dependencies>
 

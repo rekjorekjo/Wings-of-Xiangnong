@@ -21,7 +21,7 @@ export interface CouponVO {
   limit: number
 }
 
-// 兼容旧 yshop 类型名，后续逐步迁移调用方到新类型名。
+// 兼容旧 wings 类型名，后续逐步迁移调用方到新类型名。
 export type VO = CouponVO
 // 查询优惠券列表
 export const getCouponList = async () => {

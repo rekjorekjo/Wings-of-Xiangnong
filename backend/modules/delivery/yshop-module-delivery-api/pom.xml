@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>yshop-module-delivery</artifactId>
-        <groupId>co.yixiang.boot</groupId>
+        <artifactId>wings-module-delivery</artifactId>
+        <groupId>com.wings</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>yshop-module-delivery-api</artifactId>
+    <artifactId>wings-module-delivery-api</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -18,8 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>co.yixiang.boot</groupId>
-            <artifactId>yshop-common</artifactId>
+            <groupId>com.wings</groupId>
+            <artifactId>wings-common</artifactId>
         </dependency>
 
         <!-- 参数校验 -->

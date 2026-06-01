@@ -1,7 +1,7 @@
 # Docker Build & Up
 
 目标: 快速部署体验系统，帮助了解系统之间的依赖关系。
-依赖：docker compose v2，删除`name: yshop-system`，降低`version`版本为`3.3`以下，支持`docker-compose`。
+依赖：docker compose v2，删除`name: wings-system`，降低`version`版本为`3.3`以下，支持`docker-compose`。
 
 ## 功能文件列表
 
@@ -12,7 +12,7 @@
 ├── docker.env                      <-- 提供docker-compose环境变量配置
 ├── server
 │   └── Dockerfile
-└── yshop-ui-admin
+└── wings-ui-admin
     ├── .dockerignore
     ├── Dockerfile
     └── nginx.conf                  <-- 提供基础配置，gzip压缩、api转发
@@ -22,10 +22,10 @@
 
 ```shell
 # 创建maven缓存volume
-docker volume create --name yshop-maven-repo
+docker volume create --name wings-maven-repo
 
-docker run -it --rm --name yshop-maven \
-    -v yshop-maven-repo:/root/.m2 \
+docker run -it --rm --name wings-maven \
+    -v wings-maven-repo:/root/.m2 \
     -v $PWD:/usr/src/mymaven \
     -w /usr/src/mymaven \
     maven mvn clean install package '-Dmaven.test.skip=true'
