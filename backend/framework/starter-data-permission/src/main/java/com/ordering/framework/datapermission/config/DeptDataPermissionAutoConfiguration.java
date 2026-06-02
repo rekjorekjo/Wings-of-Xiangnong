@@ -3,7 +3,7 @@ package com.ordering.framework.datapermission.config;
 import com.ordering.framework.datapermission.core.rule.dept.DeptDataPermissionRule;
 import com.ordering.framework.datapermission.core.rule.dept.DeptDataPermissionRuleCustomizer;
 import com.ordering.framework.security.core.LoginUser;
-import com.ordering.module.system.api.permission.PermissionApi;
+import com.ordering.system.api.permission.PermissionApi;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

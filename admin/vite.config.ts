@@ -73,6 +73,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         }
       }
     },
-    optimizeDeps: { include, exclude }
+    optimizeDeps: { include, exclude, entries: ['index.html', 'src/**/*.{vue,ts,js,tsx,jsx}'] }
   }
 }

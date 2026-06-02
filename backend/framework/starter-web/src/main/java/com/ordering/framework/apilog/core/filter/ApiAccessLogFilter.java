@@ -18,7 +18,7 @@ import com.ordering.framework.common.util.servlet.ServletUtils;
 import com.ordering.framework.web.config.WebProperties;
 import com.ordering.framework.web.core.filter.ApiRequestFilter;
 import com.ordering.framework.web.core.util.WebFrameworkUtils;
-import com.ordering.module.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
+import com.ordering.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

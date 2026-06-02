@@ -146,22 +146,22 @@ logging:
     name: ${user.home}/logs/${spring.application.name}.log # 日志文件名，全路径
   level:
     # 配置自己写的 MyBatis Mapper 打印日志
-    com.ordering.module.bpm.dal.mysql: debug
-    com.ordering.module.infra.dal.mysql: debug
-    com.ordering.module.infra.dal.mysql.logger.ApiErrorLogMapper: INFO # 配置 ApiErrorLogMapper 的日志级别为 info，避免和 GlobalExceptionHandler 重复打印
-    com.ordering.module.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
-    com.ordering.module.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
-    com.ordering.module.pay.dal.mysql: debug
-    com.ordering.module.pay.dal.mysql.notify.PayNotifyTaskMapper: INFO # 配置 PayNotifyTaskMapper 的日志级别为 info
-    com.ordering.module.system.dal.mysql: debug
-    com.ordering.module.system.dal.mysql.sms.SmsChannelMapper: INFO # 配置 SmsChannelMapper 的日志级别为 info
-    com.ordering.module.tool.dal.mysql: debug
-    com.ordering.module.member.dal.mysql: debug
-    com.ordering.module.order.dal.mysql: debug
-    com.ordering.module.product.dal.mysql: debug
-    com.ordering.module.store.dal.mysql: debug
-    com.ordering.module.shop.dal.mysql: debug
-    com.ordering.module.coupon.dal.mysql: debug
+    com.ordering.bpm.dal.mysql: debug
+    com.ordering.infra.dal.mysql: debug
+    com.ordering.infra.dal.mysql.logger.ApiErrorLogMapper: INFO # 配置 ApiErrorLogMapper 的日志级别为 info，避免和 GlobalExceptionHandler 重复打印
+    com.ordering.infra.dal.mysql.job.JobLogMapper: INFO # 配置 JobLogMapper 的日志级别为 info
+    com.ordering.infra.dal.mysql.file.FileConfigMapper: INFO # 配置 FileConfigMapper 的日志级别为 info
+    com.ordering.pay.dal.mysql: debug
+    com.ordering.pay.dal.mysql.notify.PayNotifyTaskMapper: INFO # 配置 PayNotifyTaskMapper 的日志级别为 info
+    com.ordering.system.dal.mysql: debug
+    com.ordering.system.dal.mysql.sms.SmsChannelMapper: INFO # 配置 SmsChannelMapper 的日志级别为 info
+    com.ordering.tool.dal.mysql: debug
+    com.ordering.member.dal.mysql: debug
+    com.ordering.order.dal.mysql: debug
+    com.ordering.product.dal.mysql: debug
+    com.ordering.store.dal.mysql: debug
+    com.ordering.shop.dal.mysql: debug
+    com.ordering.coupon.dal.mysql: debug
     org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 
 debug: false

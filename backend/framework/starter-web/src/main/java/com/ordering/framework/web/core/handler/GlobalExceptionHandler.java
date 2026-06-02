@@ -11,7 +11,7 @@ import com.ordering.framework.common.util.json.JsonUtils;
 import com.ordering.framework.common.util.monitor.TracerUtils;
 import com.ordering.framework.common.util.servlet.ServletUtils;
 import com.ordering.framework.web.core.util.WebFrameworkUtils;
-import com.ordering.module.infra.api.logger.dto.ApiErrorLogCreateReqDTO;
+import com.ordering.infra.api.logger.dto.ApiErrorLogCreateReqDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;

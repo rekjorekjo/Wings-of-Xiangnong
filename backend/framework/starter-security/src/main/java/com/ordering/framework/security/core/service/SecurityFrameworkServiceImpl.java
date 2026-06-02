@@ -3,7 +3,7 @@ package com.ordering.framework.security.core.service;
 import cn.hutool.core.collection.CollUtil;
 import com.ordering.framework.security.core.LoginUser;
 import com.ordering.framework.security.core.util.SecurityFrameworkUtils;
-import com.ordering.module.system.api.permission.PermissionApi;
+import com.ordering.system.api.permission.PermissionApi;
 import lombok.AllArgsConstructor;
 
 import java.util.Arrays;

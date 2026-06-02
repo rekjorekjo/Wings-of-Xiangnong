@@ -1,7 +1,7 @@
 package com.ordering.framework.apilog.core.service;
 
-import com.ordering.module.infra.api.logger.ApiAccessLogApi;
-import com.ordering.module.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
+import com.ordering.infra.api.logger.ApiAccessLogApi;
+import com.ordering.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 

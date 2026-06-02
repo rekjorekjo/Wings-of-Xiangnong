@@ -1,92 +1,145 @@
-# 后端
+# 香农之翼后端
 
-## 职责
+Spring Boot 后端服务，提供点餐、配送、用户管理等核心 API。
 
-- 提供管理端与小程序端所需 REST API
-- 承载用户、商品、订单、支付、优惠券等基础业务能力
-- 承载配送任务、无人机状态、配送轨迹等履约能力
-- 当前 MVP 阶段：非核心模块保留代码，但前端入口冻结
+## 后端概览
 
-## 技术栈
-
-- Java 17
-- Spring Boot 3
-- MyBatis Plus
-- MySQL 8
-- Redis
-
-## 启动方式
-
-```bash
-cd backend
-mvn clean install -DskipTests
-```
-
-启动类：`com.ordering.server.BackendApplication`
-
-## 本地配置
-
-- 配置文件：`backend/server/src/main/resources/application-local.yaml`
-- 端口：18081
-- 数据库：app
-- Redis：127.0.0.1:6379
+- **Spring Boot**：3.2.2
+- **Java**：17
+- **Maven**：多模块项目
+- **启动类**：`com.ordering.server.BackendApplication`
+- **Profile**：local（本地开发）
 
 ## 目录结构
 
 ```text
 backend/
-├── dependencies/       # Maven 依赖版本管理
-├── framework/          # 基础框架能力
-│   ├── common/                 # 公共工具、常量、异常、响应结构
-│   ├── starter-web/            # Web、异常处理、跨域、响应包装
-│   ├── starter-security/       # 登录认证、权限校验
-│   ├── starter-mybatis/        # MyBatis Plus、数据源、分页
-│   ├── starter-redis/          # Redis、缓存
-│   ├── starter-mq/             # 消息队列
-│   ├── starter-job/            # 定时任务
-│   ├── starter-excel/          # Excel 导入导出
-│   ├── starter-monitor/        # 监控链路
-│   ├── starter-protection/     # 限流、防重复提交
-│   ├── starter-websocket/      # WebSocket
-│   ├── starter-tenant/         # 多租户
-│   ├── starter-data-permission/# 数据权限
-│   ├── starter-ip/             # IP 与地区解析
-│   └── starter-test/           # 测试基础设施
+├── dependencies/       # Maven 依赖版本管理（BOM）
+├── framework/          # 基础框架 Starter 模块
 ├── server/             # Spring Boot 启动入口
-│   └── src/main/java/com/ordering/server/
-│       ├── BackendApplication.java
-│       └── controller/
-└── modules/            # 业务模块
-    ├── business/       # 商品、订单、店铺等点餐业务
-    ├── delivery/       # 配送履约
-    ├── system/         # 系统管理
-    ├── infra/          # 文件、配置、代码生成等基础设施
-    ├── pay/            # 支付
-    ├── member/         # 用户/会员底层能力
-    ├── marketing/      # 优惠券等营销能力
-    ├── message/        # 消息通知
-    ├── mp/             # 公众号，当前冻结
-    ├── score/          # 积分商城，当前冻结
-    └── express/        # 快递物流，当前冻结
+├── modules/            # 业务模块
+└── script/             # 辅助脚本（部署等）
 ```
 
-## 模块边界
+### 目录职责说明
 
-- `server` 只做启动入口，不放业务逻辑
-- `modules` 放业务代码
-- `framework` 放可复用基础能力
-- 订单模块负责交易状态
-- 配送模块负责履约状态
-- 无人机状态、电量、轨迹、位置独立管理，不塞进订单表
+| 目录 | 职责 |
+|------|------|
+| server | 启动入口，只放启动类和全局配置 |
+| dependencies | 依赖版本管理（BOM） |
+| framework | 基础 Starter 封装 |
+| modules | 业务模块（-api / -biz 结构） |
+| script | 部署脚本等辅助工具 |
 
-## 包名与配置前缀
+## framework 模块说明
 
-- Java 根包名：`com.ordering`
-- Maven groupId：`com.ordering`
-- Spring 配置前缀：`app`
+| 模块 | 职责 |
+|------|------|
+| common | 通用工具、异常、基础常量 |
+| starter-web | Web MVC、统一返回、全局异常 |
+| starter-security | 认证鉴权 |
+| starter-redis | Redis、缓存 |
+| starter-mybatis | MyBatis Plus |
+| starter-job | 定时任务（local 默认禁用） |
+| starter-mq | 消息队列能力 |
+| starter-monitor | 监控 |
+| starter-websocket | WebSocket |
+| starter-excel | Excel 导入导出 |
+| starter-tenant | 租户能力（当前项目不作为重点） |
+| starter-data-permission | 数据权限 |
+| starter-ip | IP 工具 |
+| starter-protection | 限流、防护等 |
+| starter-test | 测试支持 |
 
-`app` 仅作为内部配置前缀使用，不表示业务品牌。
+## modules 模块说明
 
-## 部署脚本说明
+每个业务领域分为 `-api`（接口定义、枚举、DTO）和 `-biz`（实现、Controller、Service、Mapper）。
 
-`backend/script` 下的脚本来自历史工程，本地开发以 `docs/localtest.md` 和 IDEA 启动为准；正式部署前需要单独校准。
+| 模块 | 职责 |
+|------|------|
+| system-api / system-biz | 用户、权限、角色、菜单、登录 |
+| infra-api / infra-biz | 文件、配置、日志、代码生成、基础设施 |
+| member-api / member-biz | 小程序用户、地址、会员信息 |
+| product-api / product-biz | 商品、分类、规格、评价等 |
+| order-api / order-biz | 订单、下单、订单状态 |
+| store-api / store-biz | 门店、站点 |
+| shop-api / shop-biz | 店铺运营素材、广告、服务等 |
+| delivery-api / delivery-biz | 配送任务、无人机配送状态、配送进度 |
+| pay-api / pay-biz | 支付能力 |
+| coupon-api / coupon-biz | 优惠券 |
+| score-api / score-biz | 积分商城（冻结） |
+| express-api / express-biz | 快递物流（冻结） |
+| mp-api / mp-biz | 公众号（冻结） |
+| message-api / message-biz | 消息通知 |
+
+### delivery 模块
+
+- **职责**：香农之翼新增的无人机配送履约能力
+- **内容**：配送任务管理、无人机状态管理、配送调度
+- **状态**：当前为 MVP 阶段，部分功能使用 mock 数据
+
+## 本地启动
+
+### 命令行编译
+
+```bash
+cd backend
+mvn -pl server -am -DskipTests clean compile
+```
+
+### IDEA 启动
+
+1. 用 IDEA 打开 `backend/pom.xml`
+2. 等待 Maven 索引完成
+3. 创建 Run Configuration：
+   - **Main class**：`com.ordering.server.BackendApplication`
+   - **Active profile**：`local`
+   - **Working directory**：`backend`
+4. 运行
+
+启动成功后访问：http://localhost:18081
+
+## 本地配置
+
+- **配置文件**：`server/src/main/resources/application-local.yaml`
+- **端口**：18081
+- **数据库**：MySQL 127.0.0.1:3306/app
+- **Redis**：127.0.0.1:6379
+
+### 数据库配置示例
+
+```yaml
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/app
+          username: root
+          password: root
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+```
+
+## API 端点
+
+- **管理端 API**：`http://localhost:18081/admin-api`
+- **小程序 API**：`http://localhost:18081/app-api`
+
+## 架构原则
+
+- 订单负责交易
+- 配送任务负责履约
+- 无人机状态、电量、轨迹、位置不写入订单表
+
+## 冻结功能
+
+以下模块已冻结，源码保留但不启用：
+
+- 积分商城（score-api/score-biz）
+- 快递物流（express-api/express-biz）
+- 公众号（mp-api/mp-biz）
+
+冻结功能不删除源码，后续如需启用只需恢复配置和菜单入口。

@@ -10,20 +10,37 @@
     <modules>
         <module>dependencies</module>
         <module>framework</module>
-        <!-- Server 主项目 -->
+
         <module>server</module>
-        <!-- 业务模块 -->
-        <module>modules/business</module>
-        <module>modules/system</module>
-        <module>modules/infra</module>
-        <module>modules/pay</module>
-        <module>modules/mp</module>
-        <module>modules/message</module>
-        <module>modules/score</module>
-        <module>modules/express</module>
-        <module>modules/marketing</module>
-        <module>modules/member</module>
-        <module>modules/delivery</module>
+
+        <module>modules/coupon-api</module>
+        <module>modules/coupon-biz</module>
+        <module>modules/delivery-api</module>
+        <module>modules/delivery-biz</module>
+        <module>modules/express-api</module>
+        <module>modules/express-biz</module>
+        <module>modules/infra-api</module>
+        <module>modules/infra-biz</module>
+        <module>modules/member-api</module>
+        <module>modules/member-biz</module>
+        <module>modules/message-api</module>
+        <module>modules/message-biz</module>
+        <module>modules/mp-api</module>
+        <module>modules/mp-biz</module>
+        <module>modules/order-api</module>
+        <module>modules/order-biz</module>
+        <module>modules/pay-api</module>
+        <module>modules/pay-biz</module>
+        <module>modules/product-api</module>
+        <module>modules/product-biz</module>
+        <module>modules/score-api</module>
+        <module>modules/score-biz</module>
+        <module>modules/shop-api</module>
+        <module>modules/shop-biz</module>
+        <module>modules/store-api</module>
+        <module>modules/store-biz</module>
+        <module>modules/system-api</module>
+        <module>modules/system-biz</module>
     </modules>
 
     <name>${project.artifactId}</name>

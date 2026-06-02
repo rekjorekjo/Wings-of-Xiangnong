@@ -16,7 +16,7 @@ import com.ordering.framework.tenant.core.service.TenantFrameworkServiceImpl;
 import com.ordering.framework.tenant.core.web.TenantContextWebFilter;
 import com.ordering.framework.web.config.WebProperties;
 import com.ordering.framework.web.core.handler.GlobalExceptionHandler;
-import com.ordering.module.system.api.tenant.TenantApi;
+import com.ordering.system.api.tenant.TenantApi;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

@@ -1,21 +1,16 @@
 # 本地启动与测试说明
 
-这份文档用于从“本机服务都没启动”的状态，把香农之翼本地环境跑起来，并做一轮基础检查。
+这份文档用于从"本机服务都没启动"的状态，把香农之翼本地环境跑起来，并做一轮基础检查。
 
-
-
-[TOC]
-
-
-
-当前项目目录：
+## 当前项目目录
 
 ```text
-App/
+<project-root>/
 ├── backend   # Spring Boot 后端
 ├── admin     # Vue3 管理端
 ├── miniapp   # uni-app 小程序端
-└── docs      # 项目文档
+├── docs      # 项目文档
+└── assets    # 本地素材目录（不提交 GitHub）
 ```
 
 ---
@@ -25,12 +20,12 @@ App/
 | 项目       | 当前约定                           |
 | ---------- | ---------------------------------- |
 | JDK        | 17                                 |
-| Maven      | 3.8+                               |
+| Maven      | 3.9+                               |
 | MySQL      | 8.x                                |
 | Redis      | 127.0.0.1:6379                     |
 | Node       | 20                                 |
-| pnpm       | 10                                 |
-| 数据库名   | `app`               |
+| pnpm       | 最新版                             |
+| 数据库名   | `app`                              |
 | 后端端口   | `18081`                            |
 | 管理端端口 | `80`                               |
 | 管理端地址 | `http://localhost:80`              |
@@ -250,8 +245,8 @@ PONG
 ### 5.1 编译后端
 
 ```powershell
-cd F:\projects\App\backend
-mvn clean install -DskipTests
+cd backend
+mvn -pl server -am -DskipTests clean compile
 ```
 
 这里使用 `-DskipTests` 是正常的。当前测试用例可能卡住或依赖不完整，不作为本地启动前置条件。
@@ -267,7 +262,7 @@ backend/pom.xml
 启动类：
 
 ```text
-backend/server/src/main/java/co/app/app/server/BackendApplication.java
+backend/server/src/main/java/com/ordering/server/BackendApplication.java
 ```
 
 主类名：
@@ -319,7 +314,7 @@ ClassNotFoundException: com.ordering.server.BackendApplication
 ## 6. 启动管理端 admin
 
 ```powershell
-cd F:\projects\App\admin
+cd admin
 pnpm install
 pnpm dev
 ```
@@ -349,7 +344,7 @@ VITE_APP_CAPTCHA_ENABLE=false
 如果报 `esbuild` 或其它依赖找不到：
 
 ```powershell
-cd F:\projects\App\admin
+cd admin
 pnpm install
 pnpm dev
 ```
@@ -439,7 +434,7 @@ http://localhost:18081/app-api
 5. 商品、订单页面是否因为路径重命名打不开
 ```
 
-如果某些菜单被隐藏，不要为了测试临时改菜单。记录“未验证，菜单隐藏”即可。
+如果某些菜单被隐藏，不要为了测试临时改菜单。记录"未验证，菜单隐藏"即可。
 
 ---
 
@@ -448,7 +443,7 @@ http://localhost:18081/app-api
 admin 能启动后，可以试：
 
 ```powershell
-cd F:\projects\App\admin
+cd admin
 pnpm build
 ```
 
@@ -459,19 +454,68 @@ pnpm build
 
 ## 10. 常见问题速查
 
-### 10.1 后端根路径返回 401
+### 10.1 Unknown database 'app'
+
+**原因**：数据库 `app` 不存在。
+
+**解决**：创建 `app` 数据库并导入表。
+
+```sql
+CREATE DATABASE app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+然后导入数据库 dump。
+
+### 10.2 Table 'app.app_store_shop' doesn't exist
+
+**原因**：表名前缀迁移未完成，或数据库版本过旧。
+
+**解决**：确认所有业务表使用 `app_` 前缀。检查数据库 dump 是否为最新版本。
+
+### 10.3 Rollup missing @rollup/rollup-linux-x64-gnu
+
+**原因**：Windows / WSL 混用 node_modules 导致平台包不匹配。
+
+**解决**：删除 `node_modules` 后在当前运行环境重新 `pnpm install`。
+
+```powershell
+cd admin
+Remove-Item -Recurse -Force node_modules
+pnpm install
+```
+
+**注意**：必须在 Windows PowerShell 中安装和运行依赖，不要混用 WSL 和 Windows node_modules。
+
+### 10.4 小程序 auth-session 登录失败
+
+**原因**：测试号或 AppID/secret 不匹配会导致真实微信登录失败。
+
+**解决**：local 阶段后续可使用 mock login。
+
+### 10.5 端口 80 被占用
+
+**说明**：admin 会自动尝试 81，访问 `http://localhost:81/`。
+
+如需释放端口：
+
+```powershell
+netstat -ano | findstr :80
+taskkill /PID <PID> /F
+```
+
+### 10.6 后端根路径返回 401
 
 正常。说明后端服务已启动，鉴权生效。
 
-### 10.2 Maven 测试卡住
+### 10.7 Maven 测试卡住
 
 使用：
 
 ```powershell
-mvn clean install -DskipTests
+mvn -pl server -am -DskipTests clean compile
 ```
 
-### 10.3 MySQL 连接失败
+### 10.8 MySQL 连接失败
 
 检查：
 
@@ -488,7 +532,7 @@ mysql -u root -p
 3. application-local.yaml 的 username/password 和本机一致
 ```
 
-### 10.4 Redis 连接失败
+### 10.9 Redis 连接失败
 
 检查：
 
@@ -508,7 +552,7 @@ redis-cli ping
 PONG
 ```
 
-### 10.5 后端 18081 启动失败
+### 10.10 后端 18081 启动失败
 
 检查端口占用：
 
@@ -522,7 +566,7 @@ netstat -ano | findstr :18081
 taskkill /PID <PID> /F
 ```
 
-### 10.6 admin 登录接口失败
+### 10.11 admin 登录接口失败
 
 先确认后端：
 
@@ -539,7 +583,7 @@ VITE_BASE_URL='http://localhost:18081'
 VITE_API_URL=/admin-api
 ```
 
-### 10.7 IDEA 启动类找不到
+### 10.12 IDEA 启动类找不到
 
 重新导入：
 
@@ -550,7 +594,7 @@ backend/pom.xml
 然后重新创建 Run Configuration。  
 不要沿用目录重命名前的旧启动配置。
 
-### 10.8 pnpm dev 没加载 .env.dev
+### 10.13 pnpm dev 没加载 .env.dev
 
 当前 `admin/package.json` 的 dev 脚本应使用：
 
@@ -596,4 +640,3 @@ pnpm dev
 ```
 
 不要贴整屏重复日志。第一段错误通常最有用。
-

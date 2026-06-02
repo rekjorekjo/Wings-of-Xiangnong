@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ordering</groupId>
+        <artifactId>backend</artifactId>
+        <version>${revision}</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>member-biz</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>
+        member 模块，我们放会员业务。
+        例如说：会员中心等等
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>member-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>system-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>infra-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>coupon-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>shop-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <!-- 业务组件 -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>wx-java-mp-spring-boot-starter</artifactId> <!-- 微信登录（公众号） -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>  <!-- 微信登录（小程序） -->
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-tenant</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- DB 相关 -->
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-redis</artifactId>
+        </dependency>
+        <!-- 消息队列相关 -->
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-mq</artifactId>
+        </dependency>
+
+        <!-- Test 测试相关 -->
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ordering</groupId>
+            <artifactId>starter-ip</artifactId>
+        </dependency>
+
+
+        <!-- 工具类相关 -->
+    </dependencies>
+
+</project>

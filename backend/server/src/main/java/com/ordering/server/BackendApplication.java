@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author project team
  */
 @SuppressWarnings("SpringComponentScan") // 忽略 IDEA 无法识别 ${app.info.base-package}
-@SpringBootApplication(scanBasePackages = {"${app.info.base-package}.server", "${app.info.base-package}.module"})
+@SpringBootApplication(scanBasePackages = "${app.info.base-package}")
 public class BackendApplication {
 
     public static void main(String[] args){

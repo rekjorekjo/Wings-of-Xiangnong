@@ -8,8 +8,8 @@ import com.ordering.framework.security.core.handler.AuthenticationEntryPointImpl
 import com.ordering.framework.security.core.service.SecurityFrameworkService;
 import com.ordering.framework.security.core.service.SecurityFrameworkServiceImpl;
 import com.ordering.framework.web.core.handler.GlobalExceptionHandler;
-import com.ordering.module.system.api.oauth2.OAuth2TokenApi;
-import com.ordering.module.system.api.permission.PermissionApi;
+import com.ordering.system.api.oauth2.OAuth2TokenApi;
+import com.ordering.system.api.permission.PermissionApi;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

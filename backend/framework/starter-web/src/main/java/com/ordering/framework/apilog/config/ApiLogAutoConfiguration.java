@@ -9,8 +9,8 @@ import com.ordering.framework.apilog.core.service.ApiErrorLogFrameworkServiceImp
 import com.ordering.framework.common.enums.WebFilterOrderEnum;
 import com.ordering.framework.web.config.WebProperties;
 import com.ordering.framework.web.config.WebAutoConfiguration;
-import com.ordering.module.infra.api.logger.ApiAccessLogApi;
-import com.ordering.module.infra.api.logger.ApiErrorLogApi;
+import com.ordering.infra.api.logger.ApiAccessLogApi;
+import com.ordering.infra.api.logger.ApiErrorLogApi;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;

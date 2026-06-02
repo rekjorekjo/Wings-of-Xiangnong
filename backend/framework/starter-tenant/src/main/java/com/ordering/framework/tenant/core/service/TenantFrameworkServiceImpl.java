@@ -2,7 +2,7 @@ package com.ordering.framework.tenant.core.service;
 
 import com.ordering.framework.common.exception.ServiceException;
 import com.ordering.framework.common.util.cache.CacheUtils;
-import com.ordering.module.system.api.tenant.TenantApi;
+import com.ordering.system.api.tenant.TenantApi;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.RequiredArgsConstructor;

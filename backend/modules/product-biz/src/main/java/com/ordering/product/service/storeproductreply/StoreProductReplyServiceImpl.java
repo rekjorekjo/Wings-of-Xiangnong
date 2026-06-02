@@ -1,0 +1,74 @@
+package com.ordering.product.service.storeproductreply;
+
+import cn.hutool.core.util.StrUtil;
+import com.ordering.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.ordering.product.controller.app.product.vo.AppStoreProductReplyQueryVo;
+import com.ordering.product.dal.dataobject.storeproduct.StoreProductDO;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.stereotype.Service;
+import jakarta.annotation.Resource;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.*;
+import com.ordering.product.controller.admin.storeproductreply.vo.*;
+import com.ordering.product.dal.dataobject.storeproductreply.StoreProductReplyDO;
+import com.ordering.framework.common.pojo.PageResult;
+
+import com.ordering.product.convert.storeproductreply.StoreProductReplyConvert;
+import com.ordering.product.dal.mysql.storeproductreply.StoreProductReplyMapper;
+
+import static com.ordering.framework.common.exception.util.ServiceExceptionUtil.exception;
+import static com.ordering.product.enums.ErrorCodeConstants.*;
+
+/**
+ * 评论 Service 实现类
+ *
+ * @author project team
+ */
+@Service
+@Validated
+public class StoreProductReplyServiceImpl implements StoreProductReplyService {
+
+    @Resource
+    private StoreProductReplyMapper storeProductReplyMapper;
+
+
+    @Override
+    public void updateStoreProductReply(StoreProductReplyUpdateReqVO updateReqVO) {
+        // 校验存在
+        validateStoreProductReplyExists(updateReqVO.getId());
+        // 更新
+        StoreProductReplyDO updateObj = StoreProductReplyConvert.INSTANCE.convert(updateReqVO);
+        storeProductReplyMapper.updateById(updateObj);
+    }
+
+    @Override
+    public void deleteStoreProductReply(Long id) {
+        // 校验存在
+        validateStoreProductReplyExists(id);
+        // 删除
+        storeProductReplyMapper.deleteById(id);
+    }
+
+    private void validateStoreProductReplyExists(Long id) {
+        if (storeProductReplyMapper.selectById(id) == null) {
+            throw exception(STORE_PRODUCT_REPLY_NOT_EXISTS);
+        }
+    }
+
+    @Override
+    public StoreProductReplyDO getStoreProductReply(Long id) {
+        return storeProductReplyMapper.selectById(id);
+    }
+
+    @Override
+    public PageResult<AppStoreProductReplyQueryVo> getStoreProductReplyPage(StoreProductReplyPageReqVO pageReqVO) {
+                Page<StoreProductReplyDO> pageModel = new Page<>(pageReqVO.getPageNo(), pageReqVO.getPageSize());
+        List<AppStoreProductReplyQueryVo> list = storeProductReplyMapper
+                .allReplyList(pageModel,pageReqVO.getNickname());
+        return new PageResult<>(list, storeProductReplyMapper.allReplyListCount(pageReqVO.getNickname()));
+    }
+
+
+}
