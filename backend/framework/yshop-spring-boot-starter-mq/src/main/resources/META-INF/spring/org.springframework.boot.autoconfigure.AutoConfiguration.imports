@@ -1,3 +1,0 @@
-com.wings.framework.mq.redis.config.WingsRedisMQProducerAutoConfiguration
-com.wings.framework.mq.redis.config.WingsRedisMQConsumerAutoConfiguration
-com.wings.framework.mq.rabbitmq.config.WingsRabbitMQAutoConfiguration

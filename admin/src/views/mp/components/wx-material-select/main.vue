@@ -1,6 +1,5 @@
 <!--
   - Copyright (C) 2018-2019
-  - All rights reserved, Designed By www.joolun.com
   历史功能保留：
   ① 移除 avue 组件，使用 ElementUI 原生组件
 -->

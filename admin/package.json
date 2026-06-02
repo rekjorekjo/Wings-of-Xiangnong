@@ -133,12 +133,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitee.com/guchengwuyue/wings"
+    "url": "git+https://github.com/rekjorekjo/project"
   },
   "bugs": {
-    "url": "https://gitee.com/guchengwuyue/wings"
+    "url": "https://github.com/rekjorekjo/project"
   },
-  "homepage": "https://gitee.com/guchengwuyue/wings",
+  "homepage": "https://github.com/rekjorekjo/project",
   "engines": {
     "node": ">= 16.0.0",
     "pnpm": ">=8.6.0"

@@ -1,0 +1,2 @@
+com.ordering.framework.quartz.config.QuartzAutoConfiguration
+com.ordering.framework.quartz.config.AsyncAutoConfiguration

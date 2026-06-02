@@ -1,0 +1,2 @@
+com.ordering.framework.datapermission.config.DataPermissionAutoConfiguration
+com.ordering.framework.datapermission.config.DeptDataPermissionAutoConfiguration

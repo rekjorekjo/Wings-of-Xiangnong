@@ -1,0 +1,3 @@
+com.ordering.framework.idempotent.config.IdempotentConfiguration
+com.ordering.framework.lock4j.config.Lock4jConfiguration
+com.ordering.framework.ratelimiter.config.RateLimiterConfiguration

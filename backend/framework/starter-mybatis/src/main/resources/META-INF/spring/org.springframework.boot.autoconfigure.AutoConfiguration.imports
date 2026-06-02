@@ -1,0 +1,3 @@
+com.ordering.framework.datasource.config.DataSourceAutoConfiguration
+com.ordering.framework.mybatis.config.MybatisAutoConfiguration
+com.ordering.framework.translate.config.TranslateAutoConfiguration

@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>wings</artifactId>
-        <groupId>com.wings</groupId>
+        <artifactId>backend</artifactId>
+        <groupId>com.ordering</groupId>
         <version>${revision}</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>wings-module-marketing</artifactId>
+    <artifactId>marketing</artifactId>
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
@@ -19,8 +19,8 @@
     </description>
 
     <modules>
-        <module>wings-module-coupon-api</module>
-        <module>wings-module-coupon-biz</module>
+        <module>coupon-api</module>
+        <module>coupon-biz</module>
     </modules>
 
 

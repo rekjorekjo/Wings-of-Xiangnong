@@ -40,7 +40,7 @@ export interface ProductVO {
   integral: number
 }
 
-// 兼容旧 wings 类型名，后续逐步迁移调用方到新类型名。
+// 兼容旧 app 类型名，后续逐步迁移调用方到新类型名。
 export type StoreProductVO = ProductVO
 
 export type ProductPageReqVO = Record<string, any>
@@ -85,7 +85,7 @@ export const updateProductSaleStatus = async (id,isShow) => {
   return await request.get({ url: `/product/store-product/sale?id=` + id + `&type=` + isShow })
 }
 
-// 兼容旧 wings API 函数名，调用方逐步迁移到新命名。
+// 兼容旧 app API 函数名，调用方逐步迁移到新命名。
 export const getStoreProductPage = getProductPage
 export const getStoreProduct = getProduct
 export const getStoreProductInfo = getProductInfo

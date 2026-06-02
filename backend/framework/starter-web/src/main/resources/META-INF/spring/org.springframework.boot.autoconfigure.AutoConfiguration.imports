@@ -1,0 +1,6 @@
+com.ordering.framework.apilog.config.ApiLogAutoConfiguration
+com.ordering.framework.jackson.config.JacksonAutoConfiguration
+com.ordering.framework.swagger.config.SwaggerAutoConfiguration
+com.ordering.framework.web.config.WebAutoConfiguration
+com.ordering.framework.xss.config.XssAutoConfiguration
+com.ordering.framework.banner.config.BannerAutoConfiguration

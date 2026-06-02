@@ -16,8 +16,8 @@
 								<view class="w-100 font-size-lg text-color-base text-truncate">{{ order.shop.name }}</view>
 							</view>
 							<view class="d-flex justify-content-end align-items-center w-40">
-								<view class="iconfont-wings icon-mobile"  @click="makePhoneCall(order.shop)" style="font-size: 45rpx;margin-right: 40rpx;"></view>
-								<view class="iconfont-wings icon-location"  @click="openLocation(order.shop)" style="font-size: 45rpx;"></view>
+								<view class="iconfont-app icon-mobile"  @click="makePhoneCall(order.shop)" style="font-size: 45rpx;margin-right: 40rpx;"></view>
+								<view class="iconfont-app icon-location"  @click="openLocation(order.shop)" style="font-size: 45rpx;"></view>
 							</view>
 						</view>
 					</list-cell>
@@ -32,19 +32,19 @@
 								<view class="steps d-flex flex-column w-80">
 									<view class="steps__img-column">
 										<view class="steps__img-column-item">
-											<view class="iconfont-wings icon-lamp"></view>
+											<view class="iconfont-app icon-lamp"></view>
 										</view>
 										<view class="steps__img-column-item">
-											<view class="iconfont-wings icon-daojishi" v-if="{active: order.paid == 1 && order.status == 0}"></view>
-											<view class="iconfont-wings icon-daojishi unactive" v-else></view>
+											<view class="iconfont-app icon-daojishi" v-if="{active: order.paid == 1 && order.status == 0}"></view>
+											<view class="iconfont-app icon-daojishi unactive" v-else></view>
 										</view>
 										<view class="steps__img-column-item" v-if="order.orderType == 'takeout'">
-											<view class="iconfont-wings icon-takeout" v-if="order.status == 1"></view>
-											<view class="iconfont-wings icon-takeout unactive" v-else></view>
+											<view class="iconfont-app icon-takeout" v-if="order.status == 1"></view>
+											<view class="iconfont-app icon-takeout unactive" v-else></view>
 										</view>
 										<view class="steps__img-column-item" >
-											<view class="iconfont-wings icon-doorbell" v-if="order.status >= 2"></view>
-											<view class="iconfont-wings icon-doorbell unactive" v-else></view>
+											<view class="iconfont-app icon-doorbell" v-if="order.status >= 2"></view>
+											<view class="iconfont-app icon-doorbell unactive" v-else></view>
 										</view>
 									</view>
 									<view class="steps__text-column">
@@ -451,7 +451,7 @@ const refund = (order) => {
 	.icon-lamp, .icon-daojishi, .icon-takeout, .icon-doorbell{
 		font-size: 60rpx;
 	}
-	.iconfont-wings {
+	.iconfont-app {
 		color: #09b4f1;
 	}
 	

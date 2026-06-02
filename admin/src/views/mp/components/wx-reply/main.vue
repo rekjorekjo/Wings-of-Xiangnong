@@ -1,6 +1,5 @@
 <!--
   - Copyright (C) 2018-2019
-  - All rights reserved, Designed By www.joolun.com
   历史功能保留：
   ① 移除多余的 rep 为前缀的变量，让 message 消息更简单
   ② 代码优化，补充注释，提升阅读性

@@ -1,6 +1,0 @@
-com.wings.framework.apilog.config.WingsApiLogAutoConfiguration
-com.wings.framework.jackson.config.WingsJacksonAutoConfiguration
-com.wings.framework.swagger.config.WingsSwaggerAutoConfiguration
-com.wings.framework.web.config.WingsWebAutoConfiguration
-com.wings.framework.xss.config.WingsXssAutoConfiguration
-com.wings.framework.banner.config.WingsBannerAutoConfiguration

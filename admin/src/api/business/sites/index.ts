@@ -21,7 +21,7 @@ export interface SiteVO {
   endTime: Date
 }
 
-// 兼容旧 wings 类型名，后续逐步迁移调用方到新类型名。
+// 兼容旧 app 类型名，后续逐步迁移调用方到新类型名。
 export type ShopVO = SiteVO
 
 export type SitePageReqVO = Record<string, any>
@@ -58,7 +58,7 @@ export const exportSite = async (params: SiteExportReqVO) => {
   return await request.download({ url: `/store/shop/export-excel`, params })
 }
 
-// 兼容旧 wings API 函数名，调用方逐步迁移到新命名。
+// 兼容旧 app API 函数名，调用方逐步迁移到新命名。
 export const getShopList = getSiteList
 export const getShopPage = getSitePage
 export const getShop = getSite

@@ -1,0 +1,4 @@
+香农之翼 App
+DC 香农咖啡无人机配送 MVP
+Application Version: ${app.info.version}
+Spring Boot Version: ${spring-boot.version}

@@ -9,7 +9,7 @@
 - `admin/src/views/delivery` - 香农之翼新增配送管理 MVP 页面
 
 **职责划分：**
-- `business`：原 wings 点餐业务管理模块
+- `business`：原 app 点餐业务管理模块
 - `delivery`：香农之翼新增无人机配送管理
 
 ## 2. 已完成的重命名
@@ -125,7 +125,7 @@ export type ShopVO = SiteVO
 - 不要删除积分、余额、会员、公众号等旧功能源码
 - 不要删除数据库表
 - 不要改 `system_menu` 数据，除非单独任务明确要求
-- 后端 `wings`/`com.wings` 命名暂时保留
+- 后端 `app`/`com.ordering` 命名暂时保留
 
 **设计原则：**
 - 订单负责交易

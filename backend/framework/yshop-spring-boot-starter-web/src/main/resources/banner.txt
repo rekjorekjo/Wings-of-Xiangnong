@@ -1,4 +1,0 @@
-香农之翼 Wings
-DC 香农咖啡无人机配送 MVP
-Application Version: ${wings.info.version}
-Spring Boot Version: ${spring-boot.version}

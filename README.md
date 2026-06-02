@@ -1,10 +1,10 @@
-# 香农之翼（Wings）
+# 校园无人机配送点餐系统
 
-基于 wings 改造的东南大学九龙湖校区 DC 香农咖啡无人机配送 MVP。
+面向校园场景的点餐与配送 MVP。项目由三个端组成：后端、管理端、小程序端。
 
 ## 目录结构
 
-```
+```text
 backend     Spring Boot 3 后端
 admin       Vue3 管理端
 miniapp     uni-app 小程序端
@@ -38,7 +38,7 @@ cd backend
 mvn clean install -DskipTests
 ```
 
-启动类：`com.wings.server.WingsServerApplication`
+启动类：`com.ordering.server.BackendApplication`
 
 ### 管理端
 
@@ -53,17 +53,12 @@ pnpm dev
 1. 使用 HBuilderX 打开 `miniapp`
 2. 确认 `miniapp/config/index.js` 指向 `http://localhost:18081/app-api`
 
-## 当前改造策略
+## 当前策略
 
-- 第一阶段先做结构收敛和管理端 MVP
-- 旧功能不物理删除
-- 积分、余额、会员卡、公众号、收银台等功能先隐藏/冻结
-- 后续商家需要时通过入口、菜单、配置开关恢复
-- 订单和配送任务分离，不把无人机状态塞进订单表
-
-## 来源说明
-
-本项目基于 wings 改造，原项目地址：https://www.wings.co/
+- 先完成基础点餐、后台运营、配送任务 MVP
+- 冻结但暂不物理删除积分、余额、会员卡、公众号、收银台等非核心功能
+- 订单只负责交易，配送任务负责履约
+- 无人机状态、电量、轨迹、位置不写入订单表
 
 ## 开源协议
 

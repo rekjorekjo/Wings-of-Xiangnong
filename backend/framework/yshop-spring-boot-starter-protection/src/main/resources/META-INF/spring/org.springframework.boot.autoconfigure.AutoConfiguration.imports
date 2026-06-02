@@ -1,3 +1,0 @@
-com.wings.framework.idempotent.config.WingsIdempotentConfiguration
-com.wings.framework.lock4j.config.WingsLock4jConfiguration
-com.wings.framework.ratelimiter.config.WingsRateLimiterConfiguration

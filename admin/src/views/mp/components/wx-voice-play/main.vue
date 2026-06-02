@@ -1,6 +1,5 @@
 <!--
   - Copyright (C) 2018-2019
-  - All rights reserved, Designed By www.joolun.com
   【微信消息 - 语音】
   历史功能保留：
   ① bug 修复：

@@ -1,0 +1,2 @@
+com.ordering.framework.redis.config.RedisAutoConfiguration
+com.ordering.framework.redis.config.CacheAutoConfiguration

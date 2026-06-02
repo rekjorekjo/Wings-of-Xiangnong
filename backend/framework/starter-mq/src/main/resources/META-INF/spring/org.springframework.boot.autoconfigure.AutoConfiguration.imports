@@ -1,0 +1,3 @@
+com.ordering.framework.mq.redis.config.RedisMQProducerAutoConfiguration
+com.ordering.framework.mq.redis.config.RedisMQConsumerAutoConfiguration
+com.ordering.framework.mq.rabbitmq.config.RabbitMQAutoConfiguration

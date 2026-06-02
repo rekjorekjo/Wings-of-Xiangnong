@@ -1,122 +1,41 @@
-# 后端框架模块说明
+# 后端框架模块
 
-本目录包含香农之翼后端的基础框架能力，以 Spring Boot Starter 形式提供。
+`framework` 目录放基础框架能力。这里不写业务流程，只封装通用技术能力，供 `modules` 和 `server` 使用。
 
 ## 模块列表
 
-### wings-common
-
-公共工具模块，包含：
-- 通用工具类（日期、字符串、集合等）
-- 通用常量和枚举
-- 通用异常定义
-- 通用响应结构（CommonResult 等）
-
-### wings-spring-boot-starter-web
-
-Web 模块，包含：
-- Spring MVC 配置
-- 全局异常处理
-- 跨域配置
-- 请求日志
-- API 响应包装
-
-### wings-spring-boot-starter-security
-
-安全模块，包含：
-- Spring Security 配置
-- JWT Token 认证
-- 权限校验
-- 登录/登出逻辑
-
-### wings-spring-boot-starter-mybatis
-
-MyBatis 模块，包含：
-- MyBatis Plus 配置
-- 分页插件
-- 数据源配置
-- 通用 Mapper
-
-### wings-spring-boot-starter-redis
-
-Redis 模块，包含：
-- Redis 连接配置
-- RedisTemplate 封装
-- 缓存工具类
-
-### wings-spring-boot-starter-mq
-
-消息队列模块，包含：
-- Redis Stream 消息队列
-- 消息生产者和消费者配置
-
-### wings-spring-boot-starter-job
-
-定时任务模块，包含：
-- Quartz 配置
-- 定时任务管理
-
-### wings-spring-boot-starter-excel
-
-Excel 模块，包含：
-- EasyExcel 配置
-- Excel 导入导出工具
-
-### wings-spring-boot-starter-monitor
-
-监控模块，包含：
-- Spring Boot Admin 配置
-- Actuator 端点配置
-
-### wings-spring-boot-starter-protection
-
-保护模块，包含：
-- 接口限流
-- 防重复提交
-
-### wings-spring-boot-starter-websocket
-
-WebSocket 模块，包含：
-- WebSocket 配置
-- 消息推送能力
-
-### wings-spring-boot-starter-biz-tenant
-
-多租户模块，包含：
-- 租户上下文
-- 租户数据隔离
-
-### wings-spring-boot-starter-biz-data-permission
-
-数据权限模块，包含：
-- 数据权限注解
-- 数据权限过滤
-
-### wings-spring-boot-starter-biz-ip
-
-IP 地址模块，包含：
-- IP 地址解析
-- 地区数据
-
-### wings-spring-boot-starter-test
-
-测试模块，包含：
-- 测试基础设施
-- Mock 工具
+| 模块 | 职责 |
+|------|------|
+| common | 公共工具、常量、异常、统一响应结构 |
+| starter-web | Web MVC、全局异常、跨域、响应包装、接口日志 |
+| starter-security | Spring Security、Token 认证、权限校验 |
+| starter-mybatis | MyBatis Plus、数据源、分页、通用 Mapper |
+| starter-redis | Redis 连接、缓存、Redis 工具 |
+| starter-mq | Redis Stream 等消息队列封装 |
+| starter-job | Quartz 定时任务 |
+| starter-excel | Excel 导入导出 |
+| starter-monitor | 链路追踪、指标监控 |
+| starter-protection | 限流、防重复提交、分布式锁 |
+| starter-websocket | WebSocket 消息推送 |
+| starter-tenant | 多租户上下文与数据隔离 |
+| starter-data-permission | 数据权限注解与过滤 |
+| starter-ip | IP 与地区解析 |
+| starter-test | 后端测试基础设施 |
 
 ## 使用方式
 
-各模块通过 Maven 依赖引入，在 `pom.xml` 中添加：
+在需要的模块 `pom.xml` 中引入对应依赖：
 
 ```xml
 <dependency>
-    <groupId>com.wings</groupId>
-    <artifactId>wings-spring-boot-starter-xxx</artifactId>
+    <groupId>com.ordering</groupId>
+    <artifactId>starter-web</artifactId>
 </dependency>
 ```
 
-## 注意事项
+## 维护原则
 
-- 当前阶段保留 `wings`/`com.wings` 命名，避免大规模 Maven artifactId 和包名迁移风险
-- 各模块通过 Spring Boot AutoConfiguration 自动装配
-- 不要随意删除或重命名模块
+- 不在 framework 中写具体业务流程
+- starter 只提供基础能力和自动配置
+- 业务规则放在 modules 中
+- 删除或重命名 starter 前，必须确认所有 pom 依赖和 AutoConfiguration 配置同步更新
