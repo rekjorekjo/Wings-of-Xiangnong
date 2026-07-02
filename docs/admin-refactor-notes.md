@@ -100,19 +100,19 @@ export type ShopVO = SiteVO
 **当前管理端已有：**
 
 - `admin/src/views/delivery` - 配送管理页面
-- `admin/src/api/delivery` - 配送 API 层
+- `admin/src/api/delivery/index.ts` - 配送 API 层，请求后端 `/delivery/tasks`、`/delivery/drones`
+- `admin/src/api/delivery/mock.ts` - 前端静态 mock，仅作为离线演示备用
 
 **能力：**
-- 无人机状态 mock
-- 配送任务 mock
+- 无人机状态展示
+- 配送任务列表
 - 筛选功能
 - 详情抽屉
-- 本地状态流转
 - URL query 筛选
 
-**当前仍是前端 mock。**
+**当前 delivery 管理端页面请求后端 delivery mock API，后端数据由 DeliveryMockDataProvider 提供，尚未接入真实数据库和无人机系统。**
 
-后续接 backend delivery API 时优先替换 `admin/src/api/delivery/index.ts`，页面层不要直接依赖 `mock.ts`。
+`mock.ts` 仅作为离线演示或前端本地 mock 备用，当前默认数据来源为后端 delivery mock API。
 
 ## 7. 后续改动原则
 

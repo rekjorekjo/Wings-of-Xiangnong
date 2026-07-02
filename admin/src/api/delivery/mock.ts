@@ -1,3 +1,7 @@
+// 该文件仅作为离线演示或前端本地 mock 备用。
+// 当前默认数据来源为后端 delivery mock API（/delivery/tasks、/delivery/drones）。
+// 页面层请使用 admin/src/api/delivery/index.ts，不要直接依赖此文件。
+//
 // 前端静态 mock 数据，仅用于管理端 MVP 演示。
 // 这里模拟"订单之外的配送任务"，不要把无人机状态塞进订单模型。
 
