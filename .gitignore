@@ -1,28 +1,61 @@
+# IDE and editor
 .git/
 .idea/
 .vscode/
+
+# Dependencies
 node_modules/
+
+# Build outputs
 target/
 dist/
 unpackage/
 .gradle/
 .mvn/
+
+# Package output
 _upload_packages/
 
+# Log and temp files
 *.log
 *.tmp
+*.local
+
+# Archive files
 *.zip
 *.rar
 *.7z
 *.tar
 *.gz
+
+# OS files
 *.py
 *.DS_Store
-*.sql
 Thumbs.db
 
+# Lock files
 package-lock.json
 project.config.json
 project.private.config.json
 
+# Auto-generated type definitions
+auto-*.d.ts
+
+# Local env files
+.env.local
+.env.*.local
+
+# Local assets and temporary directories (root only)
 /assets/
+/screenshots/
+/captures/
+/temp-assets/
+/_design/
+
+# Database dumps and local SQL (preserve docs/**/*.sql)
+/backend/sql/
+/database/dumps/
+*.dump.sql
+*_dump.sql
+*-dump.sql
+*-open.sql

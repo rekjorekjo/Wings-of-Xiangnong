@@ -2,9 +2,13 @@ node_modules
 .DS_Store
 dist
 dist-ssr
-*.local
 /dist*
 pnpm-debug
 auto-*.d.ts
 .idea
 .history
+
+# Local env files
+.env.local
+.env.*.local
+*.local

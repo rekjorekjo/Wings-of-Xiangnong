@@ -39,3 +39,11 @@ dev-stats.json
 .vscode
 
 .history
+
+# HBuilderX
+.hbuilderx
+
+# WeChat DevTools
+project.private.config.json
+project.config.json
+package-lock.json
