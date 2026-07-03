@@ -29,7 +29,6 @@ _upload_packages/
 *.gz
 
 # OS files
-*.py
 *.DS_Store
 Thumbs.db
 

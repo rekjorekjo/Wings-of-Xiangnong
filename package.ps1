@@ -10,9 +10,9 @@ $OutputDir = Join-Path $Root '_upload_packages'
 $StageDir = Join-Path $OutputDir ('_staging_' + $Timestamp)
 $ZipPath = Join-Path $OutputDir ($ProjectName + '-' + $Timestamp + '.zip')
 
-$ExcludeDirs = @('.git', '.idea', '.vscode', 'node_modules', 'target', 'dist', 'unpackage', '.gradle', '.mvn', '_upload_packages', 'screenshots', 'captures', 'temp-assets', '_design')
+$ExcludeDirs = @('.git', '.idea', '.vscode', 'node_modules', 'target', 'dist', 'unpackage', '.gradle', '.mvn', '_upload_packages', 'screenshots', 'captures', 'temp-assets', '_design', '.hbuilderx')
 $ExcludeFileNames = @('.DS_Store', 'Thumbs.db', 'package-lock.json', '.flattened-pom.xml', 'project.private.config.json', 'project.config.json')
-$ExcludeExtensions = @('.zip', '.rar', '.7z', '.tar', '.gz', '.log', '.tmp', '.py')
+$ExcludeExtensions = @('.zip', '.rar', '.7z', '.tar', '.gz', '.log', '.tmp')
 $ExcludeSensitivePatterns = @('.env.local', '.env.*.local', 'application-prod.yaml', 'application-prod.yml', 'application-dev-secret.yaml', 'application-dev-secret.yml', 'auto-*.d.ts')
 
 function Get-RelativePathSafe {
@@ -38,6 +38,12 @@ function Test-ExcludedFile {
 
     # Exclude database/dumps directory
     if ($parts.Count -ge 2 -and $parts[0] -eq 'database' -and $parts[1] -eq 'dumps') {
+        return $true
+    }
+
+    # Exclude SQL dump files by name pattern (preserve docs/**/*.sql and migration SQL)
+    $fileName = $File.Name
+    if ($fileName -like '*.dump.sql' -or $fileName -like '*_dump.sql' -or $fileName -like '*-dump.sql' -or $fileName -like '*-open.sql') {
         return $true
     }
 

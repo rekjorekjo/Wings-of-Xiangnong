@@ -1,4 +1,5 @@
 import request from '@/config/axios'
+import dayjs from 'dayjs'
 import type { DeliveryTask, Drone } from '@/views/delivery/types'
 
 export interface DeliveryTaskQuery {
@@ -17,7 +18,7 @@ interface RawDeliveryTask {
   statusText?: string | null
   progress?: number | null
   etaMinutes?: number | null
-  createdAt?: string | null
+  createdAt?: string | number | null
 }
 
 interface RawDrone {
@@ -28,12 +29,58 @@ interface RawDrone {
   battery?: number | null
   location?: string | null
   payload?: string | null
-  lastUpdatedAt?: string | null
+  lastUpdatedAt?: string | number | null
 }
 
-const normalizeTime = (time?: string | null): string => {
-  if (!time || typeof time !== 'string') return ''
-  return time.replace('T', ' ').replace(/\.\d{3}Z?$/, '').replace(/Z$/, '')
+/**
+ * Normalize timestamp to milliseconds
+ * - If value < 1000000000000, treat as seconds and multiply by 1000
+ * - Otherwise treat as milliseconds
+ */
+const normalizeTimestamp = (value: number): number => {
+  // Threshold: 1000000000000 (approx 2001-09-09 in milliseconds)
+  // Values smaller than this are likely seconds, not milliseconds
+  return value < 1000000000000 ? value * 1000 : value
+}
+
+/**
+ * Normalize time field to YYYY-MM-DD HH:mm:ss format
+ * Compatible with string, number (timestamp), null, undefined, empty string
+ * Handles both seconds and milliseconds timestamps
+ */
+const normalizeTime = (time?: string | number | null): string => {
+  // Handle null, undefined, empty string, or whitespace-only string
+  if (time === null || time === undefined) return ''
+  if (typeof time === 'string') {
+    const trimmed = time.trim()
+    if (trimmed === '') return ''
+  }
+
+  // Handle number timestamp (seconds or milliseconds)
+  if (typeof time === 'number') {
+    const ms = normalizeTimestamp(time)
+    const parsed = dayjs(ms)
+    return parsed.isValid() ? parsed.format('YYYY-MM-DD HH:mm:ss') : ''
+  }
+
+  // Handle string
+  if (typeof time === 'string') {
+    const trimmed = time.trim()
+
+    // Check if it's a numeric string (timestamp)
+    if (/^\d+$/.test(trimmed)) {
+      const num = Number(trimmed)
+      const ms = normalizeTimestamp(num)
+      const parsed = dayjs(ms)
+      return parsed.isValid() ? parsed.format('YYYY-MM-DD HH:mm:ss') : ''
+    }
+
+    // ISO string or other date format - use dayjs to parse
+    const parsed = dayjs(trimmed)
+    return parsed.isValid() ? parsed.format('YYYY-MM-DD HH:mm:ss') : ''
+  }
+
+  return ''
 }
 
 const normalizeDeliveryTask = (raw: RawDeliveryTask): DeliveryTask => ({

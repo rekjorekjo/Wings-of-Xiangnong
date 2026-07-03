@@ -14,7 +14,7 @@ export interface DeliveryTask {
   statusText: string
   progress: number
   etaMinutes: number
-  createdAt: string
+  createdAt: string // Formatted display string, raw value is string | number | null
 }
 
 export interface Drone {
@@ -25,5 +25,5 @@ export interface Drone {
   battery: number
   location: string
   payload: string
-  lastUpdatedAt: string
+  lastUpdatedAt: string // Formatted display string, raw value is string | number | null
 }
