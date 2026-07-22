@@ -250,6 +250,248 @@ const remainingRouter: AppRouteRecordRaw[] = [
       noTagsView: true
     }
   },
+  // ========== MVP 静态兜底路由 ==========
+  // 保证即使后端动态路由或旧 component 映射有问题，核心路径也能访问真实页面
+  // hidden + canTo：不在侧边栏显示，但允许跳转
+  {
+    path: '/mall/shop',
+    component: Layout,
+    name: 'MvpLegacyMallShop',
+    meta: { hidden: true, canTo: true, title: '门店管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/sites/index.vue'),
+        name: 'MvpLegacyMallShopIndex',
+        meta: { hidden: true, canTo: true, title: '门店管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/sites',
+    component: Layout,
+    name: 'MvpLegacyBusinessSites',
+    meta: { hidden: true, canTo: true, title: '门店管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/sites/index.vue'),
+        name: 'MvpLegacyBusinessSitesIndex',
+        meta: { hidden: true, canTo: true, title: '门店管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/shop',
+    component: Layout,
+    name: 'MvpLegacyBusinessShop',
+    meta: { hidden: true, canTo: true, title: '门店管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/sites/index.vue'),
+        name: 'MvpLegacyBusinessShopIndex',
+        meta: { hidden: true, canTo: true, title: '门店管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/store/shop',
+    component: Layout,
+    name: 'MvpLegacyBusinessStoreShop',
+    meta: { hidden: true, canTo: true, title: '门店管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/sites/index.vue'),
+        name: 'MvpLegacyBusinessStoreShopIndex',
+        meta: { hidden: true, canTo: true, title: '门店管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/mall/store/shop',
+    component: Layout,
+    name: 'MvpLegacyMallStoreShop',
+    meta: { hidden: true, canTo: true, title: '门店管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/sites/index.vue'),
+        name: 'MvpLegacyMallStoreShopIndex',
+        meta: { hidden: true, canTo: true, title: '门店管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/mall/product/storeProduct',
+    component: Layout,
+    name: 'MvpLegacyMallProduct',
+    meta: { hidden: true, canTo: true, title: '商品列表' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/items/index.vue'),
+        name: 'MvpLegacyMallProductIndex',
+        meta: { hidden: true, canTo: true, title: '商品列表', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/product/storeProduct',
+    component: Layout,
+    name: 'MvpLegacyBusinessProduct',
+    meta: { hidden: true, canTo: true, title: '商品列表' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/items/index.vue'),
+        name: 'MvpLegacyBusinessProductIndex',
+        meta: { hidden: true, canTo: true, title: '商品列表', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/products/items',
+    component: Layout,
+    name: 'MvpLegacyBusinessProductsItems',
+    meta: { hidden: true, canTo: true, title: '商品列表' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/items/index.vue'),
+        name: 'MvpLegacyBusinessProductsItemsIndex',
+        meta: { hidden: true, canTo: true, title: '商品列表', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/mall/product/category',
+    component: Layout,
+    name: 'MvpLegacyMallProductCategory',
+    meta: { hidden: true, canTo: true, title: '商品分类' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/categories/index.vue'),
+        name: 'MvpLegacyMallProductCategoryIndex',
+        meta: { hidden: true, canTo: true, title: '商品分类', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/product/category',
+    component: Layout,
+    name: 'MvpLegacyBusinessProductCategory',
+    meta: { hidden: true, canTo: true, title: '商品分类' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/categories/index.vue'),
+        name: 'MvpLegacyBusinessProductCategoryIndex',
+        meta: { hidden: true, canTo: true, title: '商品分类', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/products/categories',
+    component: Layout,
+    name: 'MvpLegacyBusinessProductsCategories',
+    meta: { hidden: true, canTo: true, title: '商品分类' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/categories/index.vue'),
+        name: 'MvpLegacyBusinessProductsCategoriesIndex',
+        meta: { hidden: true, canTo: true, title: '商品分类', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/mall/shop/storeProductRule',
+    component: Layout,
+    name: 'MvpLegacyMallShopRule',
+    meta: { hidden: true, canTo: true, title: '商品规格' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/rules/index.vue'),
+        name: 'MvpLegacyMallShopRuleIndex',
+        meta: { hidden: true, canTo: true, title: '商品规格', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/shop/storeProductRule',
+    component: Layout,
+    name: 'MvpLegacyBusinessShopRule',
+    meta: { hidden: true, canTo: true, title: '商品规格' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/rules/index.vue'),
+        name: 'MvpLegacyBusinessShopRuleIndex',
+        meta: { hidden: true, canTo: true, title: '商品规格', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/products/rules',
+    component: Layout,
+    name: 'MvpLegacyBusinessProductsRules',
+    meta: { hidden: true, canTo: true, title: '商品规格' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/products/rules/index.vue'),
+        name: 'MvpLegacyBusinessProductsRulesIndex',
+        meta: { hidden: true, canTo: true, title: '商品规格', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/mall/order/storeOrder',
+    component: Layout,
+    name: 'MvpLegacyMallOrder',
+    meta: { hidden: true, canTo: true, title: '订单管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/orders/index.vue'),
+        name: 'MvpLegacyMallOrderIndex',
+        meta: { hidden: true, canTo: true, title: '订单管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/order/storeOrder',
+    component: Layout,
+    name: 'MvpLegacyBusinessOrder',
+    meta: { hidden: true, canTo: true, title: '订单管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/orders/index.vue'),
+        name: 'MvpLegacyBusinessOrderIndex',
+        meta: { hidden: true, canTo: true, title: '订单管理', noCache: false }
+      }
+    ]
+  },
+  {
+    path: '/business/orders',
+    component: Layout,
+    name: 'MvpLegacyBusinessOrders',
+    meta: { hidden: true, canTo: true, title: '订单管理' },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/business/orders/index.vue'),
+        name: 'MvpLegacyBusinessOrdersIndex',
+        meta: { hidden: true, canTo: true, title: '订单管理', noCache: false }
+      }
+    ]
+  },
+  // ========== MVP 静态兜底路由结束 ==========
   {
     path: '/404',
     component: () => import('@/views/Error/404.vue'),

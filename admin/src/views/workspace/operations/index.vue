@@ -66,10 +66,10 @@ const modules = [
     icon: 'ep:goods',
     color: '#409EFF',
     mainAction: '商品列表',
-    mainPaths: ['/business/products/items', '/business/product/storeProduct', '/mall/product/storeProduct', '/mall/product/store-product'],
+    mainPaths: ['/mall/product/storeProduct', '/business/product/storeProduct', '/business/products/items', '/mall/product/store-product'],
     subActions: [
-      { label: '商品分类', paths: ['/business/products/categories', '/business/product/category', '/mall/product/category'] },
-      { label: '商品规格', paths: ['/business/products/rules', '/business/shop/storeProductRule', '/mall/shop/storeProductRule', '/mall/shop/store-product-rule'] }
+      { label: '商品分类', paths: ['/mall/product/category', '/business/product/category', '/business/products/categories'] },
+      { label: '商品规格', paths: ['/mall/shop/storeProductRule', '/business/shop/storeProductRule', '/business/products/rules', '/mall/shop/store-product-rule'] }
     ]
   },
   {
@@ -78,7 +78,7 @@ const modules = [
     icon: 'ep:document',
     color: '#67C23A',
     mainAction: '订单列表',
-    mainPaths: ['/business/orders', '/mall/order/store-order'],
+    mainPaths: ['/mall/order/storeOrder', '/business/order/storeOrder', '/business/orders', '/mall/order/store-order'],
     subActions: null
   },
   {
@@ -107,7 +107,7 @@ const modules = [
     icon: 'ep:location',
     color: '#909399',
     mainAction: '站点列表',
-    mainPaths: ['/business/sites', '/mall/shop'],
+    mainPaths: ['/mall/shop', '/business/sites', '/business/shop', '/business/store/shop', '/mall/store/shop'],
     subActions: null
   },
   {

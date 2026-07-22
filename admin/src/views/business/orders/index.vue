@@ -334,6 +334,7 @@ const openForm = (type: string, id?: number) => {
   }else if (type == 'refundOrder') {
     orderRefundDialogRef.value.open(type, id)
   }
+}
 
 // 订单页只处理交易订单流程；无人机配送状态在 delivery 模块中独立维护。
 

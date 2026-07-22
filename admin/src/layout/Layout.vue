@@ -2,7 +2,8 @@
 import { computed, defineComponent, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { Backtop } from '@/components/Backtop'
-import { Setting } from '@/layout/components/Setting'
+// MVP: 隐藏项目配置齿轮面板，保留源码便于后续恢复
+// import { Setting } from '@/layout/components/Setting'
 import { useRenderLayout } from './components/useRenderLayout'
 import { useDesign } from '@/hooks/web/useDesign'
 
@@ -59,7 +60,7 @@ export default defineComponent({
 
         <Backtop></Backtop>
 
-        <Setting></Setting>
+        {/* MVP: 隐藏项目配置齿轮面板 */}
       </section>
     )
   }
