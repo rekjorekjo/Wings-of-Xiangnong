@@ -58,3 +58,6 @@ auto-*.d.ts
 *_dump.sql
 *-dump.sql
 *-open.sql
+
+/.wings-audit/
+/.wings-test/
