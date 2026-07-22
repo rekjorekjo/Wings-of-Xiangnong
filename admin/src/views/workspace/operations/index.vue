@@ -44,6 +44,21 @@ import { Icon } from '@/components/Icon'
 
 const router = useRouter()
 
+// 404 兜底路由的 name 或 path 特征
+const FALLBACK_ROUTE_NAMES = ['404Page', 'NoFound']
+const FALLBACK_ROUTE_PATH = '/:path(.*)*'
+
+const isRealRoute = (path: string): boolean => {
+  const resolved = router.resolve(path)
+  if (resolved.matched.length === 0) return false
+  // 排除匹配到兜底 404 路由的情况
+  return resolved.matched.every(
+    (record) =>
+      !FALLBACK_ROUTE_NAMES.includes(record.name as string) &&
+      record.path !== FALLBACK_ROUTE_PATH
+  )
+}
+
 const modules = [
   {
     title: '商品管理',
@@ -51,10 +66,10 @@ const modules = [
     icon: 'ep:goods',
     color: '#409EFF',
     mainAction: '商品列表',
-    mainPaths: ['/business/products/items', '/mall/product/store-product'],
+    mainPaths: ['/business/products/items', '/business/product/storeProduct', '/mall/product/storeProduct', '/mall/product/store-product'],
     subActions: [
-      { label: '商品分类', paths: ['/business/products/categories', '/mall/product/category'] },
-      { label: '商品规格', paths: ['/business/products/rules', '/mall/shop/store-product-rule', '/mall/shop/storeProductRule'] }
+      { label: '商品分类', paths: ['/business/products/categories', '/business/product/category', '/mall/product/category'] },
+      { label: '商品规格', paths: ['/business/products/rules', '/business/shop/storeProductRule', '/mall/shop/storeProductRule', '/mall/shop/store-product-rule'] }
     ]
   },
   {
@@ -118,7 +133,7 @@ const modules = [
 ]
 
 const navigateByCandidates = (paths: string[]) => {
-  const target = paths.find((path) => router.resolve(path).matched.length > 0)
+  const target = paths.find(isRealRoute)
   if (target) {
     router.push(target)
   } else {
