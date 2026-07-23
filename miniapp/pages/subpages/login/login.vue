@@ -101,7 +101,7 @@ const captchaStyle = computed(() => {
 onShow(() => {
    
 	// #ifdef MP-WEIXIN
-	if(!openid.value){
+	if(!openid.value && FEATURES.autoWxLogin){
 		wechatMiniLogin();
 	}
 	

@@ -10,6 +10,7 @@ import {
   wechatAuth
 } from '@/api/auth'
 import { APP_ID } from '@/config'
+import { FEATURES } from '@/config/features'
 
 onLaunch(() => {
 	console.log('App Launch')
@@ -27,7 +28,11 @@ onShow(() => {
 	}
 	// #endif
 	// #ifdef MP-WEIXIN
-	wechatMiniLogin();
+	if (FEATURES.autoWxLogin) {
+		wechatMiniLogin();
+	} else {
+		console.warn('本地开发环境已跳过真实微信登录，请使用本地测试登录');
+	}
 	// #endif
 })
 

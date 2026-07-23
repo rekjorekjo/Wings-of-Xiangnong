@@ -10,6 +10,9 @@ export const FEATURES = {
 
   // 本地测试登录（仅开发环境，生产必须关闭）
   mockLogin: true,
+  // 本地开发阶段不自动调用真实微信登录（auth-session）
+  // 设为 true 恢复自动微信登录行为
+  autoWxLogin: false,
 
   // 当前按单店运行
   multiStore: false,
