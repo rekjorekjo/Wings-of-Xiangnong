@@ -39,6 +39,9 @@ public class AppAuthController {
     @Value("${app.info.isActive}")
     private Boolean isActive;
 
+    @Value("${app.mock-login.enabled:false}")
+    private Boolean mockLoginEnabled;
+
 
     @PostMapping("/login")
     @Operation(summary = "使用手机 + 密码登录")
@@ -65,6 +68,17 @@ public class AppAuthController {
     }
 
     // ========== 短信登录相关 ==========
+
+    @PostMapping("/mock-login")
+    @PermitAll
+    @Operation(summary = "本地测试登录（仅开发环境可用，生产必须禁用）")
+    public CommonResult<AppAuthLoginRespVO> mockLogin(@RequestBody(required = false) AppAuthMockLoginReqVO reqVO) {
+        if (!mockLoginEnabled) {
+            return CommonResult.error(403, "本地测试登录未启用");
+        }
+        String mobile = reqVO != null ? reqVO.getMobile() : null;
+        return success(authService.mockLogin(mobile));
+    }
 
     @PostMapping("/sms-login")
     @Operation(summary = "使用手机 + 验证码登录")

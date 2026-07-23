@@ -8,6 +8,9 @@ export const FEATURES = {
   takeout: true,
   takein: true,
 
+  // 本地测试登录（仅开发环境，生产必须关闭）
+  mockLogin: true,
+
   // 当前按单店运行
   multiStore: false,
 

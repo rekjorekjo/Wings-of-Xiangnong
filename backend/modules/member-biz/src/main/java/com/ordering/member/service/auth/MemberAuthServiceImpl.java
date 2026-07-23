@@ -98,6 +98,30 @@ public class MemberAuthServiceImpl implements MemberAuthService {
 
     @Override
     @Transactional
+    public AppAuthLoginRespVO mockLogin(String mobile) {
+        // 使用固定或传入的手机号
+        String effectiveMobile = StrUtil.isNotBlank(mobile) ? mobile : "13800000000";
+        String userIp = getClientIP();
+
+        // 获得或创建用户
+        MemberUserDO user = userService.createUserIfAbsent(effectiveMobile, userIp, "routine");
+        Assert.notNull(user, "获取用户失败，结果为空");
+
+        // 设置测试用户昵称（仅当昵称为空或默认值时）
+        if (StrUtil.isBlank(user.getNickname()) || user.getNickname().startsWith("用户_")) {
+            user.setNickname("本地测试用户");
+            userService.updateById(user);
+        }
+
+        // 创建 Token 令牌，记录登录日志
+        AppAuthLoginRespVO appAuthLoginRespVO = createTokenAfterLoginSuccess(user, effectiveMobile,
+                LoginLogTypeEnum.LOGIN_SMS);
+        appAuthLoginRespVO.setUserInfo(UserConvert.INSTANCE.convert3(user));
+        return appAuthLoginRespVO;
+    }
+
+    @Override
+    @Transactional
     public AppAuthLoginRespVO smsLogin(AppAuthSmsLoginReqVO reqVO) {
         // 校验验证码
         String userIp = getClientIP();

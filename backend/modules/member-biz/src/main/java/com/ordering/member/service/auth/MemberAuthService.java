@@ -38,6 +38,14 @@ public interface MemberAuthService {
     AppAuthLoginRespVO smsLogin(@Valid AppAuthSmsLoginReqVO reqVO);
 
     /**
+     * 本地测试登录（仅开发环境可用）
+     *
+     * @param mobile 手机号，不传则默认 13800000000
+     * @return 登录结果
+     */
+    AppAuthLoginRespVO mockLogin(String mobile);
+
+    /**
      * 社交登录，使用 code 授权码
      *
      * @param reqVO 登录信息

@@ -35,3 +35,10 @@ export function wechatAuth(data) {
   return api.get('/member/auth/auth-wechat-login', data, { login: false })
 }
 
+/**
+ * 本地测试登录（仅开发环境可用）
+ */
+export function mockLogin(data) {
+  return api.post('/member/auth/mock-login', data || {}, { login: false })
+}
+

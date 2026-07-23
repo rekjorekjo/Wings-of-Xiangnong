@@ -32,6 +32,9 @@
 			
 			<button @tap="submit" style="color:#fff;background-color: #f9ae3d;" type="primary" class="login">登录</button>
 			
+			<!-- 本地测试登录（仅开发环境显示） -->
+			<button v-if="FEATURES.mockLogin" @tap="handleMockLogin" style="color:#fff;background-color: #2979ff;margin-top: 20rpx;" type="primary" class="login">本地测试登录</button>
+			
 		</view>
 		<view class="buttom">
 			<view class="loginType">
@@ -67,11 +70,13 @@ import {
   userAuthSession,
   userLoginForWechatMini,
   smsSend,
-  userLogin
+  userLogin,
+  mockLogin
 } from '@/api/auth'
 import * as util  from '@/utils/util'
 import { mobile as testMobible } from '@/uni_modules/uv-ui-tools/libs/function/test'
 import { ROUTES } from '@/config/routes'
+import { FEATURES } from '@/config/features'
 const main = useMainStore()
 const title = ref('登录')
 const mobile = ref('')
@@ -251,6 +256,32 @@ const serv = (id,name) => {
 
 const onChange = () => {
 	isChecked.value = !isChecked.value
+}
+
+// 本地测试登录
+const handleMockLogin = async () => {
+	let data = await mockLogin({
+		mobile: mobile.value || '13800000000'
+	})
+	if (data) {
+		uni.setStorage({
+			key: 'userinfo',
+			data: data.userInfo
+		});
+		uni.setStorage({
+			key: 'accessToken',
+			data: data.accessToken
+		});
+		main.SET_MEMBER(data.userInfo);
+		main.SET_TOKEN(data.accessToken);
+		uToast.value.show({
+			message: '测试登录成功',
+			type: 'success'
+		});
+		setTimeout(function() {
+			uni.navigateBack();
+		}, 2000);
+	}
 }
 
 </script>
