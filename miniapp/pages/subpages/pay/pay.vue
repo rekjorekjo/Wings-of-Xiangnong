@@ -95,7 +95,7 @@
 							<view class="d-flex align-items-center mb-10">
 								<view
 									class="d-flex flex-fill justify-content-between align-items-center text-color-base font-size-lg">
-									<image style="width: 80rpx;height: 80rpx;" mode="aspectFill" :src="item.image">
+									<image style="width: 80rpx;height: 80rpx;" mode="aspectFill" :src="normalizeImageUrl(item.image)">
 									</image>
 								</view>
 								<view class="name-and-props overflow-hidden">
@@ -241,6 +241,7 @@ import {
 } from '@/api/coupons'
 import { FEATURES } from '@/config/features'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 // #ifdef H5
 import * as jweixin from 'weixin-js-sdk'
 // #endif

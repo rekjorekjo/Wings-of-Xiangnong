@@ -28,7 +28,7 @@
 								<view class="left">
 									<image
 										class="picture"
-										:src="item.image"
+										:src="normalizeImageUrl(item.image)"
 										mode="aspectFill"
 									></image>
 									<view class="introduce">
@@ -62,7 +62,7 @@
 								<view class="left">
 									<image
 										class="picture"
-										:src="item.image"
+										:src="normalizeImageUrl(item.image)"
 										mode="aspectFill"
 									></image>
 									<view class="introduce">
@@ -142,6 +142,7 @@ import {
   couponIndexApi
 } from '@/api/coupons'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('优惠券')

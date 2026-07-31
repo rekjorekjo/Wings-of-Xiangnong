@@ -29,7 +29,7 @@
 					<view class="w-100 d-flex flex-column">
 						<view class="w-100 text-truncate font-size-lg text-color-base" style="margin-bottom: 20rpx;">
 							<view class="flex mb-2" v-for="(good,index) in item.cartInfo" :key="index">  
-								<image :src="good.image" mode="aspectFill" class="image"></image>
+								<image :src="normalizeImageUrl(good.image)" mode="aspectFill" class="image"></image>
 								<view class="flex flex-column">
 									<view class="font-size-medium mt-1 text-color-base">{{ good.title }}</view>
 									<view class="font-size-sm mt-1">{{ good.spec }}</view>
@@ -75,6 +75,7 @@ import {
   orderReceive
 } from '@/api/orders'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('我的订单')

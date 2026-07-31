@@ -13,7 +13,7 @@
 
 					<view class="d-flex align-items-center">
 						<view class="avatar rounded-circle">
-							<image :src="isLogin ? member.avatar ? member.avatar : '/static/images/mine/default.png' : '/static/images/mine/default.png'"></image>
+							<image :src="isLogin && member.avatar ? normalizeImageUrl(member.avatar) : '/static/images/mine/default.png'"></image>
 						</view>
 						<view class="d-flex flex-column flex-fill overflow-hidden" style="margin-top: 20rpx;">
 							<view v-if="isLogin"
@@ -65,17 +65,17 @@
 						<block v-for="(item, index) in services" :key='index'>
 							<uv-cell :title="item.name" v-if="item.type == 'contact'" :isLink="true">
 								<template #icon>
-									<image :src="item.image" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
+									<image :src="normalizeImageUrl(item.image)" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
 								</template>
 							</uv-cell>
 							<uv-cell :isLink="true" :title="item.name" v-else-if="item.type == 'call'" v-on:click="makePhoneCall(item.phone)">
 								<template #icon>
-									<image :src="item.image" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
+									<image :src="normalizeImageUrl(item.image)" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
 								</template>
 							</uv-cell>
 							<uv-cell :isLink="true" :title="item.name" v-else @tap="serv(item)">
 								<template #icon>
-									<image :src="item.image" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
+									<image :src="normalizeImageUrl(item.image)" style="width: 40rpx;height: 40rpx;" class="mr-1"></image>
 								</template>
 							</uv-cell>
 						</block>
@@ -101,6 +101,7 @@ import {
 } from '@/api/account'
 import { FEATURES } from '@/config/features'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { member,isLogin } = storeToRefs(main)
 

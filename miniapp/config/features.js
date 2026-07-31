@@ -14,8 +14,8 @@ export const FEATURES = {
   // 设为 true 恢复自动微信登录行为
   autoWxLogin: false,
 
-  // 当前按单店运行
-  multiStore: false,
+  // 多门店模式
+  multiStore: true,
 
   // 冻结功能：源码保留，入口隐藏
   scoreMall: false,

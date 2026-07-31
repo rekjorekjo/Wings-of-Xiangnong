@@ -38,6 +38,11 @@
 
         <dependency>
             <groupId>com.ordering</groupId>
+            <artifactId>starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ordering</groupId>
             <artifactId>starter-redis</artifactId>
         </dependency>
 

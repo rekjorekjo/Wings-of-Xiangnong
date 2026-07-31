@@ -10,7 +10,7 @@
 			<uv-search margin="30rpx" v-model="keywork" @custom="search(keywork)"></uv-search>
 		</view>
 		<view v-for="(item,index) in list" :key="index">
-			<uni-card @click="choice(item)" :border="item.id == store.id" :title="item.name" :thumbnail="item.image" :thumb-width="80" :sub-title="item.status_text">
+			<uni-card @click="choice(item)" :border="item.id == store.id" :title="item.name" :thumbnail="normalizeImageUrl(item.image)" :thumb-width="80" :sub-title="item.status_text">
 				<view class="body">
 					<view class="body-left">
 						<view>距离您 {{kmUnit(item.dis)}}</view>
@@ -45,6 +45,7 @@ import {
   shopGetList
 } from '@/api/sites'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { store,location } = storeToRefs(main)
 const title = ref('店铺')
@@ -65,12 +66,19 @@ const getShop = async(keywork = '') => {
 		shop_id: 0
 	});
 	if (data) {
+		const availableShops = data.filter(item => Number(item.status) === 1);
 		if (page.value == 1) {
-			list.value = data;
+			list.value = availableShops;
 		} else {
-			for(let i in data) {
-				list.value.push(data[i]);
+			for(let i in availableShops) {
+				list.value.push(availableShops[i]);
 			}
+		}
+		if (availableShops.length === 0) {
+			uni.showToast({
+				title: '暂无营业门店',
+				icon: 'none'
+			});
 		}
 	}
 }
@@ -98,6 +106,13 @@ const search = (keywork) => {
 }
 // 选中店铺
 const choice = (shop) => {
+	if (Number(shop.status) !== 1) {
+		uni.showToast({
+			title: '该门店暂未营业',
+			icon: 'none'
+		});
+		return;
+	}
 	main.SET_STORE(shop);
 	uni.$emit('refreshMenu')
 	uni.switchTab({ 

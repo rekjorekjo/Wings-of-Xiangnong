@@ -89,6 +89,7 @@ import { storeToRefs } from 'pinia'
 import { useMainStore } from '@/store/store'
 import { FEATURES } from '@/config/features'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 //
 const main = useMainStore()
 const { member,store, isLogin} = storeToRefs(main)
@@ -97,20 +98,23 @@ const listAds = ref([])
 // const isLogin = ref(main.isLogin)
 
 const handGetListAds = async () => {
-	let shop_id = store.id ? store.id : 0;
+	let shop_id = store.value && store.value.id ? store.value.id : 0;
 	let data = await menuAds({
 		shop_id: shop_id
 	});
 	if (data) {
-		listAds.value = data.list;
+		listAds.value = (data.list || []).map(item => ({
+			...item,
+			image: normalizeImageUrl(item.image)
+		}));
 		uni.setStorage({
 				key: 'isActive',
 				data: data.isActive
 			});
-		if(data.list.length > 0){
+		if(listAds.value.length > 0){
 			uni.setStorage({
 					key: 'shopAd',
-					data: data.list[0].image
+					data: listAds.value[0].image
 			 });
 			}
 		}

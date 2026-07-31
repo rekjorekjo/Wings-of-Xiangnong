@@ -131,7 +131,7 @@
 					<list-cell :hover="false" padding="30rpx 30rpx">
 						<view class="w-100 d-flex flex-column position-relative">
 							<view class="w-100 d-flex align-items-center mb-40" v-for="(good, index) in order.cartInfo" :key="index">
-								<image :src="good.image" mode="aspectFill" class="image"></image>
+								<image :src="normalizeImageUrl(good.image)" mode="aspectFill" class="image"></image>
 								<view class="d-flex flex-column w-60 overflow-hidden">
 									<view class="font-size-lg text-color-base mb-10 text-truncate">{{ good.title }}</view>
 									<view class="font-size-sm text-color-assist text-truncate">{{ good.spec }}</view>
@@ -235,6 +235,7 @@ import {
 import { ROUTES } from '@/config/routes'
 import { FEATURES } from '@/config/features'
 import { getOrderDelivery } from '@/api/delivery'
+import { normalizeImageUrl } from '@/utils/image'
 const title = ref('订单详情')
 const order = ref({
 	shop:{name:''},

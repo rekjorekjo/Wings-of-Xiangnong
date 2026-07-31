@@ -14,7 +14,7 @@
 			:column-gap="1">
 			<template v-slot:list1>
 				<view class="demo-warter" v-for="(item, index) in list1" :key="index" @click="goDetail(item)">
-					<image :src="item.image" mode="widthFix" style="width: 300rpx;"></image>
+					<image :src="normalizeImageUrl(item.image)" mode="widthFix" style="width: 300rpx;"></image>
 					<view class="demo-title">
 						{{item.title}}
 					</view>
@@ -25,7 +25,7 @@
 			</template>
 			<template v-slot:list2>
 				<view class="demo-warter" v-for="(item, index) in list2" :key="index" @click="goDetail(item)">
-					<image :src="item.image" mode="widthFix" style="width: 300rpx;"></image>
+					<image :src="normalizeImageUrl(item.image)" mode="widthFix" style="width: 300rpx;"></image>
 					<view class="demo-title">
 						{{item.title}}
 					</view>
@@ -52,6 +52,7 @@ import {
   scoreShopIndex
 } from '@/api/points'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const { proxy } = getCurrentInstance();
 
 const title = ref('积分商品')

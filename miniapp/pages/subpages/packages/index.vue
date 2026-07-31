@@ -14,7 +14,7 @@
 					<view class="taobao">
 						<view class="ticket" :style="{border: item.id == coupon_id ? '1rpx solid red':''}">
 							<view class="left">
-								<image class="picture" :src="item.image" mode="aspectFill"></image>
+								<image class="picture" :src="normalizeImageUrl(item.image)" mode="aspectFill"></image>
 								<view class="introduce">
 									<view class="top">
 										￥
@@ -67,6 +67,7 @@ import { formatDateTime,prePage } from '@/utils/util'
 import {
   couponMine
 } from '@/api/coupons'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { isLogin } = storeToRefs(main)
 const title = ref('优惠券')

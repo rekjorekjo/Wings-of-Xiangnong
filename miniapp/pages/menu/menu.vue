@@ -17,7 +17,7 @@
 		<view class="main">
 			<view class="nav">
 				<view class="header">
-					<view class="mr-1"><image :src="store.image" style="width:80rpx ; height: 80rpx; "></image></view>
+					<view class="mr-1"><image :src="normalizeImageUrl(store.image)" style="width:80rpx ; height: 80rpx; "></image></view>
 					<view class="left" v-if="orderType == 'takein'" style="">
 						<view class="store-name" @click="FEATURES.multiStore && selectShop()">
 							<text>{{ store.name }}</text>
@@ -74,13 +74,13 @@
 									:id="`cate-${item.id}`">
 									<view class="title">
 										<text>{{ item.name }}</text>
-										<image mode="aspectFill" :src="item.icon" class="icon"></image>
+										<image mode="aspectFill" :src="normalizeImageUrl(item.icon)" class="icon"></image>
 									</view>
 									<view class="items">
 										<!-- 商品 begin -->
 										<view class="good" v-for="(good, key) in item.goodsList" :key="key"
 											:class="{'backgroud-grey': good.stock <= 0}">
-											<image mode="aspectFill" :src="good.image" class="image"
+											<image mode="aspectFill" :src="normalizeImageUrl(good.image)" class="image"
 												@tap="showGoodDetailModal(item, good)"></image>
 											<view class="right">
 												<text class="name">{{ good.storeName }}</text>
@@ -103,10 +103,14 @@
 
 											</view>
 										</view>
-										<!-- 商品 end -->
-									</view>
-								</view>
-								<!-- category end -->
+							<!-- 商品 end -->
+						</view>
+					</view>
+					<!-- category end -->
+					<!-- 暂无商品 -->
+					<view v-if="goods.length === 0 && !loading" style="text-align: center; padding: 100rpx 0; color: #999;">
+						<text>暂无商品</text>
+					</view>
 								<view style="height: 110rpx;"></view>
 							</view>
 						</view>
@@ -137,7 +141,7 @@
 				</view>
 				<scroll-view class="detail" scroll-y>
 					<view v-if="good.image" class="image">
-						<image :src="good.image"></image>
+						<image :src="normalizeImageUrl(good.image)"></image>
 					</view>
 
 					<view class="wrapper">
@@ -250,8 +254,12 @@ import {
 import {
   menuAds
 } from '@/api/ads'
+import {
+  shopGetList
+} from '@/api/sites'
 import { FEATURES } from '@/config/features'
 import { ROUTES } from '@/config/routes'
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)
 const title = ref('点餐')
@@ -408,59 +416,119 @@ const getShopList = async(res) => {
 	 console.log('location9:',res)
 	if (res) {
 		main.SET_LOCATION(res);
-	
-		let shop_id = 0;
-		if (store.value.id) {
-			shop_id = store.value.id;
-		}
-	
-		let shop = await shopNearby({
+
+		// 先拉门店列表
+		let shopList = await shopGetList({
 			lat: res.latitude,
 			lng: res.longitude,
-			shop_id: shop_id,
-			kw: ''
+			kw: '',
+			shop_id: 0
 		});
-		if (shop) {
-			//广告图
-			getAds(shop.id);
-	
-			shop.notice = shop.status == 1 ? shop.notice : '店铺营业时间为:' + formatDateTime(shop.startTime,'hh:mm')+' - '+formatDateTime(shop.endTime,'hh:mm') +
-			'，不在营业时间内无法下单';
-			// 设置店铺信息
-			main.SET_STORE(shop);
-			let mygoods = await menuGoods({
-				shopId: shop.id
-			});
-			if (mygoods) {
-				goods.value = mygoods;
-				refreshCart();
-			}
-			console.log('goods:',mygoods)
-			console.log('goods:',goods.value)
+
+		if (!shopList || shopList.length === 0) {
+			// 没有可用门店
+			main.SET_STORE({});
+			goods.value = [];
 			loading.value = false;
 			uni.stopPullDownRefresh();
+			uToast.value && uToast.value.show({ message: '暂无营业门店', type: 'error' });
+			console.warn('[menu] 门店列表为空');
+			return;
 		}
+
+		console.log('[menu] 门店列表数量:', shopList.length);
+
+		// 检查当前缓存门店是否在列表中且营业
+		let currentShop = null;
+		if (store.value && store.value.id) {
+			currentShop = shopList.find(s => s.id === store.value.id && s.status === 1);
+		}
+
+		// 当前门店不可用，自动选第一个营业门店
+		if (!currentShop) {
+			currentShop = shopList.find(s => s.status === 1);
+			if (currentShop) {
+				console.log('[menu] 缓存门店不可用，自动选择:', currentShop.name, 'id:', currentShop.id);
+			}
+		}
+
+		// 如果没有营业门店
+		if (!currentShop) {
+			main.SET_STORE({});
+			goods.value = [];
+			loading.value = false;
+			uni.stopPullDownRefresh();
+			uToast.value && uToast.value.show({ message: '暂无营业门店', type: 'error' });
+			console.warn('[menu] 没有营业门店, shopList:', shopList.map(s => ({ id: s.id, name: s.name, status: s.status })));
+			return;
+		}
+
+		// 广告图
+		getAds(currentShop.id);
+
+		currentShop.notice = currentShop.status == 1 ? currentShop.notice : '店铺营业时间为:' + formatDateTime(currentShop.startTime,'hh:mm')+' - '+formatDateTime(currentShop.endTime,'hh:mm') +
+		'，不在营业时间内无法下单';
+
+		// 设置店铺信息
+		main.SET_STORE(currentShop);
+		console.log('[menu] 当前门店:', currentShop.name, 'id:', currentShop.id);
+
+		// 请求商品列表
+		let mygoods = await menuGoods({
+			shopId: currentShop.id
+		});
+		console.log('[menu] 商品请求 shopId:', currentShop.id, '返回数量:', mygoods ? mygoods.length : 0);
+
+		if (mygoods && mygoods.length > 0) {
+			goods.value = mygoods;
+			refreshCart();
+		} else {
+			goods.value = [];
+			refreshCart();
+			console.warn('[menu] 商品列表为空, shopId:', currentShop.id);
+		}
+		loading.value = false;
+		uni.stopPullDownRefresh();
 	}
 }
 const refreshCart = () =>{
-	if (goods.value && goods.value.length > 0) {
-		let newGoods = goods.value;
+	let newCart = uni.getStorageSync('cart') || [];
+	if (!Array.isArray(newCart)) {
+		newCart = [];
+	}
+	if (!goods.value || goods.value.length === 0) {
 		cart.value = [];
-		let newCart = uni.getStorageSync('cart') || [];
-		let tmpCart = [];
-		if (newCart) {
-			for (let i in newCart) {
-				for (let ii in newGoods) {
-					for (let iii in newGoods[ii].goodsList) {
-						if (newCart[i].id == newGoods[ii].goodsList[iii].id) {
-							tmpCart.push(newCart[i]);
-						}
+		cartPopupVisible.value = false;
+		if (newCart.length > 0) {
+			uni.setStorageSync('cart', []);
+		}
+		return;
+	}
+
+	let newGoods = goods.value;
+	cart.value = [];
+	let tmpCart = [];
+	let cartChanged = false;
+	for (let i in newCart) {
+		for (let ii in newGoods) {
+			for (let iii in newGoods[ii].goodsList) {
+				if (newCart[i].id == newGoods[ii].goodsList[iii].id) {
+					const normalizedImage = normalizeImageUrl(newCart[i].image);
+					if (normalizedImage !== newCart[i].image) {
+						cartChanged = true;
 					}
+					tmpCart.push({
+						...newCart[i],
+						image: normalizedImage
+					});
 				}
 			}
-			cart.value = tmpCart;
-			cartPopupVisible.value = false;
 		}
+	}
+	cart.value = tmpCart;
+	cartPopupVisible.value = false;
+	if (tmpCart.length !== newCart.length || cartChanged) {
+		uni.setStorageSync('cart', JSON.parse(JSON.stringify(tmpCart)));
 	}
 }
 const  getAds = async(shop_id) =>{
@@ -558,7 +626,7 @@ const handleAddToCart = (cate, newGood, num) =>{ //添加到购物车
 			name: newGood.storeName,
 			price: newGood.price,
 			number: num,
-			image: newGood.image,
+			image: normalizeImageUrl(newGood.image),
 			valueStr: good.value.valueStr
 		})
 	}

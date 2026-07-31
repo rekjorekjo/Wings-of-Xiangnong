@@ -14,7 +14,7 @@
 						<view class="form-input w-100 d-flex align-items-center"  style="position: relative;">
 							<view class="flex user-box align-items-center">
 								<view class="mr-1">
-									<uv-avatar :src="member.avatar" size="60"></uv-avatar>
+									<uv-avatar :src="normalizeImageUrl(member.avatar)" size="60"></uv-avatar>
 								</view>
 								<view v-if="!member.avatar" class="flex-1" style="right:0;height: 60rpx;">
 									<button style="background-color: #09b4f1;color:#fff;" size='mini' open-type="chooseAvatar" @chooseavatar="chooseavatar" type="success">更改头像</button>
@@ -92,6 +92,7 @@ import {
   userEdit
 } from '@/api/account'
 import { VUE_APP_UPLOAD_URL } from '@/config';
+import { normalizeImageUrl } from '@/utils/image'
 const main = useMainStore()
 const { openid, lang } = storeToRefs(main)
 
