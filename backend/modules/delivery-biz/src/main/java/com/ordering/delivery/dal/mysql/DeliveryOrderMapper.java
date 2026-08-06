@@ -2,9 +2,11 @@ package com.ordering.delivery.dal.mysql;
 
 import com.ordering.delivery.dal.dataobject.DeliveryOrderDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface DeliveryOrderMapper {
@@ -29,4 +31,22 @@ public interface DeliveryOrderMapper {
             LIMIT 200
             """)
     List<DeliveryOrderDO> selectRecentDeliveryOrders();
+
+    @Select("""
+            SELECT
+                id,
+                order_id AS orderNo,
+                IFNULL(shop_name, '') AS pickupSite,
+                IFNULL(user_address, '') AS dropoffSite,
+                paid,
+                status,
+                total_num AS totalNum,
+                create_time AS createdAt
+            FROM app_store_order
+            WHERE id = #{id}
+              AND deleted = 0
+              AND IFNULL(is_system_del, 0) <> 1
+            LIMIT 1
+            """)
+    Optional<DeliveryOrderDO> selectDeliveryOrderById(@Param("id") Long id);
 }

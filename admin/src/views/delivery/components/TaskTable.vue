@@ -32,9 +32,10 @@
       </template>
     </el-table-column>
     <el-table-column label="创建时间" prop="createdAt" width="180" />
-    <el-table-column label="操作" width="200" fixed="right">
+    <el-table-column label="操作" width="240" fixed="right">
       <template #default="scope">
         <el-button link type="primary" @click="emit('detail', scope.row)">详情</el-button>
+        <el-button link type="primary" @click="emit('waypoints', scope.row)">航点</el-button>
         <el-button 
           v-if="scope.row.status === 'pending'" 
           link 
@@ -99,6 +100,7 @@ defineProps<{
 
 const emit = defineEmits<{
   detail: [task: DeliveryTask]
+  waypoints: [task: DeliveryTask]
   assign: [task: DeliveryTask]
   flying: [task: DeliveryTask]
   arrived: [task: DeliveryTask]

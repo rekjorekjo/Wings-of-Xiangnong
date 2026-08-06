@@ -11,8 +11,10 @@ public class DeliveryProperties {
     private Long defaultTenantId = 1L;
     private Long defaultStoreId = 1L;
     private String defaultSiteName = "App Station A";
-    private BigDecimal defaultLongitude = new BigDecimal("118.817");
-    private BigDecimal defaultLatitude = new BigDecimal("31.892");
+    private BigDecimal defaultLongitude = new BigDecimal("118.8151082");
+    private BigDecimal defaultLatitude = new BigDecimal("31.8880093");
+    private BigDecimal defaultHomeAltitude = new BigDecimal("20.0");
+    private BigDecimal defaultFlightAltitude = new BigDecimal("10.0");
 
     public Boolean getMockEnabled() {
         return mockEnabled;
@@ -60,5 +62,21 @@ public class DeliveryProperties {
 
     public void setDefaultLatitude(BigDecimal defaultLatitude) {
         this.defaultLatitude = defaultLatitude;
+    }
+
+    public BigDecimal getDefaultHomeAltitude() {
+        return defaultHomeAltitude;
+    }
+
+    public void setDefaultHomeAltitude(BigDecimal defaultHomeAltitude) {
+        this.defaultHomeAltitude = defaultHomeAltitude;
+    }
+
+    public BigDecimal getDefaultFlightAltitude() {
+        return defaultFlightAltitude;
+    }
+
+    public void setDefaultFlightAltitude(BigDecimal defaultFlightAltitude) {
+        this.defaultFlightAltitude = defaultFlightAltitude;
     }
 }

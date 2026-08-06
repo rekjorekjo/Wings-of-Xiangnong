@@ -32,6 +32,10 @@ const download = {
   // 下载 Markdown 方法
   markdown: (data: Blob, fileName: string) => {
     download0(data, fileName, 'text/markdown')
+  },
+  // 下载 Text 方法
+  text: (data: Blob, fileName: string) => {
+    download0(data, fileName, 'text/plain')
   }
 }
 

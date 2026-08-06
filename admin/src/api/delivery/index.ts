@@ -1,11 +1,25 @@
 import request from '@/config/axios'
 import dayjs from 'dayjs'
-import type { DeliveryTask, Drone } from '@/views/delivery/types'
+import type { DeliveryPoint, DeliveryTask, Drone } from '@/views/delivery/types'
 
 export interface DeliveryTaskQuery {
   status?: string
   droneNo?: string
   orderNo?: string
+}
+
+export interface WaypointMissionQuery {
+  destinationLatitude: string | number
+  destinationLongitude: string | number
+  startLatitude?: string | number
+  startLongitude?: string | number
+  homeAltitude?: string | number
+  flightAltitude?: string | number
+}
+
+export interface DeliveryPointQuery {
+  userLatitude?: string | number
+  userLongitude?: string | number
 }
 
 interface RawDeliveryTask {
@@ -120,4 +134,41 @@ export const getDrones = async (): Promise<Drone[]> => {
     url: '/delivery/drones'
   })
   return (Array.isArray(list) ? list : []).map(normalizeDrone)
+}
+
+export const getDeliveryPoints = async (params?: DeliveryPointQuery): Promise<DeliveryPoint[]> => {
+  const list = await request.get<DeliveryPoint[]>({
+    url: '/delivery/points',
+    params
+  })
+  return Array.isArray(list) ? list : []
+}
+
+export const recommendDeliveryPoint = async (
+  params: Required<DeliveryPointQuery>
+): Promise<DeliveryPoint> => {
+  return await request.get<DeliveryPoint>({
+    url: '/delivery/points/recommend',
+    params
+  })
+}
+
+export const downloadWaypointMission = async (
+  taskId: number,
+  params: WaypointMissionQuery
+): Promise<Blob> => {
+  return await request.download<Blob>({
+    url: `/delivery/tasks/${taskId}/waypoints`,
+    params
+  })
+}
+
+export const previewWaypointMission = async (
+  taskId: number,
+  params: WaypointMissionQuery
+): Promise<string> => {
+  return await request.get<string>({
+    url: `/delivery/tasks/${taskId}/waypoints/preview`,
+    params
+  })
 }

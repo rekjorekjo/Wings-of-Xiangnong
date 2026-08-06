@@ -27,3 +27,16 @@ export interface Drone {
   payload: string
   lastUpdatedAt: string // Formatted display string, raw value is string | number | null
 }
+
+export interface DeliveryPoint {
+  code: string
+  name: string
+  address: string
+  latitude: string | number
+  longitude: string | number
+  flightAltitude: string | number
+  enabled: boolean
+  verified: boolean
+  distanceMeters?: number | null
+  recommended: boolean
+}
