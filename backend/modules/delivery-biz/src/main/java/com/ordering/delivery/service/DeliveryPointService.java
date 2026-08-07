@@ -1,6 +1,9 @@
 package com.ordering.delivery.service;
 
 import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryPointRespVO;
+import com.ordering.delivery.dal.dataobject.DeliveryPointDO;
+import com.ordering.delivery.dal.mysql.DeliveryPointMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -13,39 +16,13 @@ public class DeliveryPointService {
 
     private static final double EARTH_RADIUS_METERS = 6_378_137.0;
 
-    private final List<DeliveryPoint> mockPoints = List.of(
-            new DeliveryPoint(
-                    "T_LIBRARY",
-                    "图书馆草坪降落点",
-                    "东南大学九龙湖校区李文正图书馆草坪",
-                    new BigDecimal("31.88791480"),
-                    new BigDecimal("118.81327290"),
-                    new BigDecimal("10.0"),
-                    true,
-                    true),
-            new DeliveryPoint(
-                    "DORM_TEST_A",
-                    "宿舍区测试点A",
-                    "宿舍区附近候选配送点，待无人机组复核",
-                    new BigDecimal("31.88695000"),
-                    new BigDecimal("118.81452000"),
-                    new BigDecimal("12.0"),
-                    true,
-                    false),
-            new DeliveryPoint(
-                    "TEACHING_TEST_B",
-                    "教学区测试点B",
-                    "教学区附近候选配送点，待无人机组复核",
-                    new BigDecimal("31.88905000"),
-                    new BigDecimal("118.81270000"),
-                    new BigDecimal("12.0"),
-                    true,
-                    false)
-    );
+    @Resource
+    private DeliveryPointMapper deliveryPointMapper;
 
     public List<AdminDeliveryPointRespVO> listPoints(BigDecimal userLatitude, BigDecimal userLongitude) {
-        Optional<DeliveryPoint> recommended = recommend(userLatitude, userLongitude);
-        return mockPoints.stream()
+        List<DeliveryPointDO> points = deliveryPointMapper.selectPointList();
+        Optional<DeliveryPointDO> recommended = recommend(points, userLatitude, userLongitude);
+        return points.stream()
                 .map(point -> toResp(point, userLatitude, userLongitude, recommended))
                 .sorted(pointComparator(userLatitude, userLongitude))
                 .toList();
@@ -54,40 +31,40 @@ public class DeliveryPointService {
     public AdminDeliveryPointRespVO recommendPoint(BigDecimal userLatitude, BigDecimal userLongitude) {
         validateLatitude("userLatitude", userLatitude);
         validateLongitude("userLongitude", userLongitude);
-        DeliveryPoint recommended = recommend(userLatitude, userLongitude)
+        DeliveryPointDO recommended = recommend(deliveryPointMapper.selectPointList(), userLatitude, userLongitude)
                 .orElseThrow(() -> new IllegalStateException("No enabled delivery point available"));
         return toResp(recommended, userLatitude, userLongitude, Optional.of(recommended));
     }
 
-    private Optional<DeliveryPoint> recommend(BigDecimal userLatitude, BigDecimal userLongitude) {
+    private Optional<DeliveryPointDO> recommend(List<DeliveryPointDO> points, BigDecimal userLatitude, BigDecimal userLongitude) {
         if (userLatitude == null || userLongitude == null) {
             return Optional.empty();
         }
         validateLatitude("userLatitude", userLatitude);
         validateLongitude("userLongitude", userLongitude);
-        return mockPoints.stream()
-                .filter(DeliveryPoint::enabled)
-                .min(Comparator.comparingDouble(point -> distanceMeters(userLatitude, userLongitude, point.latitude(), point.longitude())));
+        return points.stream()
+                .filter(point -> Boolean.TRUE.equals(point.getEnabled()))
+                .min(Comparator.comparingDouble(point -> distanceMeters(userLatitude, userLongitude, point.getLatitude(), point.getLongitude())));
     }
 
     private AdminDeliveryPointRespVO toResp(
-            DeliveryPoint point,
+            DeliveryPointDO point,
             BigDecimal userLatitude,
             BigDecimal userLongitude,
-            Optional<DeliveryPoint> recommended) {
+            Optional<DeliveryPointDO> recommended) {
         Double distance = userLatitude == null || userLongitude == null
                 ? null
-                : round(distanceMeters(userLatitude, userLongitude, point.latitude(), point.longitude()), 1);
-        boolean isRecommended = recommended.map(value -> value.code().equals(point.code())).orElse(false);
+                : round(distanceMeters(userLatitude, userLongitude, point.getLatitude(), point.getLongitude()), 1);
+        boolean isRecommended = recommended.map(value -> value.getCode().equals(point.getCode())).orElse(false);
         return new AdminDeliveryPointRespVO(
-                point.code(),
-                point.name(),
-                point.address(),
-                point.latitude(),
-                point.longitude(),
-                point.flightAltitude(),
-                point.enabled(),
-                point.verified(),
+                point.getCode(),
+                point.getName(),
+                point.getAddress(),
+                point.getLatitude(),
+                point.getLongitude(),
+                point.getFlightAltitude(),
+                point.getEnabled(),
+                point.getVerified(),
                 distance,
                 isRecommended);
     }
@@ -126,17 +103,5 @@ public class DeliveryPointService {
         if (value == null || value.compareTo(BigDecimal.valueOf(-180)) < 0 || value.compareTo(BigDecimal.valueOf(180)) > 0) {
             throw new IllegalArgumentException(field + " must be between -180 and 180");
         }
-    }
-
-    private record DeliveryPoint(
-            String code,
-            String name,
-            String address,
-            BigDecimal latitude,
-            BigDecimal longitude,
-            BigDecimal flightAltitude,
-            boolean enabled,
-            boolean verified
-    ) {
     }
 }

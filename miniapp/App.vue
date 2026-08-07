@@ -14,6 +14,7 @@ import { FEATURES } from '@/config/features'
 
 onLaunch(() => {
 	console.log('App Launch')
+	main.RESTORE_SESSION()
 })
 
 onShow(() => {

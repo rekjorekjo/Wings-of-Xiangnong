@@ -38,6 +38,7 @@ export const useMainStore = defineStore('main', {
 	},
 	SET_ORDER_TYPE(type) {
 	  	this.orderType = type
+		uni.setStorageSync('orderType', type)
 	},
 	SET_MEMBER(member) {
 		this.member = member
@@ -45,18 +46,51 @@ export const useMainStore = defineStore('main', {
 	},
 	SET_ADDRESS(address) {
 		this.address = address
+		if (address && address.id) {
+			uni.setStorageSync('address', address)
+		} else {
+			uni.removeStorageSync('address')
+		}
 	},
 	SET_ADDRESSES(addresses) {
 		this.addresses = addresses
 	},
 	SET_STORE(store) {
 		this.store = store
+		if (store && store.id) {
+			uni.setStorageSync('store', store)
+		} else {
+			uni.removeStorageSync('store')
+		}
 	},
 	SET_CART(cart) {
-		this.cart = cart
+		this.cart = Array.isArray(cart) ? cart : []
+		uni.setStorageSync('cart', JSON.parse(JSON.stringify(this.cart)))
 	},
 	REMOVE_CART(state) {
 		this.cart = []
+		uni.removeStorageSync('cart')
+	},
+	RESTORE_SESSION() {
+		const cachedStore = uni.getStorageSync('store')
+		if (cachedStore && cachedStore.id) {
+			this.store = cachedStore
+		}
+
+		const cachedOrderType = uni.getStorageSync('orderType')
+		if (cachedOrderType === 'takein' || cachedOrderType === 'takeout') {
+			this.orderType = cachedOrderType
+		}
+
+		const cachedAddress = uni.getStorageSync('address')
+		if (cachedAddress && cachedAddress.id) {
+			this.address = cachedAddress
+		}
+
+		const cachedCart = uni.getStorageSync('cart')
+		if (Array.isArray(cachedCart)) {
+			this.cart = cachedCart
+		}
 	},
 	setCookie(state, provider) {
 		state.cookie = provider;

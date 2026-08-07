@@ -52,18 +52,21 @@ import { useMainStore } from '@/store/store'
 import { storeToRefs } from 'pinia'
 import { onLoad,onShow} from '@dcloudio/uni-app'
 import { ROUTES } from '@/config/routes'
+import { ensureActiveShop } from '@/api/sites'
 const main = useMainStore()
 const { orderType,address, store,location,isLogin } = storeToRefs(main)
 const title = ref('购物车')
 const cart = ref([])
 const uToast = ref()
 
-// onLoad(() => {
-// 	cart.value = uni.getStorageSync('cart')
-// })
+const loadCartFromStorage = () => {
+	const cachedCart = uni.getStorageSync('cart')
+	cart.value = Array.isArray(cachedCart) ? cachedCart : []
+}
+
 onShow(() => {
-	//cart.value = []
-	cart.value = uni.getStorageSync('cart')
+	main.RESTORE_SESSION()
+	loadCartFromStorage()
 })
 const getCartGoodsNumber = computed(() => { //计算购物车总数
 	if(cart.value.length == 0) {
@@ -86,7 +89,7 @@ const customStyle = computed(() =>{
 })
 const handleCartItemAdd = (index) => {
 	cart.value[index].number += 1
-	uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
+	main.SET_CART(cart.value)
 }
 const handleCartItemReduce = (index) => {
 	if (cart.value[index].number === 1) {
@@ -94,10 +97,7 @@ const handleCartItemReduce = (index) => {
 	} else {
 		cart.value[index].number -= 1
 	}
-	if (!cart.value.length) {
-		cartPopupVisible.value = false
-	}
-	uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
+	main.SET_CART(cart.value)
 }
 const handleCartClear = () => { //清空购物车
 	uni.showModal({
@@ -108,16 +108,28 @@ const handleCartClear = () => { //清空购物车
 		}) => {
 			if (confirm) {
 				cart.value = []
-				uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
+				main.REMOVE_CART()
 			}
 		}
 	})
 }
-const toPay = () => {
+const toPay = async() => {
 	
 	if(cart.value.length == 0){
 		uToast.value.show({message:'请先去点餐哦',type: 'error'});
 		return;
+	}
+
+	const activeShop = await ensureActiveShop(main)
+	if (!activeShop) {
+		uni.showToast({
+			title: '暂无营业门店',
+			icon: 'none'
+		})
+		uni.switchTab({
+			url: ROUTES.tabs.menu
+		})
+		return
 	}
 
 	if (!isLogin.value) {
@@ -139,7 +151,7 @@ const toPay = () => {
 		uni.showLoading({
 			title: '加载中'
 		})
-		uni.setStorageSync('cart', JSON.parse(JSON.stringify(cart.value)))
+		main.SET_CART(cart.value)
 
 		uni.navigateTo({
 			url: ROUTES.subpages.pay

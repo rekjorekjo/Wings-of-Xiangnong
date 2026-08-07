@@ -6,9 +6,9 @@
 	  @leftClick="$onClickLeft"
 	/>
 	<view class="container position-relative">
-		<view style="margin-bottom: 130rpx;">
+		<view v-if="checkoutReady" style="margin-bottom: 130rpx;">
 			<view class="section-1">
-				<template v-if="store.distance > 0">
+				<template v-if="canSwitchOrderType">
 					<list-cell class="location">
 						<view class="flex-fill d-flex justify-content-between align-items-center">
 							<view class="store-name flex-fill">{{ orderType == 'takeout' ? '外卖配送' : '点餐自取' }}</view>
@@ -44,7 +44,7 @@
 				<template>
 					<list-cell class="location" @click="goToShop">
 						<view class="flex-fill d-flex justify-content-between align-items-center">
-							<view class="store-name flex-fill">{{ store.name }}</view>
+							<view class="store-name flex-fill">{{ store.name || '门店加载中' }}</view>
 							<image src="/static/images/navigator-1.png" class="arrow"></image>
 						</view>
 					</list-cell>
@@ -125,7 +125,7 @@
 					<view class="flex-fill d-flex justify-content-end align-items-center">
 						<view>
 							总计￥{{ total }}
-							<text v-if="orderType == 'takeout'">,配送费￥{{ store.deliveryPrice }}</text>
+							<text v-if="orderType == 'takeout'">,配送费￥{{ deliveryPrice }}</text>
 							<text v-if="coupon.value">,￥-{{ coupon.value }}</text>
 							,实付
 						</view>
@@ -182,8 +182,9 @@
 			</list-cell>
 			<!-- 备注 end -->
 		</view>
+		<view v-else class="checkout-loading">正在恢复门店...</view>
 		<!-- 付款栏 begin -->
-		<view style="z-index: 1;"
+		<view v-if="checkoutReady" style="z-index: 1;"
 			class="w-100 pay-box position-fixed fixed-bottom d-flex align-items-center justify-content-between bg-white">
 			<view class="font-size-sm" style="margin-left: 20rpx;">合计：</view>
 			<view class="font-size-lg flex-fill">￥{{ amount }}</view>
@@ -242,6 +243,7 @@ import {
 import { FEATURES } from '@/config/features'
 import { ROUTES } from '@/config/routes'
 import { normalizeImageUrl } from '@/utils/image'
+import { ensureActiveShop } from '@/api/sites'
 // #ifdef H5
 import * as jweixin from 'weixin-js-sdk'
 // #endif
@@ -295,6 +297,7 @@ const defaultSelector = ref([0])
 const payType = ref('weixin') // 付款方式
 const coupons = ref(0) // 可用优惠券数量
 const coupon = ref(main.mycoupon) // 选中的
+const checkoutReady = ref(false)
 const subscribeMss = ref({
 	'takein': '',
 	'takeout': '',
@@ -303,14 +306,55 @@ const subscribeMss = ref({
 })// 微信订阅信息
 const uToast = ref()
 
+const loadCartFromStorage = () => {
+	const cachedCart = uni.getStorageSync('cart')
+	cart.value = Array.isArray(cachedCart) ? cachedCart : []
+}
+
+const ensureCheckoutState = async() => {
+	checkoutReady.value = false
+	if (!cart.value.length) {
+		uni.showToast({
+			title: '购物车为空，请先点餐',
+			icon: 'none'
+		})
+		uni.switchTab({
+			url: ROUTES.tabs.menu
+		})
+		return false
+	}
+
+	const activeShop = await ensureActiveShop(main)
+	if (!activeShop) {
+		uni.showToast({
+			title: '暂无营业门店',
+			icon: 'none'
+		})
+		uni.switchTab({
+			url: ROUTES.tabs.menu
+		})
+		return false
+	}
+
+	checkoutReady.value = true
+	return true
+}
+
 const total = computed(() =>{
 	return cart.value.reduce((acc, cur) => acc + cur.number * cur.price, 0);
+})
+const canSwitchOrderType = computed(() => {
+	return FEATURES.takein && (FEATURES.takeout || FEATURES.droneDelivery)
+})
+const deliveryPrice = computed(() => {
+	const price = Number(store.value.deliveryPrice)
+	return Number.isFinite(price) ? price : 0
 })
 const amount = computed(() =>{
 	let amount = cart.value.reduce((acc, cur) => acc + cur.number * cur.price, 0);
 	// 加配送费
-	if (store.value.distance > 0 && orderType.value == 'takeout') {
-		amount += parseFloat(store.value.deliveryPrice);
+	if (orderType.value == 'takeout') {
+		amount += deliveryPrice.value;
 	}
 
 	
@@ -324,7 +368,13 @@ const amount = computed(() =>{
 	return amount.toFixed(2);
 })
 
-onShow(() => {
+onShow(async() => {
+	main.RESTORE_SESSION()
+	loadCartFromStorage()
+	if (!(await ensureCheckoutState())) {
+		return
+	}
+
 	coupon.value = main.mycoupon
 	let date = new Date(new Date().getTime() + 3600000); // 一个小时后
 	let hour = date.getHours();
@@ -371,7 +421,8 @@ onHide(() => {
 	coupons.value = 0;
 })
 onLoad((option) => {
-	cart.value = uni.getStorageSync('cart')
+	main.RESTORE_SESSION()
+	loadCartFromStorage()
 	if(option.remark) {
 		form.value.remark = option.remark
 	}
@@ -464,7 +515,7 @@ const takout = (value) => {
 			if (coupon.value.type == 1 && orderType.value == 'takeout') {
 				coupon.value = {};
 			}
-			if (coupon.value.type == 2 && orderType.value == 'takeint') {
+			if (coupon.value.type == 2 && orderType.value == 'takein') {
 				coupon.value = {};
 			}
 		}
@@ -497,7 +548,11 @@ const goToShop = () => {
 		url: ROUTES.subpages.shop
 	});
 }
-const submit = () => {
+const submit = async() => {
+	if (!(await ensureCheckoutState())) {
+		return
+	}
+
 	if (orderType.value == 'takeout') {
 		// 外卖类型
 		if (typeof address.value.id == 'undefined') {
@@ -524,6 +579,10 @@ const submit = () => {
 	}
 }
 const pay = async() => {
+	if (!(await ensureCheckoutState())) {
+		return
+	}
+
 	let that = this;
 	// // #ifdef MP-WEIXIN
 	// await new Promise(function(revolve) {
@@ -630,7 +689,8 @@ const balancePay = async(order) => {
 
 	member.value.money -= amount.value
 	main.SET_MEMBER(member.value)
-	uni.removeStorageSync('cart');
+	main.REMOVE_CART()
+	cart.value = []
 	uni.switchTab({
 		url: ROUTES.tabs.order,
 		fail(res) {
@@ -678,7 +738,8 @@ const weixinPay = async(order) => {
 			paySign: data.data.paySign,
 			success: function(res) {
 
-				uni.removeStorageSync('cart');
+				main.REMOVE_CART()
+				cart.value = []
 				uni.switchTab({
 					url: ROUTES.tabs.order
 				});
@@ -801,6 +862,12 @@ const aliPay = async(order) => {
 	.pay-box {
 		box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
 		height: 100rpx;
+	}
+
+	.checkout-loading {
+		padding: 80rpx 0;
+		text-align: center;
+		color: $text-color-assist;
 	}
 
 	.modal-content {

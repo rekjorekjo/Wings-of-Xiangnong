@@ -497,11 +497,8 @@ const refreshCart = () =>{
 		newCart = [];
 	}
 	if (!goods.value || goods.value.length === 0) {
-		cart.value = [];
+		cart.value = newCart;
 		cartPopupVisible.value = false;
-		if (newCart.length > 0) {
-			uni.setStorageSync('cart', []);
-		}
 		return;
 	}
 
@@ -525,9 +522,9 @@ const refreshCart = () =>{
 			}
 		}
 	}
-	cart.value = tmpCart;
+	cart.value = tmpCart.length > 0 ? tmpCart : newCart;
 	cartPopupVisible.value = false;
-	if (tmpCart.length !== newCart.length || cartChanged) {
+	if (tmpCart.length > 0 && cartChanged) {
 		uni.setStorageSync('cart', JSON.parse(JSON.stringify(tmpCart)));
 	}
 }
