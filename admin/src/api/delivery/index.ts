@@ -22,6 +22,19 @@ export interface DeliveryPointQuery {
   userLongitude?: string | number
 }
 
+export interface DeliveryPointSaveReq {
+  code: string
+  name: string
+  address?: string
+  latitude: string | number
+  longitude: string | number
+  flightAltitude: string | number
+  enabled: boolean
+  verified: boolean
+  sort?: number
+  remark?: string
+}
+
 interface RawDeliveryTask {
   id?: number | string
   orderNo?: string | null
@@ -142,6 +155,29 @@ export const getDeliveryPoints = async (params?: DeliveryPointQuery): Promise<De
     params
   })
   return Array.isArray(list) ? list : []
+}
+
+export const createDeliveryPoint = async (data: DeliveryPointSaveReq): Promise<number> => {
+  return await request.post<number>({
+    url: '/delivery/points',
+    data
+  })
+}
+
+export const updateDeliveryPoint = async (
+  id: number,
+  data: DeliveryPointSaveReq
+): Promise<boolean> => {
+  return await request.put<boolean>({
+    url: `/delivery/points/${id}`,
+    data
+  })
+}
+
+export const deleteDeliveryPoint = async (id: number): Promise<boolean> => {
+  return await request.delete<boolean>({
+    url: `/delivery/points/${id}`
+  })
 }
 
 export const recommendDeliveryPoint = async (

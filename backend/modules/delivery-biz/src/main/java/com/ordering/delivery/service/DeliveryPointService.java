@@ -1,6 +1,7 @@
 package com.ordering.delivery.service;
 
 import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryPointRespVO;
+import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryPointSaveReqVO;
 import com.ordering.delivery.dal.dataobject.DeliveryPointDO;
 import com.ordering.delivery.dal.mysql.DeliveryPointMapper;
 import jakarta.annotation.Resource;
@@ -36,6 +37,20 @@ public class DeliveryPointService {
         return toResp(recommended, userLatitude, userLongitude, Optional.of(recommended));
     }
 
+    public Long createPoint(AdminDeliveryPointSaveReqVO reqVO) {
+        DeliveryPointDO point = toDO(null, reqVO);
+        deliveryPointMapper.insertPoint(point);
+        return point.getId();
+    }
+
+    public boolean updatePoint(Long id, AdminDeliveryPointSaveReqVO reqVO) {
+        return deliveryPointMapper.updatePoint(toDO(id, reqVO)) > 0;
+    }
+
+    public boolean deletePoint(Long id) {
+        return deliveryPointMapper.deletePoint(id) > 0;
+    }
+
     private Optional<DeliveryPointDO> recommend(List<DeliveryPointDO> points, BigDecimal userLatitude, BigDecimal userLongitude) {
         if (userLatitude == null || userLongitude == null) {
             return Optional.empty();
@@ -57,6 +72,7 @@ public class DeliveryPointService {
                 : round(distanceMeters(userLatitude, userLongitude, point.getLatitude(), point.getLongitude()), 1);
         boolean isRecommended = recommended.map(value -> value.getCode().equals(point.getCode())).orElse(false);
         return new AdminDeliveryPointRespVO(
+                point.getId(),
                 point.getCode(),
                 point.getName(),
                 point.getAddress(),
@@ -65,8 +81,26 @@ public class DeliveryPointService {
                 point.getFlightAltitude(),
                 point.getEnabled(),
                 point.getVerified(),
+                point.getSort(),
+                point.getRemark(),
                 distance,
                 isRecommended);
+    }
+
+    private DeliveryPointDO toDO(Long id, AdminDeliveryPointSaveReqVO reqVO) {
+        DeliveryPointDO point = new DeliveryPointDO();
+        point.setId(id);
+        point.setCode(reqVO.getCode());
+        point.setName(reqVO.getName());
+        point.setAddress(reqVO.getAddress());
+        point.setLatitude(reqVO.getLatitude());
+        point.setLongitude(reqVO.getLongitude());
+        point.setFlightAltitude(reqVO.getFlightAltitude());
+        point.setEnabled(reqVO.getEnabled() == null ? Boolean.TRUE : reqVO.getEnabled());
+        point.setVerified(reqVO.getVerified() == null ? Boolean.FALSE : reqVO.getVerified());
+        point.setSort(reqVO.getSort() == null ? 0 : reqVO.getSort());
+        point.setRemark(reqVO.getRemark());
+        return point;
     }
 
     private Comparator<AdminDeliveryPointRespVO> pointComparator(BigDecimal userLatitude, BigDecimal userLongitude) {

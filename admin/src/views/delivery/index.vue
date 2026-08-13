@@ -42,6 +42,8 @@
       />
     </el-card>
 
+    <DeliveryPointManager class="mt-4" />
+
     <TaskDetailDrawer 
       v-model="drawerVisible"
       :task="currentTask"
@@ -146,6 +148,7 @@
 
 <script setup lang="ts">
 import DeliveryStats from './components/DeliveryStats.vue'
+import DeliveryPointManager from './components/DeliveryPointManager.vue'
 import DroneTable from './components/DroneTable.vue'
 import TaskFilter from './components/TaskFilter.vue'
 import TaskTable from './components/TaskTable.vue'

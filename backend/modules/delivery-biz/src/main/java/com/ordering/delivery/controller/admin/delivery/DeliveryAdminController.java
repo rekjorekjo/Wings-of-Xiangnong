@@ -3,6 +3,7 @@ package com.ordering.delivery.controller.admin.delivery;
 import com.ordering.framework.common.pojo.CommonResult;
 import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryDroneRespVO;
 import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryPointRespVO;
+import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryPointSaveReqVO;
 import com.ordering.delivery.controller.admin.delivery.vo.AdminDeliveryTaskRespVO;
 import com.ordering.delivery.service.DeliveryPointService;
 import com.ordering.delivery.service.DeliveryDroneService;
@@ -11,14 +12,19 @@ import com.ordering.delivery.service.WaypointMissionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,6 +81,26 @@ public class DeliveryAdminController {
             @RequestParam("userLatitude") BigDecimal userLatitude,
             @RequestParam("userLongitude") BigDecimal userLongitude) {
         return success(deliveryPointService.recommendPoint(userLatitude, userLongitude));
+    }
+
+    @PostMapping("/points")
+    @Operation(summary = "Create delivery point")
+    public CommonResult<Long> createDeliveryPoint(@Valid @RequestBody AdminDeliveryPointSaveReqVO reqVO) {
+        return success(deliveryPointService.createPoint(reqVO));
+    }
+
+    @PutMapping("/points/{id}")
+    @Operation(summary = "Update delivery point")
+    public CommonResult<Boolean> updateDeliveryPoint(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody AdminDeliveryPointSaveReqVO reqVO) {
+        return success(deliveryPointService.updatePoint(id, reqVO));
+    }
+
+    @DeleteMapping("/points/{id}")
+    @Operation(summary = "Delete delivery point")
+    public CommonResult<Boolean> deleteDeliveryPoint(@PathVariable("id") Long id) {
+        return success(deliveryPointService.deletePoint(id));
     }
 
     @GetMapping("/tasks/{id}/waypoints")

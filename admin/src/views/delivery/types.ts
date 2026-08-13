@@ -29,6 +29,7 @@ export interface Drone {
 }
 
 export interface DeliveryPoint {
+  id: number
   code: string
   name: string
   address: string
@@ -37,6 +38,8 @@ export interface DeliveryPoint {
   flightAltitude: string | number
   enabled: boolean
   verified: boolean
+  sort: number
+  remark?: string
   distanceMeters?: number | null
   recommended: boolean
 }
