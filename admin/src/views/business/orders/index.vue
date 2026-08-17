@@ -6,7 +6,7 @@
       <el-tab-pane label="自取订单" name="takein"/>
     </el-tabs>
     <el-form-item label="订单状态：" >
-      <el-radio-group v-model="orderStatus" size="large"  fill="#DC143C" @change="queryOrderStatus">
+      <el-radio-group v-model="orderStatus" size="large"  fill="#87CEEB" @change="queryOrderStatus">
         <el-radio-button label="">全部</el-radio-button>
         <el-radio-button label="0">未支付</el-radio-button>
         <el-radio-button label="1">制作中</el-radio-button>
@@ -18,7 +18,7 @@
       </el-radio-group>
     </el-form-item>
      <el-form-item label="支付方式：" >
-      <el-radio-group v-model="payStatus" size="large"  fill="#FF1493" @change="queryPayStatus">
+      <el-radio-group v-model="payStatus" size="large"  fill="#87CEEB" @change="queryPayStatus">
         <el-radio-button label="">全部</el-radio-button>
         <el-radio-button label="weixin">微信支付</el-radio-button>
         <el-radio-button label="alipay">支付宝支付</el-radio-button>
